@@ -1,0 +1,14 @@
+Ferramentas usadas**
+
+Entity Framework Core 
+    Ferramenta para realizar o mapeamento objeto relacional entre as models eas tabelas do banco de dados
+MySql - Banco de dados
+Bootstrao 5 
+
+Modelo de dados
+    1 criar os modelos e enuns
+    1.1 Adicionar as propriedades
+    1.2 adicionar os construtores 
+    1.3 adicionar as propriedades costumizadas se necessario
+    1.4 criar o metodos necessarios
+    1.5 fazer a relação de entidades 1;N, 1;1 ou N;M
