@@ -1,12 +1,17 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
 namespace EntregaRapida.Models.Enum{
     public class Notificacao{
-         private int NotificacaoId { get; set; }
+        private int Idnotificacao { get; set; }
         public DateTime date { get; set; }
         public string mensagem { get; set; }
 
-        public Lojista lojista { get; set; }
+        [ForeignKey("Idlojista")]
+        public Lojista lojista { get; set; } //1:1  ✓ Falta o dbContext
 
-        public Pedido pedido { get; set; }
+        [ForeignKey("Idpedido")]
+        public Pedido pedido { get; set; }  //1:1  ✓ Falta o dbContext
     }
 
 }

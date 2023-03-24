@@ -1,15 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntregaRapida.Models.Enum{
     public class Avaliacao{
-        private string mensagem;
-        private int AvaliacaoId { get; set; }
+        private string _mensagem;
+        private int IdAvaliacao{ get; set; }
 
-        [EnumDataType(typeof(Satisfacao))]
-        private Satisfacao _satisfacao { get; set; }
-        private Entregador _entregador { get; set; }
-        private Lojista _lojista { get; set; }
+        [EnumDataType(typeof(Satisfacao))] // ✓  falta por no dbcontext
+        private Satisfacao _satisfacao { get; set; } //1:1  ✓  falta por no dbcontext
+        [ForeignKey("Identregador")]
+        private Entregador _entregador { get; set; } //1:N  ✓  falta por no dbcontext
+
+        [ForeignKey("Idlojista")]
+        private Lojista _lojista { get; set; } //1:N  ✓  falta por no dbcontext
 
         public Avaliacao(Satisfacao satisfacao,Entregador entregador,Lojista lojista)
         {

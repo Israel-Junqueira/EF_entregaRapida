@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using EntregaRapida.Models.Enum;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,29 +7,32 @@ namespace EntregaRapida.Models
 {
     public class Entregador{
     
-        private int EntregadorId { get; set; }
+        private int Identregador { get; set; }
         private string _nome ;
         private string _endereco ;
         private string _telefone ;
         private int _pontuacao ;
         private int _numeroEntrega;
+        public string CNH { get; set; }
+        
 
-        //enum veiculo
-        [EnumDataType(typeof(Veiculo))]
+        //enum 
+        [EnumDataType(typeof(Veiculo))] //1:1 fata por no dbContext
         public Veiculo veiculo ;
-       
-         //enum modalidade
-        [EnumDataType(typeof(Modalidade))]
+        [EnumDataType(typeof(Modalidade))] //1:1 fata por no dbContext
         public Modalidade modalidade ;
-     
-        //classe historico
-        public int Idhistorico { get; set; }
-        public List<Historico> historico ;
+        //fim enuns 
 
-        //classe avaliacao
-        public int IdAvaliacao { get; set; }
-        public List<Avaliacao> avaliacao { get; set; }
+        //classe 
+        public List<Historico> historico; //1:N  falta fazer DbContext
 
+        [ForeignKey("IdAvaliacao")] //1:N  falta fazer
+        public ICollection<Avaliacao> avaliacao { get; set; }
+
+        public List<Pedido> pedido { get; set; }//1:N  falta fazer DbContext
+        //fim classes
+        [ForeignKey("Idplataforma")]
+        private Plataforma plataforma; //1:N falta fazer DbContext
         public Entregador()
         {
             

@@ -12,3 +12,21 @@ Modelo de dados
     1.3 adicionar as propriedades costumizadas se necessario
     1.4 criar o metodos necessarios
     1.5 fazer a relação de entidades 1;N, 1;1 ou N;M
+
+    //----------------------
+
+    2 Classe DbContext e DbSet<T> Mapear as entitdades e fazer a Conexao com banco de dados
+    
+DbContexto:Database
+
+    -Conexao com o Database
+    -operações com dados
+    -Consulta e Persistencia
+    -Mapeamento de dados 
+    -Gestao de transação
+DbSet<T>tabelas
+    -Coleções para entidades do modelos
+    -Coleções na memoria
+    -Para persistir usar SaveChanges()
+
+para realizar a comunicação LINQ language integrated query - consulta integrada de idioma
