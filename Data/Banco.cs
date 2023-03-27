@@ -19,6 +19,7 @@ namespace EFENTREGARAPIDA.Data
         public DbSet<Pedido>Pedidos { get; set; }
         public DbSet<Plataforma>Plataformas { get; set; }
         public DbSet<Proprietario>Proprietarios { get; set; }
+        
         /*
         preciso colocar os enums aq ??
 
