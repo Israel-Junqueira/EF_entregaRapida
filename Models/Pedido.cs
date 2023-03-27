@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EntregaRapida.Models{
 
     public class Pedido{
+        [Key]
         private int Idpedido { get; set; }
         public string enderecoOrigem { get; set; }
         public string enderecoDestino { get; set; }

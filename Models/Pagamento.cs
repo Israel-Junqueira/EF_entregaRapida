@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EntregaRapida.Models{
     public class Pagamento{
+        [Key]
          private int Idpagamento { get; set; }
         private double Preco { get; set; }
         public DateTime date { get; set; }

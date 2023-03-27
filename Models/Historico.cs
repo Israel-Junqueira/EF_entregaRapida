@@ -1,8 +1,10 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntregaRapida.Models.Enum
 {
        public class Historico{
+            [Key]
             private int Idhistorico { get; set; }
             public DateTime date { get; set; }
            

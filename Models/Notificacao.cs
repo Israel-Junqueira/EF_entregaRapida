@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EntregaRapida.Models.Enum{
     public class Notificacao{
+        [Key]
         private int Idnotificacao { get; set; }
         public DateTime date { get; set; }
         public string mensagem { get; set; }

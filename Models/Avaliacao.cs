@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EntregaRapida.Models.Enum{
     public class Avaliacao{
         private string _mensagem;
+        [Key]
         private int IdAvaliacao{ get; set; }
 
         [EnumDataType(typeof(Satisfacao))] // ✓  falta por no dbcontext
