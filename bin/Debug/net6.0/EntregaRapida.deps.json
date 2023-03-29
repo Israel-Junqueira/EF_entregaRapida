@@ -10,8 +10,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "7.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.4",
-          "MySql.Data.EntityFrameworkCore": "8.0.19",
-          "MySql.Data": "8.0.32.1"
+          "MySql.EntityFrameworkCore": "7.0.0"
         },
         "runtime": {
           "EntregaRapida.dll": {}
@@ -267,7 +266,7 @@
           }
         }
       },
-      "MySql.Data/8.0.32.1": {
+      "MySql.Data/8.0.32": {
         "dependencies": {
           "Google.Protobuf": "3.21.9",
           "K4os.Compression.LZ4.Streams": "1.2.6",
@@ -282,46 +281,39 @@
         "runtime": {
           "lib/net6.0/MySql.Data.dll": {
             "assemblyVersion": "8.0.32.0",
-            "fileVersion": "8.0.32.1"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win-x64/native/comerr64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
+            "fileVersion": "8.0.32.0"
+          },
+          "lib/net6.0/ZstdNet.dll": {
+            "assemblyVersion": "1.4.5.0",
+            "fileVersion": "1.4.5.0"
+          },
+          "lib/net6.0/comerr64.dll": {
             "fileVersion": "4.1.0.0"
           },
-          "runtimes/win-x64/native/gssapi64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
+          "lib/net6.0/gssapi64.dll": {
             "fileVersion": "4.1.0.0"
           },
-          "runtimes/win-x64/native/k5sprt64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
+          "lib/net6.0/k5sprt64.dll": {
             "fileVersion": "4.1.0.0"
           },
-          "runtimes/win-x64/native/krb5_64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
+          "lib/net6.0/krb5_64.dll": {
             "fileVersion": "4.1.0.0"
           },
-          "runtimes/win-x64/native/krbcc64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
+          "lib/net6.0/krbcc64.dll": {
             "fileVersion": "4.1.0.0"
           }
         }
       },
-      "MySql.Data.EntityFrameworkCore/8.0.19": {
+      "MySql.EntityFrameworkCore/7.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.4",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.4",
-          "MySql.Data": "8.0.32.1"
+          "MySql.Data": "8.0.32"
         },
         "runtime": {
-          "lib/netstandard2.0/MySql.Data.EntityFrameworkCore.dll": {
-            "assemblyVersion": "8.0.19.0",
-            "fileVersion": "8.0.19.0"
+          "lib/net6.0/MySql.EntityFrameworkCore.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
           }
         }
       },
@@ -706,19 +698,19 @@
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
     },
-    "MySql.Data/8.0.32.1": {
+    "MySql.Data/8.0.32": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-K5WkZz8hkiHyKSnEON5AER+oMxmwhRrSAy6/a7XnfWpytn8EyYLCFWe0lDNZqZJ/w79P1Qtw0TZvf3kP0a1fbg==",
-      "path": "mysql.data/8.0.32.1",
-      "hashPath": "mysql.data.8.0.32.1.nupkg.sha512"
+      "sha512": "sha512-SDzjcf0mVFtWfpEXJwOBYknskbN55H1WEpTzMnlKaaNrT6Mkz0/36NPdpxh7cRrW3cqbuDCFKsxM6rE0CRewhA==",
+      "path": "mysql.data/8.0.32",
+      "hashPath": "mysql.data.8.0.32.nupkg.sha512"
     },
-    "MySql.Data.EntityFrameworkCore/8.0.19": {
+    "MySql.EntityFrameworkCore/7.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MQvizr38a0yUSuiUZvvS1FrGCA1PqunxDbJvs9fGQkBoLV2mua8m4EK4egMatHj7PRVPThsPmYKjEt/WPMU2Qg==",
-      "path": "mysql.data.entityframeworkcore/8.0.19",
-      "hashPath": "mysql.data.entityframeworkcore.8.0.19.nupkg.sha512"
+      "sha512": "sha512-z1XBdnVcfs1gayd5byjIVP6K1ayxE7iXbqsCfQV6CTi0hp73py+fuiYi2X2JWMg5mrafcWrWDrcX/4omM6Vrcg==",
+      "path": "mysql.entityframeworkcore/7.0.0",
+      "hashPath": "mysql.entityframeworkcore.7.0.0.nupkg.sha512"
     },
     "Portable.BouncyCastle/1.9.0": {
       "type": "package",

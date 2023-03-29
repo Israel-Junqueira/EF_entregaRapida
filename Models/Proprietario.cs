@@ -15,8 +15,10 @@ namespace EntregaRapida.Models{
         [Required]
         public string email { get; set; }
 
-        [ForeignKey("Idlojista")] // ✓ 1:1 falta por no dbContext  
-        public Proprietario proprietario { get; set; }
+      
+        public int Idlojista { get; set; } // ✓ 1:1 ok
+         [ForeignKey("Idlojista")] 
+        public Lojista lojista { get; set; }
 
     }
 }

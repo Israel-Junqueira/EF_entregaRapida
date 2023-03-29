@@ -27,22 +27,26 @@ namespace EntregaRapida.Models
         
 
         //enum 
-        [EnumDataType(typeof(Veiculo))] //1:1 fata por no dbContext
-        public Veiculo veiculo ;
-        [EnumDataType(typeof(Modalidade))] //1:1 fata por no dbContext
-        public Modalidade modalidade ;
+        //1:1 fata por no dbContext
+        [EnumDataType(typeof(Veiculo))] //1:1 OK
+        public Veiculo veiculo {get;set;}
+
+        [EnumDataType(typeof(Modalidade))] //1:1 ok
+        public Modalidade modalidade {get;set;}
         //fim enuns 
 
         //classe 
-        public List<Historico> historico; //1:N  falta fazer DbContext
+        public List<Historico> historico{get;set;} //1:N  ok
 
         [ForeignKey("IdAvaliacao")] //1:N  falta fazer
         public virtual ICollection<Avaliacao> avaliacao { get; set; }
 
-        public List<Pedido> pedido { get; set; }//1:N  falta fazer DbContext
+        public List<Pedido> pedido { get; set; }//1:N  ok
         //fim classes
+        
+        public int Idplataforma { get; set; }
         [ForeignKey("Idplataforma")]
-        private Plataforma plataforma; //1:N falta fazer DbContext
+        public Plataforma plataforma; //1:N ok
         public Entregador()
         {
             

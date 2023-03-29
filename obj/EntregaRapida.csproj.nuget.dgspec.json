@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregaRapida\\EntregaRapida.csproj": {}
+    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregaRapida\\EntregaRapida.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregaRapida\\EntregaRapida.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
         "projectName": "EntregaRapida",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregaRapida\\EntregaRapida.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregaRapida\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +44,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -56,17 +60,9 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools.DotNet": {
+            "MySql.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.0.3, )"
-            },
-            "MySql.Data.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.19, )"
-            },
-            "Mysql.Data": {
-              "target": "Package",
-              "version": "[8.0.32.1, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

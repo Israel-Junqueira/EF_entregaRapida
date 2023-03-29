@@ -7,7 +7,7 @@ namespace EntregaRapida.Models{
          private int Idpagamento { get; set; }
         private double Preco { get; set; }
         public DateTime date { get; set; }
-
+        public int Idpedido { get; set; }
         [ForeignKey("Idpedido")]
         public Pedido pedido { get; set; }
 

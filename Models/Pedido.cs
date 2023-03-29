@@ -14,27 +14,33 @@ namespace EntregaRapida.Models{
         //chaves estrangeiras 
 
         [ForeignKey("Identregador")]
-        public Entregador entregador { get; set; } //1:1  ✓ Falta o dbContext
+        public int Identregador { get; set; }
+        public Entregador entregador { get; set; } //1:1  ✓ ok
 
         [ForeignKey("Idlojista")]
-        public Lojista lojista { get; set; }//1:1  ✓ Falta o dbContext
+        public int Idlojista { get; set; }    
+        public Lojista lojista { get; set; }//1:N  ✓ ok
 
         [ForeignKey("Idpagamento")]
-        public Pagamento pagamento{ get; set; }//1:1  ✓ Falta o dbContext
+        public int Idpagemento { get; set; }
+        public Pagamento pagamento{ get; set; }//1:1  ✓ ok
 
+        public int Idnotificacao { get; set; }
         [ForeignKey("Idnotificacao")]
-        public Notificacao notificacao { get; set; }//1:1  ✓ Falta o dbContext
+        public Notificacao notificacao { get; set; }//1:1  ✓ ok
 
         [ForeignKey("Idplataforma")]
-        public Plataforma plataforma  { get; set; }//1:N  ✓  falta por no dbcontext
+        public int Idplataforma { get; set; }
+        public Plataforma plataforma  { get; set; }//1:N  ✓  ok
         //fim
 
         //enums
         [EnumDataType(typeof(StatusPedido))]    
-        public StatusPedido statuspedido { get; set; } //  ✓ Falta o dbContext
+        public StatusPedido statuspedido { get; set; } //  ✓ ok
 
         [ForeignKey("Idhistorico")]
-        public Historico historico { get; set; }   //1:1  ✓ Falta o dbContext
+        public int Idhistorico { get; set; }
+        public Historico historico { get; set; }   //1:N  ✓ ok
         
     
 
