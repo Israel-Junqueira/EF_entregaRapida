@@ -1,14 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using EntregaRapida.Models.Enum;
-using Microsoft.EntityFrameworkCore;
 
 namespace EntregaRapida.Models
 {
     public class Entregador{
         
-        [Key]
-        private int Identregador { get; set; }
+       
+        public int EntregadorId { get; set; }
        [Required]
         private string _nome ;
         [Required]
@@ -25,70 +24,18 @@ namespace EntregaRapida.Models
         [MaxLength(11),MinLength(11)]
         public string CNH { get; set; }
         
-
-        //enum 
-        //1:1 fata por no dbContext
+        //chaves estrangeitas
         [EnumDataType(typeof(Veiculo))] //1:1 OK
         public Veiculo veiculo {get;set;}
-
         [EnumDataType(typeof(Modalidade))] //1:1 ok
         public Modalidade modalidade {get;set;}
-        //fim enuns 
-
-        //classe 
-        public List<Historico> historico{get;set;} //1:N  ok
-
-        [ForeignKey("IdAvaliacao")] //1:N  falta fazer
-        public virtual ICollection<Avaliacao> avaliacao { get; set; }
-
-        public List<Pedido> pedido { get; set; }//1:N  ok
-        //fim classes
+        public int PlataformaId { get; set; }
+        //Relacionamento
         
-        public int Idplataforma { get; set; }
-        [ForeignKey("Idplataforma")]
-        public Plataforma plataforma; //1:N ok
-        public Entregador()
-        {
-            
-        }
-
-        public int NumeroEntrega //propriedades custumizadas
-        {
-            get { return NumeroEntrega; }
-           
-        } 
-
-        public string GetNome{
-             get {return _nome;}
-             set {_nome = value;}
-        }
-
-        
-        
-        public int GetNumeroPontuacao{
-            get {return _pontuacao;} 
-        }
-        
-      
-        public int GetNumeroEntregas
-        {
-            get { return _numeroEntrega; }
-        }
-        
-      
-        //metodos
-        public void SetNome(string nome){
-            this._nome = nome;
-        }
-
-        public void SetPontuacao(Satisfacao satisfacao){
-            this._pontuacao = Convert.ToInt32(satisfacao);
-        }
-
-        public void SetNumeroEntregas(int NumEntregas){
-            this._numeroEntrega = NumEntregas;
-        }
-        
+        public Plataforma plataforma; //N:1 ok
+        public virtual List<Avaliacao> avaliacao { get; set; }//1:N  falta fazer
+        public virtual List<Historico> historico{get;set;} //1:N  ok
+        public virtual List<Pedido> pedido { get; set; }//1:N  ok
 
     }
 

@@ -5,20 +5,16 @@ namespace EntregaRapida.Models.Enum
 {
     public class Historico
     {
-        [Key]
-        private int Idhistorico { get; set; }
+      
+        public int HistoricoId { get; set; }
         public DateTime date { get; set; }
 
-        public ICollection<Pedido> pedido { get; set; } //1:N  ✓ ok
-
-
-        [ForeignKey("Identregador")]
-        public int Identregador { get; set; }
+        //chaves estrangeiras
+        public int EntregadorId { get; set; }
+        public int LojistaId { get; set; }
+        //relacionamentos
         public Entregador entregador { get; set; } //1:N  ✓ok
-
-
-        public int Idlojista { get; set; }
-        [ForeignKey("Idlojista")]
-        public Lojista lojista { get; set; } //1:1  ✓ ok
+        public Lojista lojista { get; set; } //1:N  ✓ ok
+        public virtual List<Pedido> pedido { get; set; } //1:N  ✓ ok
     }
 }

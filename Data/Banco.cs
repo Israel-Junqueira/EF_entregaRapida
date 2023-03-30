@@ -23,7 +23,9 @@ namespace EFENTREGARAPIDA.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
           
-
+            modelBuilder.Entity<Entregador>()
+            .ToTable("Entregadores")
+            .HasKey(p => p.EntregadorId);
             //relacionamentos dos enum da classe entregador entregador
             modelBuilder.Entity<Entregador>()
             .Property(v => v.veiculo)
@@ -31,95 +33,113 @@ namespace EFENTREGARAPIDA.Data
             modelBuilder.Entity<Entregador>()
             .Property(v => v.modalidade)
             .HasColumnType("int");
-
             //ligações das classes entregador
+
             modelBuilder.Entity<Entregador>()
             .HasMany(s=> s.historico) //Aqui estamos dizendo que a entidade Entregador tem muitos historicos.
             .WithOne(c=> c.entregador) // Aqui estamos dizendo que o historico tem apenas um entregador.
-            .HasForeignKey(c=> c.Identregador)//Aqui estamos dizendo que a propriedade Identregador no historico é a chave estrangeira ligando-o à entidade de alunos.
+            .HasForeignKey(c=> c.EntregadorId)//Aqui estamos dizendo que a propriedade Identregador no historico é a chave estrangeira ligando-o à entidade de alunos.
             .OnDelete(DeleteBehavior.Cascade);
-            
+
             modelBuilder.Entity<Entregador>()
             .HasMany(s=> s.pedido) 
             .WithOne(c=> c.entregador) 
-            .HasForeignKey(c=> c.Identregador)
+            .HasForeignKey(c=> c.EntregadorId)
             .OnDelete(DeleteBehavior.Cascade);
-
+            
             modelBuilder.Entity<Entregador>()
             .HasMany(s=> s.avaliacao) 
             .WithOne(c=> c.entregador) 
-            .HasForeignKey(c=> c.Identregador)
+            .HasForeignKey(c=> c.EntregadorId)
             .OnDelete(DeleteBehavior.Cascade);
 
-             //ligações das classes Plataforma
+            //ligações das classes Plataforma
+            modelBuilder.Entity<Plataforma>()
+            .ToTable("Plataforma")
+            .HasKey(k=>k.PlataformaId);
+
             modelBuilder.Entity<Plataforma>()
             .HasMany(s=> s.entregadores) 
             .WithOne(c=> c.plataforma) 
-            .HasForeignKey(c=> c.Idplataforma)
+            .HasForeignKey(k=> k.PlataformaId)
             .OnDelete(DeleteBehavior.Cascade);
 
              modelBuilder.Entity<Plataforma>()
             .HasMany(s=> s.lojista) 
             .WithOne(c=> c.plataforma) 
-            .HasForeignKey(c=> c.Idplataforma)
+            .HasForeignKey(c=> c.PlataformaId)
             .OnDelete(DeleteBehavior.Cascade);
             
              modelBuilder.Entity<Plataforma>()
             .HasMany(s=> s.pedido) 
             .WithOne(c=> c.plataforma) 
-            .HasForeignKey(c=> c.Idplataforma)
+            .HasForeignKey(c=> c.PlataformaId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+            modelBuilder.Entity<Plataforma>()
+            .HasMany(n=> n.notificacao)
+            .WithOne(p=>p.Plataforma)
+            .HasForeignKey(k=> k.PlataformaId);
 
-             //ligações das classes Lojista
-            // 1:N
+            // Mapeando Lojista
+            modelBuilder.Entity<Lojista>()
+            .ToTable("Lojista")
+            .HasKey(k=> k.LojistaId);
+           //ligações dos enum das classes Lojista
+            modelBuilder.Entity<Lojista>()
+            .Property(v => v.tipocomercio)
+            .HasColumnType("int");
+            //Relacionamento Lojista
+             modelBuilder.Entity<Lojista>()
+            .HasOne(n=>n.proprietario)
+            .WithOne(l=>l.lojista)
+            .HasForeignKey<Proprietario>(n=>n.ProprietarioId)
+            .OnDelete(DeleteBehavior.Cascade);
+            //O método HasForeignKey está especificando a chave estrangeira na relação entre as entidades Lojista e Proprietário. A chave estrangeira é definida como o campo ProprietarioId na entidade Proprietario. Isso informa ao Entity Framework que as entidades estão relacionadas e que o ProprietarioId na entidade Proprietario é usado para ligar a entidade Lojista ao proprietário.
             modelBuilder.Entity<Lojista>()
             .HasMany(s=> s.avaliacao) 
             .WithOne(c=> c.lojista) 
-            .HasForeignKey(c=> c.Idlojista)
-            .OnDelete(DeleteBehavior.Cascade);
+            .HasForeignKey(c=> c.LojistaId)
+            .OnDelete(DeleteBehavior.Cascade);//O método HasForeignKey é diferente na relação 2 porque estamos lidando com uma relação de muitos para um. Ao especificar o método HasForeignKey, estamos informando ao Entity Framework que cada registro de Histórico tem uma chave estrangeira para a entidade Lojista específica. Esta chave estrangeira é definida como o campo LojistaId no Histórico. Isso informa ao Entity Framework que cada registro de Histórico está relacionado a uma única entidade Lojista.
 
             modelBuilder.Entity<Lojista>()
             .HasMany(s=> s.historico) 
             .WithOne(c=> c.lojista) 
-            .HasForeignKey(c=> c.Idlojista)
+            .HasForeignKey(k=> k.LojistaId)
             .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Lojista>()
             .HasMany(p=>p.pedido)
             .WithOne(l=>l.lojista)
-            .HasForeignKey(f=>f.Idlojista)
-            .OnDelete(DeleteBehavior.Cascade);
-            //1:1
-            modelBuilder.Entity<Lojista>()
-            .HasOne(n=>n.notificacao)
-            .WithOne(l=>l.lojista)
-            .HasForeignKey<Notificacao>(n=>n.Idlojista)
-            .OnDelete(DeleteBehavior.Cascade);
-            
-            modelBuilder.Entity<Lojista>()
-            .HasOne(n=>n.proprietario)
-            .WithOne(l=>l.lojista)
-            .HasForeignKey<Notificacao>(n=>n.Idlojista)
-            .OnDelete(DeleteBehavior.Cascade);
-
-            //ligações dos enum das classes Lojista
-            modelBuilder.Entity<Lojista>()
-            .Property(v => v.tipocomercio)
-            .HasColumnType("int");
+            .HasForeignKey(k=>k.LojistaId)
+            .OnDelete(DeleteBehavior.Cascade);   
+          
 
              //ligações das classes Historico
              modelBuilder.Entity<Historico>()
+             .ToTable("Historicos")
+             .HasKey(k=> k.HistoricoId);
+             
+             modelBuilder.Entity<Historico>()
             .HasMany(s=> s.pedido) 
             .WithOne(c=> c.historico) 
-            .HasForeignKey(c=> c.Idhistorico)
+            .HasForeignKey(c=> c.HistoricoId)
             .OnDelete(DeleteBehavior.Cascade);
 
             //ligações das classes notificacao
+            modelBuilder.Entity<Notificacao>()
+            .ToTable("Notificação")
+            .HasKey(k=>k.NotificacaoId);
             modelBuilder.Entity<Notificacao>() //Linha 1: Esta linha esta criando uma entidade chamada Pedido.
-            .HasOne(n=>n.pedido)//Linha 2: Esta linha define um relacionamento de um para um entre o Pedido e a Notificação.
+            .HasMany(n=>n.pedido)//Linha 2: Esta linha define um relacionamento de um para um entre o Pedido e a Notificação.
             .WithOne(p=>p.notificacao)//Linha 3: Esta linha define o Pedido como a chave estrangeira na Notificação.
-            .HasForeignKey<Pedido>(n=>n.Idnotificacao)
+            .HasForeignKey(n=>n.PedidoId)
             .OnDelete(DeleteBehavior.Cascade);//Linha 4: Esta linha especifica que ao excluir um pedido, a notificação associada também será excluída.
+
+            //relações da classe pedido
+            modelBuilder.Entity<Pedido>()
+            .ToTable("pedido")
+            .HasKey(k=> k.PedidoId);
 
             modelBuilder.Entity<Pedido>()
             .Property(v => v.statuspedido)
@@ -128,7 +148,7 @@ namespace EFENTREGARAPIDA.Data
             modelBuilder.Entity<Pedido>()
             .HasOne(n=> n.pagamento)
             .WithOne(p=>p.pedido)
-            .HasForeignKey<Pedido>(p=>p.Idpagemento)
+            .HasForeignKey<Pagamento>(p=>p.PagamentoId)
             .OnDelete(DeleteBehavior.Cascade);
             //avaliação
               modelBuilder.Entity<Avaliacao>()

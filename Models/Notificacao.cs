@@ -1,19 +1,17 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace EntregaRapida.Models.Enum{
+namespace EntregaRapida.Models{
     public class Notificacao{
-        [Key]
-        private int Idnotificacao { get; set; }
+       
+        public int NotificacaoId { get; set; }
         public DateTime date { get; set; }
         public string mensagem { get; set; }
-        public int Idlojista { get; set; }
-        [ForeignKey("Idlojista")]
-        public Lojista lojista { get; set; } //1:1  ✓ ok
-
-        public int Idpedido { get; set; }
-        [ForeignKey("Idpedido")]
-        public Pedido pedido { get; set; }  //1:1  ✓ ok
+        //chaves estrangeiras
+        public int PlataformaId { get; set; }
+        public int PedidoId { get; set; }
+        public List<Pedido> pedido { get; set; }  //1:1  ✓ ok
+        public Plataforma Plataforma { get; set; } //1:N ok
     }
 
 }

@@ -28,14 +28,16 @@ DbSet<T>tabelas
     -Coleções para entidades do modelos
     -Coleções na memoria
     -Para persistir usar SaveChanges()
+    
+> 2.1 Injeção de dependencia do banco de dados
+    builder.Services.AddDbContext<Banco>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Banco")));
 
-->>>Para realizar a comunicação LINQ language integrated query - consulta integrada de idioma
-
--Para aplicar o migrations no projeto temos que definir 
--Um modelo de entidades que são classes com propriedades;
--Uma classe de contexto que herda de DbContext e os DbSets para as entdades a mapear;
--Definir a string de conexao com os banco de dados no arquivo appsettings.json
--registrar o contexto como um serviço usando AddDbContext(classe program)
--Definir o provedor do banco de dados e a string de conexao usada
+    2.2 Para realizar a comunicação LINQ language integrated query - consulta integrada de idioma
+        -Para aplicar o migrations no projeto temos que definir 
+        -Um modelo de entidades que são classes com propriedades;
+        -Uma classe de contexto que herda de DbContext e os DbSets para as entdades a mapear;
+        -Definir a string de conexao com os banco de dados no arquivo appsettings.json
+        -registrar o contexto como um serviço usando AddDbContext(classe program)
+        -Definir o provedor do banco de dados e a string de conexao usada
 
 Tive um problema com a versao dos pacotes mais ja acertei agora preciso fazer o mapeamento dos objetos pois causo contrario ele nao fara a migração

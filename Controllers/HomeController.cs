@@ -16,7 +16,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
        Entregador e1 = new Entregador();
-       e1.GetNome = "dimi";
+     
         return View(e1);
     }
 

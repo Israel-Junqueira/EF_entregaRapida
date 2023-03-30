@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "EntregaRapida/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.4",
           "Microsoft.EntityFrameworkCore.Design": "7.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.4",
           "MySql.EntityFrameworkCore": "7.0.0"
