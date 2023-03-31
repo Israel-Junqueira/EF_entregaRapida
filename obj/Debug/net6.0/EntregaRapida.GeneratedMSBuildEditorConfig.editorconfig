@@ -15,6 +15,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Usuario\Desktop\ProjetoEF\entregarapida
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Usuario/Desktop/ProjetoEF/entregarapida/Views/Entregador/Cadastro.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50cmVnYWRvclxDYWRhc3Ryby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Usuario/Desktop/ProjetoEF/entregarapida/Views/Entregador/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50cmVnYWRvclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Usuario/Desktop/ProjetoEF/entregarapida/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

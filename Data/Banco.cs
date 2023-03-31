@@ -1,3 +1,4 @@
+using EntregaRapida.Models.Enum.ClasseEnum;
 using EntregaRapida.Models;
 using EntregaRapida.Models.Enum;
 using Microsoft.EntityFrameworkCore;
@@ -22,19 +23,25 @@ namespace EFENTREGARAPIDA.Data
         
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
-          
             modelBuilder.Entity<Entregador>()
             .ToTable("Entregadores")
             .HasKey(p => p.EntregadorId);
-            //relacionamentos dos enum da classe entregador entregador
             modelBuilder.Entity<Entregador>()
-            .Property(v => v.veiculo)
-            .HasColumnType("int");
+            .Property(n => n.Nome)
+            .HasColumnName("Nome");
             modelBuilder.Entity<Entregador>()
-            .Property(v => v.modalidade)
-            .HasColumnType("int");
+            .Property(n => n.Endereco)
+            .HasColumnName("Endereco");
+            modelBuilder.Entity<Entregador>()
+            .Property(n => n.Celular)
+            .HasColumnName("Celular");
+             modelBuilder.Entity<Entregador>()
+            .Property(n => n.DDD)
+            .HasColumnName("DDD");
+             modelBuilder.Entity<Entregador>()
+            .Property(n => n.CNH)
+            .HasColumnName("CNH");
             //ligações das classes entregador
-
             modelBuilder.Entity<Entregador>()
             .HasMany(s=> s.historico) //Aqui estamos dizendo que a entidade Entregador tem muitos historicos.
             .WithOne(c=> c.entregador) // Aqui estamos dizendo que o historico tem apenas um entregador.
@@ -52,6 +59,10 @@ namespace EFENTREGARAPIDA.Data
             .WithOne(c=> c.entregador) 
             .HasForeignKey(c=> c.EntregadorId)
             .OnDelete(DeleteBehavior.Cascade);
+            //ligação com enum
+            modelBuilder.Entity<Entregador>()
+            .Property(p=>p.modalidade)
+            .HasConversion(v => v.ToString(),v=>(Modalidade)Enum.Parse(typeof(Modalidade),v));
 
             //ligações das classes Plataforma
             modelBuilder.Entity<Plataforma>()
@@ -85,10 +96,6 @@ namespace EFENTREGARAPIDA.Data
             modelBuilder.Entity<Lojista>()
             .ToTable("Lojista")
             .HasKey(k=> k.LojistaId);
-           //ligações dos enum das classes Lojista
-            modelBuilder.Entity<Lojista>()
-            .Property(v => v.tipocomercio)
-            .HasColumnType("int");
             //Relacionamento Lojista
              modelBuilder.Entity<Lojista>()
             .HasOne(n=>n.proprietario)
@@ -154,9 +161,17 @@ namespace EFENTREGARAPIDA.Data
               modelBuilder.Entity<Avaliacao>()
             .Property(v => v.satisfacao)
             .HasColumnType("int");
+
+            //enunsclass
+           /* modelBuilder.Entity<ClaseModalidade>()
+            .ToTable("ClasseModalidade")
+            .HasKey(k=>k.ClaseModalidadeId);
+            modelBuilder.Entity<Entregador>()
+            .HasOne(m => m.)
+            */
         }
      
-
+        
         /*
         preciso colocar os enums aq ??
 

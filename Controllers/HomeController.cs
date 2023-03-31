@@ -15,9 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-       Entregador e1 = new Entregador();
-     
-        return View(e1);
+        return View();
     }
 
     public IActionResult Privacy()

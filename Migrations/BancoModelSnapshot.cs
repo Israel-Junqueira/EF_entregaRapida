@@ -28,13 +28,37 @@ namespace EntregaRapida.Migrations
                     b.Property<string>("CNH")
                         .IsRequired()
                         .HasMaxLength(11)
-                        .HasColumnType("varchar(11)");
+                        .HasColumnType("varchar(11)")
+                        .HasColumnName("CNH");
+
+                    b.Property<string>("Celular")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("varchar(9)")
+                        .HasColumnName("Celular");
+
+                    b.Property<string>("DDD")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)")
+                        .HasColumnName("DDD");
+
+                    b.Property<string>("Endereco")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("Endereco");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("Nome");
 
                     b.Property<int>("PlataformaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("modalidade")
-                        .HasColumnType("int");
+                    b.Property<string>("modalidade")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("veiculo")
                         .HasColumnType("int");

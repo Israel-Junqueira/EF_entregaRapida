@@ -18394,6 +18394,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\Views\\Entregador\\Cadastro.cshtml",
+      "TargetPath": "Views\\Entregador\\Cadastro.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\Views\\Entregador\\Index.cshtml",
+      "TargetPath": "Views\\Entregador\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
