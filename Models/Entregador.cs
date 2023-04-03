@@ -40,7 +40,7 @@ namespace EntregaRapida.Models
     {
         
     }
-     public Entregador(string Nome,string endereco, string DDD,string Celular,string cnh, Modalidade modalidade)
+     public Entregador(string Nome,string endereco, string DDD,string Celular,string cnh, Modalidade modalidade,Veiculo veiculo)
     {
         this.Nome = Nome;
         this.Endereco = endereco;
@@ -48,6 +48,7 @@ namespace EntregaRapida.Models
         this.Celular = Celular;
         this.CNH = cnh;
         this.modalidade = modalidade;
+        this.veiculo = veiculo;
     }
     }
     

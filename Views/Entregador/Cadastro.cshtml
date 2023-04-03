@@ -1,10 +1,9 @@
-
-@model Entregador
+@model EntregaRapida.Models.Entregador
 
 
 <h2>Cadastre-se como Entregador</h2>
 
-<form method="post" action="">
+<form method="post" asp-controller="Entregador" asp-action="Cadastro">
     @Html.AntiForgeryToken()
 
     <div class="form-group">
@@ -36,10 +35,25 @@
 
     <div class="form-group">
         <label asp-for="modalidade" class="control-label"></label>
-        @Html.DropDownListFor(model=>model.modalidade,new SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Modalidade))))
+        @Html.DropDownListFor(model=>model.modalidade,new
+        SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Modalidade))))
+    </div>
+     <div class="form-group">
+        <label asp-for="veiculo" class="control-label"></label>
+        @Html.DropDownListFor(model=>model.modalidade,new
+        SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Veiculo))))
+    </div>
+      <div class="form-group">
+        <label asp-for="PlataformaId" class="control-label"></label>
+        <input asp-for="PlataformaId" class="form-control" value="1"/>
+        <span asp-validation-for="PlataformaId" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <input type="submit" value="Cadastrar" class="btn btn-primary" />
     </div>
 </form>
+
+ @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

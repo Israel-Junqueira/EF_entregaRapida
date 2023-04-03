@@ -2,11 +2,17 @@ using EntregaRapida.Models.Enum.ClasseEnum;
 using EntregaRapida.Models;
 using EntregaRapida.Models.Enum;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 
-namespace EFENTREGARAPIDA.Data
+namespace EntregaRapida.Data
 {
     public class Banco : DbContext
     {
+        public Banco()
+        {
+            
+        }
+        
      public Banco(DbContextOptions<Banco> options) : base(options)
     {
         //o restando das configurações estao na appsettings que é a string de conexao e o na program
@@ -23,6 +29,7 @@ namespace EFENTREGARAPIDA.Data
         
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
+          
             modelBuilder.Entity<Entregador>()
             .ToTable("Entregadores")
             .HasKey(p => p.EntregadorId);
@@ -63,7 +70,7 @@ namespace EFENTREGARAPIDA.Data
             modelBuilder.Entity<Entregador>()
             .Property(p=>p.modalidade)
             .HasConversion(v => v.ToString(),v=>(Modalidade)Enum.Parse(typeof(Modalidade),v));
-
+           
             //ligações das classes Plataforma
             modelBuilder.Entity<Plataforma>()
             .ToTable("Plataforma")
@@ -162,18 +169,12 @@ namespace EFENTREGARAPIDA.Data
             .Property(v => v.satisfacao)
             .HasColumnType("int");
 
-            //enunsclass
-           /* modelBuilder.Entity<ClaseModalidade>()
-            .ToTable("ClasseModalidade")
-            .HasKey(k=>k.ClaseModalidadeId);
-            modelBuilder.Entity<Entregador>()
-            .HasOne(m => m.)
-            */
+           
         }
      
         
         /*
-        preciso colocar os enums aq ??
+        preciso colocar os enums aq ?? Resposta: não precisa e nao pode colocar pq ele n le
 
         public DbSet<Modalidade>Modalidades { get; set; }
         public DbSet<Satisfacao>Satisfacao { get; set; }
