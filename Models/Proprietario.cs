@@ -7,7 +7,7 @@ namespace EntregaRapida.Models{
       
         public int ProprietarioId { get; set; }
         [Required]
-        private string nome { get; set; }
+        public string nome { get; set; }
         [Required]
         private string cpf { get; set; }
         [Required]
@@ -20,6 +20,13 @@ namespace EntregaRapida.Models{
         //relacionamentos
         public Lojista lojista { get; set; }
 
+      
+        public string GetNome
+        {
+            get { return nome; }
+            set { nome = value; }
+        }
+        
 
     }
 }

@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace EntregaRapida.Migrations
 {
     /// <inheritdoc />
-    public partial class TesteCorrigindoEntregador : Migration
+    public partial class Testeenum : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -61,7 +61,11 @@ namespace EntregaRapida.Migrations
                 {
                     LojistaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    tipocomercio = table.Column<int>(type: "int", nullable: false),
+                    nome = table.Column<string>(type: "longtext", nullable: false),
+                    endereco = table.Column<string>(type: "longtext", nullable: false),
+                    telefone = table.Column<string>(type: "longtext", nullable: false),
+                    cnpj = table.Column<string>(type: "longtext", nullable: false),
+                    tipocomercio = table.Column<string>(type: "longtext", nullable: false),
                     ProprietarioId = table.Column<int>(type: "int", nullable: false),
                     PlataformaId = table.Column<int>(type: "int", nullable: false)
                 },

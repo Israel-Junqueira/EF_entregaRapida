@@ -1,4 +1,4 @@
-using EntregaRapida.Models.Enum.ClasseEnum;
+
 using EntregaRapida.Models;
 using EntregaRapida.Models.Enum;
 using Microsoft.EntityFrameworkCore;
@@ -127,7 +127,9 @@ namespace EntregaRapida.Data
             .WithOne(l=>l.lojista)
             .HasForeignKey(k=>k.LojistaId)
             .OnDelete(DeleteBehavior.Cascade);   
-          
+           modelBuilder.Entity<Lojista>()
+            .Property(p=>p.tipocomercio)
+            .HasConversion(v => v.ToString(),v=>(TipoComercio)Enum.Parse(typeof(TipoComercio),v));
 
              //ligações das classes Historico
              modelBuilder.Entity<Historico>()
@@ -164,10 +166,24 @@ namespace EntregaRapida.Data
             .WithOne(p=>p.pedido)
             .HasForeignKey<Pagamento>(p=>p.PagamentoId)
             .OnDelete(DeleteBehavior.Cascade);
+             modelBuilder.Entity<Pedido>()
+            .Property(p=>p.statuspedido)
+            .HasConversion(v => v.ToString(),v=>(StatusPedido)Enum.Parse(typeof(StatusPedido),v));
+            
             //avaliação
               modelBuilder.Entity<Avaliacao>()
             .Property(v => v.satisfacao)
             .HasColumnType("int");
+              modelBuilder.Entity<Avaliacao>()
+            .Property(p=>p.satisfacao)
+            .HasConversion(v => v.ToString(),v=>(Satisfacao)Enum.Parse(typeof(Satisfacao),v));
+            //Proprietario
+            modelBuilder.Entity<Proprietario>()
+            .ToTable("Proprietario")
+            .HasKey(k=>k.ProprietarioId);
+              modelBuilder.Entity<Proprietario>()
+            .Property(n => n.nome)
+            .HasColumnName("Nome");
 
            
         }

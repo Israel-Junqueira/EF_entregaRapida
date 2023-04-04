@@ -7,13 +7,13 @@ namespace EntregaRapida.Models{
        
         public int LojistaId { get; set; }
         [Required]
-        private string nome { get; set; }
+        public string nome { get; set; }
         [Required]
-        private string endereco { get; set; }
+        public string endereco { get; set; }
         [Required]
-        private string telefone { get; set; }
+        public string telefone { get; set; }
         [Required]
-        private string cnpj { get; set; }
+        public string cnpj { get; set; }
 
         //chaves estrangeiras
         [EnumDataType(typeof(TipoComercio))] // 1:1 ✓  ok
@@ -27,6 +27,18 @@ namespace EntregaRapida.Models{
         public virtual List<Avaliacao> avaliacao { get; set; }//1:N  ✓  ok
         public virtual List<Pedido> pedido { get; set; }// 1:N ✓ ok
 
- 
+        [NotMapped]
+        public string GetNome
+        {
+            get { return nome; }
+            set { nome = value; }
+        }
+
+        //atributos privados
+        //propriedades autoimplementadas
+        //Construtores
+        //Propriedades customizadas
+        //outros metodos da classe
+        
     }
 }

@@ -130,8 +130,25 @@ namespace EntregaRapida.Migrations
                     b.Property<int>("ProprietarioId")
                         .HasColumnType("int");
 
-                    b.Property<int>("tipocomercio")
-                        .HasColumnType("int");
+                    b.Property<string>("cnpj")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("endereco")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("nome")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("telefone")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("tipocomercio")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("LojistaId");
 

@@ -1,0 +1,54 @@
+@model EntregaRapida.Models.Lojista
+
+
+<h2>Cadastre-se como Entregador</h2>
+
+<form method="post" asp-controller="Entregador" asp-action="Cadastro">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="nome" class="control-label"></label>
+        <input asp-for="nome" class="form-control" />
+        <span asp-validation-for="nome" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="endereco" class="control-label"></label>
+        <input asp-for="endereco" class="form-control" />
+        <span asp-validation-for="endereco" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="telefone" class="control-label"></label>
+        <input asp-for="telefone" class="form-control" />
+        <span asp-validation-for="telefone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="cnpj" class="control-label"></label>
+        <input asp-for="cnpj" class="form-control" />
+        <span asp-validation-for="cnpj" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tipocomercio" class="control-label"></label>
+        @Html.DropDownListFor(model=>model.tipocomercio,new
+        SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.TipoComercio))))
+    </div>
+
+      <div class="form-group">
+        <label asp-for="PlataformaId" class="control-label"></label>
+        <input asp-for="PlataformaId" class="form-control" value="1"/>
+        <span asp-validation-for="PlataformaId" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="ProprietarioId" class="control-label"></label>
+        <input asp-for="ProprietarioId" class="form-control" value="1"/>
+        <span asp-validation-for="ProprietarioId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+    </div>
+</form>
+
+ @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
