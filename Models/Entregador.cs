@@ -47,6 +47,7 @@ namespace EntregaRapida.Models
             this._modalidade = modalidade;
             this._veiculo = veiculo;
         }
+        [MinLength(1,ErrorMessage ="Digite um nome para o entregador")]
         [Required]
         [NotMapped]       
         public string Nome

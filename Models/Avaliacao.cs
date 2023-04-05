@@ -19,6 +19,7 @@ namespace EntregaRapida.Models.Enum{
         [EnumDataType(typeof(Satisfacao))] 
         public Satisfacao satisfacao { get; set; } //1:1  ✓  ok
 
+        
     }
 
 

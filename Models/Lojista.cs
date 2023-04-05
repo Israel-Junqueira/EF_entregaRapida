@@ -35,13 +35,13 @@ namespace EntregaRapida.Models{
         {
             //ctor
         }
-
+       [MinLength(1)]
        [NotMapped]
        [Display(Name = "Nome")]
        public string Nome
        {
         get { return _nome; }
-        set { _nome = value; }
+        set {_nome = value; }
        }
        [NotMapped]
        [Display(Name = "Endereço")]
