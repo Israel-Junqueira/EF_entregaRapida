@@ -19,11 +19,9 @@ namespace EntregaRapida.Models{
         public int LojistaId { get; set; }    
         public int PagementoId { get; set; }
         public int NotificacaoId { get; set; }
-        public int PlataformaId { get; set; }
         public int HistoricoId { get; set; }
         public Historico historico { get; set; } //1:N  ✓ ok
         public Entregador entregador { get; set; } //1:1  ✓ ok
-        public Plataforma plataforma  { get; set; }//1:N  ✓  ok
         public Notificacao notificacao { get; set; }//1:1  ✓ ok
         public Pagamento pagamento{ get; set; }//1:1  ✓  ok
         public Lojista lojista { get; set; }//1:N  ✓  ok 

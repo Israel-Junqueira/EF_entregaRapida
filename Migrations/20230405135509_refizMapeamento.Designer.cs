@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntregaRapida.Migrations
 {
     [DbContext(typeof(Banco))]
-    [Migration("20230404161008_Testeenum")]
-    partial class Testeenum
+    [Migration("20230405135509_refizMapeamento")]
+    partial class refizMapeamento
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,8 +85,13 @@ namespace EntregaRapida.Migrations
                     b.Property<int>("LojistaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("satisfacao")
-                        .HasColumnType("int");
+                    b.Property<string>("Mensagem")
+                        .HasColumnType("longtext")
+                        .HasColumnName("Mensagem");
+
+                    b.Property<string>("satisfacao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("AvaliacaoId");
 
@@ -94,7 +99,7 @@ namespace EntregaRapida.Migrations
 
                     b.HasIndex("LojistaId");
 
-                    b.ToTable("Avaliacoes");
+                    b.ToTable("Avaliacao", (string)null);
                 });
 
             modelBuilder.Entity("EntregaRapida.Models.Enum.Historico", b =>
@@ -128,9 +133,6 @@ namespace EntregaRapida.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PlataformaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProprietarioId")
                         .HasColumnType("int");
 
                     b.Property<string>("cnpj")
@@ -221,9 +223,6 @@ namespace EntregaRapida.Migrations
                     b.Property<int>("PagementoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlataformaId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime(6)");
 
@@ -236,8 +235,9 @@ namespace EntregaRapida.Migrations
                     b.Property<string>("enderecoOrigem")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("statuspedido")
-                        .HasColumnType("int");
+                    b.Property<string>("statuspedido")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("PedidoId");
 
@@ -246,8 +246,6 @@ namespace EntregaRapida.Migrations
                     b.HasIndex("HistoricoId");
 
                     b.HasIndex("LojistaId");
-
-                    b.HasIndex("PlataformaId");
 
                     b.ToTable("pedido", (string)null);
                 });
@@ -261,19 +259,6 @@ namespace EntregaRapida.Migrations
                     b.HasKey("PlataformaId");
 
                     b.ToTable("Plataforma", (string)null);
-                });
-
-            modelBuilder.Entity("EntregaRapida.Models.Proprietario", b =>
-                {
-                    b.Property<int>("ProprietarioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LojistaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProprietarioId");
-
-                    b.ToTable("Proprietarios");
                 });
 
             modelBuilder.Entity("EntregaRapida.Models.Entregador", b =>
@@ -384,12 +369,6 @@ namespace EntregaRapida.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntregaRapida.Models.Plataforma", "plataforma")
-                        .WithMany("pedido")
-                        .HasForeignKey("PlataformaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("entregador");
 
                     b.Navigation("historico");
@@ -397,19 +376,6 @@ namespace EntregaRapida.Migrations
                     b.Navigation("lojista");
 
                     b.Navigation("notificacao");
-
-                    b.Navigation("plataforma");
-                });
-
-            modelBuilder.Entity("EntregaRapida.Models.Proprietario", b =>
-                {
-                    b.HasOne("EntregaRapida.Models.Lojista", "lojista")
-                        .WithOne("proprietario")
-                        .HasForeignKey("EntregaRapida.Models.Proprietario", "ProprietarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("lojista");
                 });
 
             modelBuilder.Entity("EntregaRapida.Models.Entregador", b =>
@@ -433,8 +399,6 @@ namespace EntregaRapida.Migrations
                     b.Navigation("historico");
 
                     b.Navigation("pedido");
-
-                    b.Navigation("proprietario");
                 });
 
             modelBuilder.Entity("EntregaRapida.Models.Notificacao", b =>
@@ -454,8 +418,6 @@ namespace EntregaRapida.Migrations
                     b.Navigation("lojista");
 
                     b.Navigation("notificacao");
-
-                    b.Navigation("pedido");
                 });
 #pragma warning restore 612, 618
         }

@@ -34,13 +34,13 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="modalidade" class="control-label"></label>
-        @Html.DropDownListFor(model=>model.modalidade,new
+        <label asp-for="Modalidade" class="control-label"></label>
+        @Html.DropDownListFor(model=>model.Modalidade,new
         SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Modalidade))))
     </div>
      <div class="form-group">
-        <label asp-for="veiculo" class="control-label"></label>
-        @Html.DropDownListFor(model=>model.modalidade,new
+        <label asp-for="Veiculo" class="control-label"></label>
+        @Html.DropDownListFor(model=>model.Veiculo,new
         SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Veiculo))))
     </div>
       <div class="form-group">

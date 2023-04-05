@@ -40,7 +40,7 @@ namespace EntregaRapida.Controllers{
             {
                 if(ModelState.IsValid){
                     Console.WriteLine("______________________________________________________________");
-                    Console.WriteLine($"{entregador.Nome},{entregador.modalidade},{entregador.veiculo},{entregador.PlataformaId}");
+                    Console.WriteLine($"{entregador.Nome},{entregador.Modalidade},{entregador.Veiculo},{entregador.PlataformaId}");
                      Console.WriteLine("______________________________________________________________");
                     _dbcontext.Add(entregador);
                    _dbcontext.SaveChanges();

@@ -9,27 +9,23 @@ namespace EntregaRapida.Models
     {
 
 
-        public int EntregadorId { get; set; }
-        [Required]
-        public string Nome { get; set; }
-        [Required]
-        public string Endereco { get; set; }
-        [Required]
-        [MaxLength(3, ErrorMessage = "Em que pais você mora? o ddd nao pode ter mais de 3 digitos"), MinLength(1, ErrorMessage = "Em que pais você mora? Insira no minimo um ddd")]
-        public string DDD { get; set; }
-        [Required]
-        [MaxLength(9), MinLength(8)]
-        public string Celular { get; set; }
-        [Required]
-        [MaxLength(11), MinLength(11)]
-        public string CNH { get; set; }
+        public int EntregadorId ;
+        private string _nome ;
+        private string _endereco;
+        private string _DDD ;
+        private string _celular ;
+   
+        private string _CNH ;
         private int _pontuacao;
         private int _numeroEntrega;
         //chaves estrangeitas
         [EnumDataType(typeof(Veiculo))] //1:1 OK
-        public Veiculo veiculo { get; set; }
+        private Veiculo _veiculo { get; set; }
         [EnumDataType(typeof(Modalidade))] //1:1 ok
-        public Modalidade modalidade { get; set; }
+        private Modalidade _modalidade { get; set; }
+
+
+
         public int PlataformaId { get; set; }
         //Relacionamento
         public Plataforma plataforma; //N:1 ok
@@ -43,14 +39,82 @@ namespace EntregaRapida.Models
         }
         public Entregador(string Nome, string endereco, string DDD, string Celular, string cnh, Modalidade modalidade, Veiculo veiculo)
         {
-            this.Nome = Nome;
-            this.Endereco = endereco;
-            this.DDD = DDD;
-            this.Celular = Celular;
-            this.CNH = cnh;
-            this.modalidade = modalidade;
-            this.veiculo = veiculo;
+            this._nome = Nome;
+            this._endereco = endereco;
+            this._DDD = DDD;
+            this._celular = Celular;
+            this._CNH = cnh;
+            this._modalidade = modalidade;
+            this._veiculo = veiculo;
         }
+        [Required]
+        [NotMapped]       
+        public string Nome
+        {
+            get { return _nome; }
+            set { _nome = value; }
+        }
+        [Required]
+        [NotMapped]
+        [Display(Name ="Endereço")] 
+        public string Endereco
+        {
+            get { return _endereco; }
+            set { _endereco = value; }
+        }
+        [Required]
+        [NotMapped]
+        [MaxLength(3, ErrorMessage = "Em que pais você mora? o ddd nao pode ter mais de 3 digitos"), MinLength(1, ErrorMessage = "Em que pais você mora?Insira no minimo um ddd")]
+        public string DDD
+        {
+            get { return _DDD; }
+            set { _DDD = value; }
+        }
+        [Required]
+        [NotMapped]
+        [MaxLength(9), MinLength(8)]
+        [RegularExpression("[0-9]")]
+        public string Celular
+        {
+            get { return _celular; }
+            set { _celular = value; }
+        }
+        [NotMapped]
+        [Required]
+        [MaxLength(11), MinLength(11)]
+        public string CNH
+        {
+            get { return _CNH; }
+            set { _CNH = value; }
+        }
+
+        [Display(Name ="Pontuação")]
+        [NotMapped]
+          public int Pontuacao
+        {
+            get { return _pontuacao; }
+            set { _pontuacao = value; }
+        }
+        [NotMapped]
+        [Display(Name ="Numero de Entregas")]
+            public int Numero_De_Entregas
+        {
+            get { return _numeroEntrega; }
+            set { _numeroEntrega = value; }
+        }
+        [NotMapped]
+        public Modalidade Modalidade
+        {
+            get { return _modalidade; }
+            set { _modalidade = value; }
+        }
+        [NotMapped]
+        public Veiculo Veiculo
+        {
+            get { return _veiculo; }
+            set { _veiculo = value; }
+        }
+        
     }
 
 

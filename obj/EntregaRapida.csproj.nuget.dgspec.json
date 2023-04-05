@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregarapida\\EntregaRapida.csproj": {}
+    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregarapida\\EntregaRapida.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregarapida\\EntregaRapida.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
         "projectName": "EntregaRapida",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregarapida\\EntregaRapida.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\entregarapida\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

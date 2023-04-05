@@ -25,7 +25,6 @@ namespace EntregaRapida.Data
         public DbSet<Pagamento> pagamentos  { get; set; }
         public DbSet<Pedido>Pedidos { get; set; }
         public DbSet<Plataforma>Plataformas { get; set; }
-        public DbSet<Proprietario>Proprietarios { get; set; }
         
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
@@ -68,7 +67,7 @@ namespace EntregaRapida.Data
             .OnDelete(DeleteBehavior.Cascade);
             //ligação com enum
             modelBuilder.Entity<Entregador>()
-            .Property(p=>p.modalidade)
+            .Property(p=>p.Modalidade)
             .HasConversion(v => v.ToString(),v=>(Modalidade)Enum.Parse(typeof(Modalidade),v));
            
             //ligações das classes Plataforma
@@ -88,12 +87,6 @@ namespace EntregaRapida.Data
             .HasForeignKey(c=> c.PlataformaId)
             .OnDelete(DeleteBehavior.Cascade);
             
-             modelBuilder.Entity<Plataforma>()
-            .HasMany(s=> s.pedido) 
-            .WithOne(c=> c.plataforma) 
-            .HasForeignKey(c=> c.PlataformaId)
-            .OnDelete(DeleteBehavior.Cascade);
-        
             modelBuilder.Entity<Plataforma>()
             .HasMany(n=> n.notificacao)
             .WithOne(p=>p.Plataforma)
@@ -104,11 +97,6 @@ namespace EntregaRapida.Data
             .ToTable("Lojista")
             .HasKey(k=> k.LojistaId);
             //Relacionamento Lojista
-             modelBuilder.Entity<Lojista>()
-            .HasOne(n=>n.proprietario)
-            .WithOne(l=>l.lojista)
-            .HasForeignKey<Proprietario>(n=>n.ProprietarioId)
-            .OnDelete(DeleteBehavior.Cascade);
             //O método HasForeignKey está especificando a chave estrangeira na relação entre as entidades Lojista e Proprietário. A chave estrangeira é definida como o campo ProprietarioId na entidade Proprietario. Isso informa ao Entity Framework que as entidades estão relacionadas e que o ProprietarioId na entidade Proprietario é usado para ligar a entidade Lojista ao proprietário.
             modelBuilder.Entity<Lojista>()
             .HasMany(s=> s.avaliacao) 
@@ -127,7 +115,7 @@ namespace EntregaRapida.Data
             .WithOne(l=>l.lojista)
             .HasForeignKey(k=>k.LojistaId)
             .OnDelete(DeleteBehavior.Cascade);   
-           modelBuilder.Entity<Lojista>()
+             modelBuilder.Entity<Lojista>()
             .Property(p=>p.tipocomercio)
             .HasConversion(v => v.ToString(),v=>(TipoComercio)Enum.Parse(typeof(TipoComercio),v));
 
@@ -156,48 +144,30 @@ namespace EntregaRapida.Data
             modelBuilder.Entity<Pedido>()
             .ToTable("pedido")
             .HasKey(k=> k.PedidoId);
-
-            modelBuilder.Entity<Pedido>()
-            .Property(v => v.statuspedido)
-            .HasColumnType("int");
-
             modelBuilder.Entity<Pedido>()
             .HasOne(n=> n.pagamento)
             .WithOne(p=>p.pedido)
             .HasForeignKey<Pagamento>(p=>p.PagamentoId)
             .OnDelete(DeleteBehavior.Cascade);
+
              modelBuilder.Entity<Pedido>()
             .Property(p=>p.statuspedido)
             .HasConversion(v => v.ToString(),v=>(StatusPedido)Enum.Parse(typeof(StatusPedido),v));
             
             //avaliação
-              modelBuilder.Entity<Avaliacao>()
-            .Property(v => v.satisfacao)
-            .HasColumnType("int");
-              modelBuilder.Entity<Avaliacao>()
+            modelBuilder.Entity<Avaliacao>()
+            .ToTable("Avaliacao")
+            .HasKey(p => p.AvaliacaoId);
+             modelBuilder.Entity<Avaliacao>()
             .Property(p=>p.satisfacao)
             .HasConversion(v => v.ToString(),v=>(Satisfacao)Enum.Parse(typeof(Satisfacao),v));
+            modelBuilder.Entity<Avaliacao>()
+            .Property(n => n.Mensagem)
+            .HasColumnName("Mensagem");
             //Proprietario
-            modelBuilder.Entity<Proprietario>()
-            .ToTable("Proprietario")
-            .HasKey(k=>k.ProprietarioId);
-              modelBuilder.Entity<Proprietario>()
-            .Property(n => n.nome)
-            .HasColumnName("Nome");
-
-           
         }
      
-        
-        /*
-        preciso colocar os enums aq ?? Resposta: não precisa e nao pode colocar pq ele n le
-
-        public DbSet<Modalidade>Modalidades { get; set; }
-        public DbSet<Satisfacao>Satisfacao { get; set; }
-        public DbSet<StatusPedido>StatusPedidos { get; set; }
-        public DbSet<TipoComercio>TipoComercios { get; set; }        
-        public DbSet<Veiculo>Veiculos { get; set; }
-        */
+    
         
     }
 }

@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace EntregaRapida.Migrations
 {
     /// <inheritdoc />
-    public partial class Testeenum : Migration
+    public partial class refizMapeamento : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,7 +66,6 @@ namespace EntregaRapida.Migrations
                     telefone = table.Column<string>(type: "longtext", nullable: false),
                     cnpj = table.Column<string>(type: "longtext", nullable: false),
                     tipocomercio = table.Column<string>(type: "longtext", nullable: false),
-                    ProprietarioId = table.Column<int>(type: "int", nullable: false),
                     PlataformaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -105,26 +104,27 @@ namespace EntregaRapida.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Avaliacoes",
+                name: "Avaliacao",
                 columns: table => new
                 {
                     AvaliacaoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     EntregadorId = table.Column<int>(type: "int", nullable: false),
                     LojistaId = table.Column<int>(type: "int", nullable: false),
-                    satisfacao = table.Column<int>(type: "int", nullable: false)
+                    satisfacao = table.Column<string>(type: "longtext", nullable: false),
+                    Mensagem = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Avaliacoes", x => x.AvaliacaoId);
+                    table.PrimaryKey("PK_Avaliacao", x => x.AvaliacaoId);
                     table.ForeignKey(
-                        name: "FK_Avaliacoes_Entregadores_EntregadorId",
+                        name: "FK_Avaliacao_Entregadores_EntregadorId",
                         column: x => x.EntregadorId,
                         principalTable: "Entregadores",
                         principalColumn: "EntregadorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Avaliacoes_Lojista_LojistaId",
+                        name: "FK_Avaliacao_Lojista_LojistaId",
                         column: x => x.LojistaId,
                         principalTable: "Lojista",
                         principalColumn: "LojistaId",
@@ -161,25 +161,6 @@ namespace EntregaRapida.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Proprietarios",
-                columns: table => new
-                {
-                    ProprietarioId = table.Column<int>(type: "int", nullable: false),
-                    LojistaId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Proprietarios", x => x.ProprietarioId);
-                    table.ForeignKey(
-                        name: "FK_Proprietarios_Lojista_ProprietarioId",
-                        column: x => x.ProprietarioId,
-                        principalTable: "Lojista",
-                        principalColumn: "LojistaId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "pedido",
                 columns: table => new
                 {
@@ -188,12 +169,11 @@ namespace EntregaRapida.Migrations
                     enderecoDestino = table.Column<string>(type: "longtext", nullable: true),
                     distancia = table.Column<double>(type: "double", nullable: false),
                     date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    statuspedido = table.Column<int>(type: "int", nullable: false),
+                    statuspedido = table.Column<string>(type: "longtext", nullable: false),
                     EntregadorId = table.Column<int>(type: "int", nullable: false),
                     LojistaId = table.Column<int>(type: "int", nullable: false),
                     PagementoId = table.Column<int>(type: "int", nullable: false),
                     NotificacaoId = table.Column<int>(type: "int", nullable: false),
-                    PlataformaId = table.Column<int>(type: "int", nullable: false),
                     HistoricoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -223,12 +203,6 @@ namespace EntregaRapida.Migrations
                         principalTable: "Notificação",
                         principalColumn: "NotificacaoId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_pedido_Plataforma_PlataformaId",
-                        column: x => x.PlataformaId,
-                        principalTable: "Plataforma",
-                        principalColumn: "PlataformaId",
-                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
@@ -253,13 +227,13 @@ namespace EntregaRapida.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Avaliacoes_EntregadorId",
-                table: "Avaliacoes",
+                name: "IX_Avaliacao_EntregadorId",
+                table: "Avaliacao",
                 column: "EntregadorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Avaliacoes_LojistaId",
-                table: "Avaliacoes",
+                name: "IX_Avaliacao_LojistaId",
+                table: "Avaliacao",
                 column: "LojistaId");
 
             migrationBuilder.CreateIndex(
@@ -301,24 +275,16 @@ namespace EntregaRapida.Migrations
                 name: "IX_pedido_LojistaId",
                 table: "pedido",
                 column: "LojistaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_pedido_PlataformaId",
-                table: "pedido",
-                column: "PlataformaId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Avaliacoes");
+                name: "Avaliacao");
 
             migrationBuilder.DropTable(
                 name: "pagamentos");
-
-            migrationBuilder.DropTable(
-                name: "Proprietarios");
 
             migrationBuilder.DropTable(
                 name: "pedido");
