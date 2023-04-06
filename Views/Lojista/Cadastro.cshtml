@@ -28,8 +28,8 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="TipodeComercio" class="control-label"></label>
-        @Html.DropDownListFor(model=>model.TipodeComercio,new
+        <label asp-for="TipoComercio" class="control-label"></label>
+        @Html.DropDownListFor(model=>model.TipoComercio,new
         SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.TipoComercio))))
     </div>
 

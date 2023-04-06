@@ -41,3 +41,16 @@ DbSet<T>tabelas
         -Definir o provedor do banco de dados e a string de conexao usada
 
 Tive um problema com a versao dos pacotes mais ja acertei agora preciso fazer o mapeamento dos objetos pois causo contrario ele nao fara a migração
+
+____________________________________________________________________________________________________________________________________________________
+
+Conceito de sessao com o entregador online
+
+a ideia foi criar um session onde o entregador tivesse uma coluna de status (ativo = true desativo = false)
+assim que o entregador fizer o login o status dele é ativado e quando a sessão expirar volta para deativado
+
+____________________________________________________________________________________________________________________________________________________
+
+Adicionei o identity no projeto para fazer o login e começar ativar o usuario como logado e criar a sessão dele
+
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore  --version 6.0.1

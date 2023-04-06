@@ -79,7 +79,7 @@ namespace EntregaRapida.Models{
             set { _cnpj = value; }
         }
 
-        public TipoComercio TipodeComercio
+        public TipoComercio TipoComercio
         {
             get { return _tipocomercio; }
             set { _tipocomercio = value; }

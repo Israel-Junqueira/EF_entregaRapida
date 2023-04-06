@@ -14,7 +14,7 @@ namespace EntregaRapida.Models
         private string _endereco;
         private string _DDD ;
         private string _celular ;
-   
+        private bool _statusEntregador;
         private string _CNH ;
         private int _pontuacao;
         private int _numeroEntrega;
@@ -55,6 +55,13 @@ namespace EntregaRapida.Models
             get { return _nome; }
             set { _nome = value; }
         }
+   
+        public bool StatusEntregador
+        {
+            get { return _statusEntregador; }
+            set { _statusEntregador = value; }
+        }
+
         [Required]
         [NotMapped]
         [Display(Name ="Endereço")] 
@@ -72,8 +79,7 @@ namespace EntregaRapida.Models
             set { _DDD = value; }
         }
         [Required]
-        [NotMapped]
-        [MaxLength(9), MinLength(8)]
+        [DataType(DataType.PhoneNumber)]
         public string Celular
         {
             get { return _celular; }

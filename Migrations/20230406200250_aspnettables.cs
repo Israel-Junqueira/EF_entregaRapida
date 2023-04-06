@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace EntregaRapida.Migrations
 {
     /// <inheritdoc />
-    public partial class refizMapeamento : Migration
+    public partial class aspnettables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,14 +34,16 @@ namespace EntregaRapida.Migrations
                 {
                     EntregadorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    PlataformaId = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "longtext", nullable: false),
+                    StatusEntregador = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     Endereco = table.Column<string>(type: "longtext", nullable: false),
                     DDD = table.Column<string>(type: "varchar(3)", maxLength: 3, nullable: false),
-                    Celular = table.Column<string>(type: "varchar(9)", maxLength: 9, nullable: false),
+                    Celular = table.Column<string>(type: "longtext", nullable: false),
                     CNH = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
-                    veiculo = table.Column<int>(type: "int", nullable: false),
-                    modalidade = table.Column<string>(type: "longtext", nullable: false),
-                    PlataformaId = table.Column<int>(type: "int", nullable: false)
+                    Pontuacao = table.Column<int>(type: "int", nullable: false),
+                    Numero_de_Entregas = table.Column<int>(type: "int", nullable: false),
+                    Modalidade = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,12 +63,12 @@ namespace EntregaRapida.Migrations
                 {
                     LojistaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    nome = table.Column<string>(type: "longtext", nullable: false),
-                    endereco = table.Column<string>(type: "longtext", nullable: false),
-                    telefone = table.Column<string>(type: "longtext", nullable: false),
-                    cnpj = table.Column<string>(type: "longtext", nullable: false),
-                    tipocomercio = table.Column<string>(type: "longtext", nullable: false),
-                    PlataformaId = table.Column<int>(type: "int", nullable: false)
+                    PlataformaId = table.Column<int>(type: "int", nullable: false),
+                    Nome = table.Column<string>(type: "longtext", nullable: true),
+                    Endereco = table.Column<string>(type: "longtext", nullable: true),
+                    Telefone = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: true),
+                    CNPJ = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: true),
+                    TipoComercio = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {

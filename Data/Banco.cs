@@ -3,6 +3,7 @@ using EntregaRapida.Models;
 using EntregaRapida.Models.Enum;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Identity;
 
 namespace EntregaRapida.Data
 {
@@ -47,6 +48,15 @@ namespace EntregaRapida.Data
              modelBuilder.Entity<Entregador>()
             .Property(n => n.CNH)
             .HasColumnName("CNH");
+            modelBuilder.Entity<Entregador>()
+            .Property(n => n.Pontuacao)
+            .HasColumnName("Pontuacao");
+            modelBuilder.Entity<Entregador>()
+            .Property(n => n.Numero_De_Entregas)
+            .HasColumnName("Numero_de_Entregas");
+               modelBuilder.Entity<Entregador>()
+            .Property(n => n.StatusEntregador)
+            .HasColumnName("StatusEntregador");
             //ligações das classes entregador
             modelBuilder.Entity<Entregador>()
             .HasMany(s=> s.historico) //Aqui estamos dizendo que a entidade Entregador tem muitos historicos.
@@ -128,7 +138,7 @@ namespace EntregaRapida.Data
             .HasForeignKey(k=>k.LojistaId)
             .OnDelete(DeleteBehavior.Cascade);   
              modelBuilder.Entity<Lojista>()
-            .Property(p=>p.TipodeComercio)
+            .Property(p=>p.TipoComercio)
             .HasConversion(v => v.ToString(),v=>(TipoComercio)Enum.Parse(typeof(TipoComercio),v));
 
              //ligações das classes Historico

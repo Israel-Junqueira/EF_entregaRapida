@@ -33,8 +33,7 @@ namespace EntregaRapida.Migrations
 
                     b.Property<string>("Celular")
                         .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("varchar(9)")
+                        .HasColumnType("longtext")
                         .HasColumnName("Celular");
 
                     b.Property<string>("DDD")
@@ -57,8 +56,20 @@ namespace EntregaRapida.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("Nome");
 
+                    b.Property<int>("Numero_De_Entregas")
+                        .HasColumnType("int")
+                        .HasColumnName("Numero_de_Entregas");
+
                     b.Property<int>("PlataformaId")
                         .HasColumnType("int");
+
+                    b.Property<int>("Pontuacao")
+                        .HasColumnType("int")
+                        .HasColumnName("Pontuacao");
+
+                    b.Property<bool>("StatusEntregador")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("StatusEntregador");
 
                     b.HasKey("EntregadorId");
 
@@ -147,7 +158,7 @@ namespace EntregaRapida.Migrations
                         .HasColumnType("varchar(14)")
                         .HasColumnName("Telefone");
 
-                    b.Property<string>("TipodeComercio")
+                    b.Property<string>("TipoComercio")
                         .IsRequired()
                         .HasColumnType("longtext");
 

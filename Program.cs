@@ -2,6 +2,9 @@ using EntregaRapida.Data;
 using Microsoft.EntityFrameworkCore;
 using EntregaRapida.Repository.Interfaces;
 using EntregaRapida.Repository;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -11,7 +14,10 @@ builder.Services.AddDbContext<Banco>(options => options.UseMySQL(builder.Configu
 builder.Services.AddTransient<IEntregadores,EntregadoresRepository>(); //Esse método é usado para adicionar um serviço de tempo de execução transiente ao contêiner de injeção de dependência. Os serviços de tempo de execução transientes são criados cada vez que um consumidor solicita o serviço. Os serviços de tempo de execução transientes são adequados para serviços ligeiramente "pesados" para criar, mas que não necessitam de estado persistente.
 builder.Services.AddTransient<ILojistas,LojistaRepository>();
 builder.Services.AddControllersWithViews(); 
+builder.Services.AddSession(options => {options.IdleTimeout = TimeSpan.FromMinutes(90);});//sessin
+builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>(); //sessin
 
+builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<Banco>().AddDefaultTokenProviders(); //identyty
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,11 +28,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSession();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

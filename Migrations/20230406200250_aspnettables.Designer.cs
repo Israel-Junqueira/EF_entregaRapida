@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntregaRapida.Migrations
 {
     [DbContext(typeof(Banco))]
-    [Migration("20230405135509_refizMapeamento")]
-    partial class refizMapeamento
+    [Migration("20230406200250_aspnettables")]
+    partial class aspnettables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,8 +36,7 @@ namespace EntregaRapida.Migrations
 
                     b.Property<string>("Celular")
                         .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("varchar(9)")
+                        .HasColumnType("longtext")
                         .HasColumnName("Celular");
 
                     b.Property<string>("DDD")
@@ -51,20 +50,29 @@ namespace EntregaRapida.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("Endereco");
 
+                    b.Property<string>("Modalidade")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("Nome");
 
+                    b.Property<int>("Numero_De_Entregas")
+                        .HasColumnType("int")
+                        .HasColumnName("Numero_de_Entregas");
+
                     b.Property<int>("PlataformaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("modalidade")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("Pontuacao")
+                        .HasColumnType("int")
+                        .HasColumnName("Pontuacao");
 
-                    b.Property<int>("veiculo")
-                        .HasColumnType("int");
+                    b.Property<bool>("StatusEntregador")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("StatusEntregador");
 
                     b.HasKey("EntregadorId");
 
@@ -132,26 +140,28 @@ namespace EntregaRapida.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("CNPJ")
+                        .HasMaxLength(14)
+                        .HasColumnType("varchar(14)")
+                        .HasColumnName("CNPJ");
+
+                    b.Property<string>("Endereco")
+                        .HasColumnType("longtext")
+                        .HasColumnName("Endereco");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("longtext")
+                        .HasColumnName("Nome");
+
                     b.Property<int>("PlataformaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("cnpj")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<string>("Telefone")
+                        .HasMaxLength(14)
+                        .HasColumnType("varchar(14)")
+                        .HasColumnName("Telefone");
 
-                    b.Property<string>("endereco")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("nome")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("telefone")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("tipocomercio")
+                    b.Property<string>("TipoComercio")
                         .IsRequired()
                         .HasColumnType("longtext");
 

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\2023Etec\\Projeto Entrega Rapida 2023\\EntregaRapida\\EntregaRapida.csproj": {}
+    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {}
   },
   "projects": {
-    "E:\\2023Etec\\Projeto Entrega Rapida 2023\\EntregaRapida\\EntregaRapida.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\2023Etec\\Projeto Entrega Rapida 2023\\EntregaRapida\\EntregaRapida.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
         "projectName": "EntregaRapida",
-        "projectPath": "E:\\2023Etec\\Projeto Entrega Rapida 2023\\EntregaRapida\\EntregaRapida.csproj",
-        "packagesPath": "C:\\Users\\etec\\.nuget\\packages\\",
-        "outputPath": "E:\\2023Etec\\Projeto Entrega Rapida 2023\\EntregaRapida\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\etec\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +44,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.4, )"
@@ -79,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
