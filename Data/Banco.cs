@@ -96,6 +96,18 @@ namespace EntregaRapida.Data
             modelBuilder.Entity<Lojista>()
             .ToTable("Lojista")
             .HasKey(k=> k.LojistaId);
+            modelBuilder.Entity<Lojista>()
+            .Property(n => n.Nome)
+            .HasColumnName("Nome");
+            modelBuilder.Entity<Lojista>()
+            .Property(n => n.Endereco)
+            .HasColumnName("Endereco");
+            modelBuilder.Entity<Lojista>()
+            .Property(n => n.Telefone)
+            .HasColumnName("Telefone");
+            modelBuilder.Entity<Lojista>()
+            .Property(n => n.CNPJ)
+            .HasColumnName("CNPJ");
             //Relacionamento Lojista
             //O método HasForeignKey está especificando a chave estrangeira na relação entre as entidades Lojista e Proprietário. A chave estrangeira é definida como o campo ProprietarioId na entidade Proprietario. Isso informa ao Entity Framework que as entidades estão relacionadas e que o ProprietarioId na entidade Proprietario é usado para ligar a entidade Lojista ao proprietário.
             modelBuilder.Entity<Lojista>()
@@ -116,7 +128,7 @@ namespace EntregaRapida.Data
             .HasForeignKey(k=>k.LojistaId)
             .OnDelete(DeleteBehavior.Cascade);   
              modelBuilder.Entity<Lojista>()
-            .Property(p=>p.tipocomercio)
+            .Property(p=>p.TipodeComercio)
             .HasConversion(v => v.ToString(),v=>(TipoComercio)Enum.Parse(typeof(TipoComercio),v));
 
              //ligações das classes Historico

@@ -1,0 +1,34 @@
+@model List<EntregaRapida.Models.Lojista>
+<h1>teste</h1>
+
+
+@{
+    ViewBag.Title = "Cadastro";
+}
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th>CNPJ</th>
+            <th>TipodeComercio</th>
+      
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entregador in Model)
+        {
+            <tr>
+                <td>@entregador.Nome</td>
+                <td>@entregador.Endereco</td>
+                <td>@entregador.Telefone</td>
+                <td>@entregador.CNPJ</td>
+                <td>@entregador.TipodeComercio</td>
+  
+            </tr>
+        }
+    </tbody>
+</table>

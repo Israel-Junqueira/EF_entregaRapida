@@ -74,7 +74,6 @@ namespace EntregaRapida.Models
         [Required]
         [NotMapped]
         [MaxLength(9), MinLength(8)]
-        [RegularExpression("[0-9]")]
         public string Celular
         {
             get { return _celular; }

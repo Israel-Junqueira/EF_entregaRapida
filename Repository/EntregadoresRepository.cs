@@ -12,9 +12,7 @@ namespace EntregaRapida.Repository{
         }
        
        public List<Entregador> Lista_De_Entregadores => _dbanco.Entregadores.OrderBy(x=>x).ToList(); //expression bodied member
-       
-       
-       }    
+    }    
         
 
 }

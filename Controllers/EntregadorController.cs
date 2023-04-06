@@ -19,8 +19,8 @@ namespace EntregaRapida.Controllers{
 
 
         public IActionResult Index(){
-          var lanches = _IentregadoresRepositories.Lista_De_Entregadores;
-            return View(lanches);
+          var entregadores = _IentregadoresRepositories.Lista_De_Entregadores;
+            return View(entregadores);
         }
 
         [HttpGet]

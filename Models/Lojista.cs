@@ -17,7 +17,7 @@ namespace EntregaRapida.Models{
 
         //chaves estrangeiras
         [EnumDataType(typeof(TipoComercio))] // 1:1 ✓  ok
-        public TipoComercio tipocomercio { get; set; }
+        private TipoComercio _tipocomercio { get; set; }
         public int PlataformaId { get; set; }
         //Relacionamentos
         public Plataforma plataforma { get; set; }
@@ -34,6 +34,16 @@ namespace EntregaRapida.Models{
         public Lojista()
         {
             //ctor
+        }
+        public Lojista(string nome, string endereco,string telefone,string cnpj,TipoComercio tipocomercio,Plataforma plataforma)
+        {
+            _nome = nome;
+            _endereco = endereco;
+            _cnpj = cnpj;
+            _telefone = telefone;
+            _tipocomercio = tipocomercio;
+            this.plataforma =plataforma;
+            
         }
        [MinLength(1)]
        [NotMapped]
@@ -54,7 +64,6 @@ namespace EntregaRapida.Models{
        [NotMapped]
        [Display(Name = "Telefone")]
        [MaxLength(14), MinLength(9)]
-       [RegularExpression("[0-9]",ErrorMessage = "Insira apensar numero | O tamanho deve ser de 9 digitos sem DDD | 11 com ddd |"),]
         public string Telefone
         {
             get { return _telefone; }
@@ -62,12 +71,18 @@ namespace EntregaRapida.Models{
         }
        [NotMapped]
        [Display(Name = "CNPJ")]
-       [RegularExpression("[0-9]",ErrorMessage = "Use apenas numeros,O cnpj deve conter 11 numeros "),]
+       [RegularExpression("^[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{4}[0-9]{2}",ErrorMessage ="Insira o CNPJ sem (' . , - / ')")]
        [MaxLength(14), MinLength(14)]
         public string CNPJ
         {
             get { return _cnpj; }
             set { _cnpj = value; }
+        }
+
+        public TipoComercio TipodeComercio
+        {
+            get { return _tipocomercio; }
+            set { _tipocomercio = value; }
         }
         
         

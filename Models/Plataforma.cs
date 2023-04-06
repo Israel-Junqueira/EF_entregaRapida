@@ -6,7 +6,7 @@ namespace EntregaRapida.Models
 {
     public class Plataforma
     {
-        public int PlataformaId { get; set; }
+        public int PlataformaId { get; set; } 
         
         public virtual List<Entregador> entregadores { get; set; }//1:N  ✓  ok
         public virtual List<Lojista> lojista { get; set; }//1:N  ✓  ok
