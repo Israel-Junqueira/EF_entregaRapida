@@ -4,10 +4,14 @@ using EntregaRapida.Models.Enum;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Security.Claims;
+
+
 
 namespace EntregaRapida.Data
 {
-    public class Banco : DbContext
+    public class Banco : IdentityDbContext<IdentityUser>
     {
         public Banco()
         {
@@ -18,6 +22,7 @@ namespace EntregaRapida.Data
     {
         //o restando das configurações estao na appsettings que é a string de conexao e o na program
     }
+
         public DbSet<Avaliacao>Avaliacoes { get; set; }
         public DbSet<Entregador>Entregadores { get; set; }
         public DbSet<Historico>Historicos { get; set; }
@@ -29,6 +34,8 @@ namespace EntregaRapida.Data
         
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
+            
+        
           
             modelBuilder.Entity<Entregador>()
             .ToTable("Entregadores")

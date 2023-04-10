@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {}
+    "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {
+    "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
+        "projectUniqueName": "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
         "projectName": "EntregaRapida",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
+        "projectPath": "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\obj\\",
+        "outputPath": "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -67,6 +67,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.4, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             },
             "MySql.EntityFrameworkCore": {
               "target": "Package",
