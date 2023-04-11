@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {}
+    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
         "projectName": "EntregaRapida",
-        "projectPath": "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,6 +51,10 @@
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[7.0.4, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

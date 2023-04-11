@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.1",
+          "Microsoft.AspNetCore.Identity.UI": "7.0.4",
           "Microsoft.EntityFrameworkCore": "7.0.4",
           "Microsoft.EntityFrameworkCore.Design": "7.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.4",
@@ -221,6 +222,7 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Identity.UI/7.0.4": {},
       "Microsoft.AspNetCore.Razor.Language/6.0.0": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll": {
@@ -2687,6 +2689,13 @@
       "sha512": "sha512-FklKd0TXUaYExsSLte5k6w2krmHgUrGtbxX+vS4YEOx9yyP3DWYld0TPUplkPbyM/iNv7ou1xK63Yg+tQAiRNA==",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.1",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.6.0.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Identity.UI/7.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OYwrFtqXyxmluRKrTsju14fPUvqY3rI8YysUP2kaAGHD0kMkpZyWLrarGoZ8A8r/mVi1V+IwYY8pPTMoGEcAPA==",
+      "path": "microsoft.aspnetcore.identity.ui/7.0.4",
+      "hashPath": "microsoft.aspnetcore.identity.ui.7.0.4.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Language/6.0.0": {
       "type": "package",

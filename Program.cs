@@ -20,8 +20,15 @@ builder.Services.AddSession(options => {options.IdleTimeout = TimeSpan.FromMinut
 builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>(); //sessin
 
 builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<Banco>().AddDefaultTokenProviders(); //identyty
-//builder.Services.AddIdentityCore<IdentityUser>(options => {});
+builder.Services.AddIdentityCore<IdentityUser>(options => {});
 builder.Services.AddScoped<IUserStore<IdentityUser>,UserOnlyStore<IdentityUser,IdentityDbContext>>();
+builder.Services.Configure<IdentityOptions>(options =>{
+        options.Password.RequireDigit =true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

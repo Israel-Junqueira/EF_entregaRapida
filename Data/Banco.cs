@@ -11,13 +11,15 @@ using System.Security.Claims;
 
 namespace EntregaRapida.Data
 {
-    public class Banco : IdentityDbContext<IdentityUser>
+    public class Banco : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
-        public Banco()
-        {
-            
-        }
-        
+    
+   
+  
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseMySQL("Server=localhost;Port=3306;Database=projetoef;Uid=root;Pwd=;");
+    }
      public Banco(DbContextOptions<Banco> options) : base(options)
     {
         //o restando das configurações estao na appsettings que é a string de conexao e o na program
@@ -35,8 +37,12 @@ namespace EntregaRapida.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             
-        
-          
+            modelBuilder.Entity<IdentityBuilder>().ToTable("MyUsers");
+            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("MyUserLogins");
+            modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("MyUserClaims");
+            modelBuilder.Entity<IdentityRole>().ToTable("MyRoles");
+            modelBuilder.Entity<IdentityUserRole<string>>().ToTable("MyUserRoles");
+                
             modelBuilder.Entity<Entregador>()
             .ToTable("Entregadores")
             .HasKey(p => p.EntregadorId);
