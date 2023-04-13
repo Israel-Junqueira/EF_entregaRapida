@@ -5,28 +5,27 @@ using EntregaRapida.Repository;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Reflection;
+using TabelasIdentity.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-//var migrationsAssembly = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
+var banco = builder.Configuration.GetConnectionString("Banco");
+var Identity = builder.Configuration.GetConnectionString("Identity");
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews(); //"10.4.27"
 builder.Services.AddDbContext<Banco>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Banco")));
+builder.Services.AddDbContext<IdentityContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Identity")));
 
-builder.Services.AddTransient<IEntregadores,EntregadoresRepository>(); //Esse método é usado para adicionar um serviço de tempo de execução transiente ao contêiner de injeção de dependência. Os serviços de tempo de execução transientes são criados cada vez que um consumidor solicita o serviço. Os serviços de tempo de execução transientes são adequados para serviços ligeiramente "pesados" para criar, mas que não necessitam de estado persistente.
-builder.Services.AddTransient<ILojistas,LojistaRepository>();
-builder.Services.AddControllersWithViews(); 
-builder.Services.AddSession(options => {options.IdleTimeout = TimeSpan.FromMinutes(90);});//sessin
-builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>(); //sessin
 
-builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<Banco>().AddDefaultTokenProviders(); //identyty
-builder.Services.AddIdentityCore<IdentityUser>(options => {});
-builder.Services.AddScoped<IUserStore<IdentityUser>,UserOnlyStore<IdentityUser,IdentityDbContext>>();
-builder.Services.Configure<IdentityOptions>(options =>{
-        options.Password.RequireDigit =true;
-        options.Password.RequireNonAlphanumeric = true;
-        options.Password.RequireUppercase = true;
-});
+builder.Services.AddTransient<IEntregadores, EntregadoresRepository>(); //Esse método é usado para adicionar um serviço de tempo de execução transiente ao contêiner de injeção de dependência. Os serviços de tempo de execução transientes são criados cada vez que um consumidor solicita o serviço. Os serviços de tempo de execução transientes são adequados para serviços ligeiramente "pesados" para criar, mas que não necessitam de estado persistente.
+builder.Services.AddTransient<ILojistas, LojistaRepository>();
+builder.Services.AddControllersWithViews();
+builder.Services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(90); });//sessin
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //sessin
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Banco>().AddDefaultTokenProviders(); //identyty
+builder.Services.AddIdentityCore<IdentityUser>(options => { });
+builder.Services.AddScoped<UserManager<IdentityUser>>();
 
 
 var app = builder.Build();

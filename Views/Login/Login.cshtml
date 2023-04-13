@@ -1,0 +1,17 @@
+@model EntregaRapida.ViewModel.LoginViewModel
+
+<h1>login</h1>
+
+<form method="post" asp-controller="Login" asp-action="Cadastro">
+
+    <div class="form-group">
+        <label asp-for="UserName" class="control-label"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+</form>
