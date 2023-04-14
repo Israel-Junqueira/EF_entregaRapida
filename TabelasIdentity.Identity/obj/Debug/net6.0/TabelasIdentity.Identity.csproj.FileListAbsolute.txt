@@ -1,0 +1,12 @@
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\obj\Debug\net6.0\TabelasIdentity.Identity.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\obj\Debug\net6.0\TabelasIdentity.Identity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\obj\Debug\net6.0\TabelasIdentity.Identity.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\obj\Debug\net6.0\TabelasIdentity.Identity.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\obj\Debug\net6.0\TabelasIdentity.Identity.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\bin\Debug\net6.0\TabelasIdentity.Identity.deps.json
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\bin\Debug\net6.0\TabelasIdentity.Identity.dll
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\bin\Debug\net6.0\ref\TabelasIdentity.Identity.dll
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\bin\Debug\net6.0\TabelasIdentity.Identity.pdb
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\obj\Debug\net6.0\TabelasIdentity.Identity.dll
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\obj\Debug\net6.0\ref\TabelasIdentity.Identity.dll
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity.Identity\obj\Debug\net6.0\TabelasIdentity.Identity.pdb

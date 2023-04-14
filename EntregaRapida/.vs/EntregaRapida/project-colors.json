@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "4dbde6ce-2742-4f77-a4a5-f0e0789875d3": {
+      "ProjectGuid": "4dbde6ce-2742-4f77-a4a5-f0e0789875d3",
+      "DisplayName": "TabelasIdentity.Identity",
+      "ColorIndex": 0
+    },
+    "93266da5-1b42-46d1-bc34-184e693601a8": {
+      "ProjectGuid": "93266da5-1b42-46d1-bc34-184e693601a8",
+      "DisplayName": "EntregaRapida",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

@@ -1,0 +1,63 @@
+Ferramentas usadas**
+
+Entity Framework Core 
+    Ferramenta para realizar o mapeamento objeto relacional entre as models eas tabelas do banco de dados
+MySql - Banco de dados
+Bootstrao 5 
+
+Modelo de dados
+    1 criar os modelos e enuns
+    1.1 Adicionar as propriedades
+    1.2 adicionar os construtores 
+    1.3 adicionar as propriedades costumizadas se necessario
+    1.4 criar o metodos necessarios
+    1.5 fazer a relação de entidades 1;N, 1;1 ou N;M
+
+    //----------------------
+
+>>> 2 Classe DbContext e DbSet<T> Mapear as entitdades e fazer a Conexao com banco de dados
+    
+DbContexto:Database
+
+    -Conexao com o Database
+    -operações com dados
+    -Consulta e Persistencia
+    -Mapeamento de dados 
+    -Gestao de transação
+DbSet<T>tabelas
+    -Coleções para entidades do modelos
+    -Coleções na memoria
+    -Para persistir usar SaveChanges()
+    
+> 2.1 Injeção de dependencia do banco de dados
+    builder.Services.AddDbContext<Banco>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Banco")));
+
+    2.2 Para realizar a comunicação LINQ language integrated query - consulta integrada de idioma
+        -Para aplicar o migrations no projeto temos que definir 
+        -Um modelo de entidades que são classes com propriedades;
+        -Uma classe de contexto que herda de DbContext e os DbSets para as entdades a mapear;
+        -Definir a string de conexao com os banco de dados no arquivo appsettings.json
+        -registrar o contexto como um serviço usando AddDbContext(classe program)
+        -Definir o provedor do banco de dados e a string de conexao usada
+
+Tive um problema com a versao dos pacotes mais ja acertei agora preciso fazer o mapeamento dos objetos pois causo contrario ele nao fara a migração
+
+____________________________________________________________________________________________________________________________________________________
+
+Conceito de sessao com o entregador online
+
+a ideia foi criar um session onde o entregador tivesse uma coluna de status (ativo = true desativo = false)
+assim que o entregador fizer o login o status dele é ativado e quando a sessão expirar volta para deativado
+
+____________________________________________________________________________________________________________________________________________________
+
+Adicionei o identity no projeto para fazer o login e começar ativar o usuario como logado e criar a sessão dele
+
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore  --version 6.0.1
+
+
+
+referenciar o projeto A em B
+dotnet add reference <path-to-solution-b>
+
+Onde <path-to-solution-b> é o caminho para a solução B. Isso permitirá acesso às classes da solução B dentro do projeto da solução A.
