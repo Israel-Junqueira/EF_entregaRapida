@@ -18,5 +18,11 @@ namespace EntregaRapida.Models{
          [Display(Name ="Confirmar Password")] 
         public string PasswordConfirmed { get; set; }
 
+        public int EntregadorId { get; set; }
+        [ForeignKey("EntregadorId")]
+        public Entregador Entregador { get; set; }
+
+
+
     }
 }

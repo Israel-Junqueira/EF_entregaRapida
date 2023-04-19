@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EntregaRapida.Migrations.BancoMigrations
+namespace EntregaRapida.Migrations
 {
     [DbContext(typeof(Banco))]
     partial class BancoModelSnapshot : ModelSnapshot
@@ -42,16 +42,13 @@ namespace EntregaRapida.Migrations.BancoMigrations
                         .HasColumnType("varchar(3)")
                         .HasColumnName("DDD");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("EmailConfirmed")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Endereco")
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("Endereco");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Modalidade")
                         .IsRequired()
@@ -66,12 +63,6 @@ namespace EntregaRapida.Migrations.BancoMigrations
                         .HasColumnType("int")
                         .HasColumnName("Numero_de_Entregas");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PasswordConfirmed")
-                        .HasColumnType("longtext");
-
                     b.Property<int>("PlataformaId")
                         .HasColumnType("int");
 
@@ -82,9 +73,6 @@ namespace EntregaRapida.Migrations.BancoMigrations
                     b.Property<bool>("StatusEntregador")
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("StatusEntregador");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("longtext");
 
                     b.HasKey("EntregadorId");
 
@@ -283,6 +271,67 @@ namespace EntregaRapida.Migrations.BancoMigrations
                     b.ToTable("Plataforma", (string)null);
                 });
 
+            modelBuilder.Entity("EntregaRapida.Models.Users", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("EntregadorId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PasswordConfirmed")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntregadorId")
+                        .IsUnique();
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("EntregaRapida.Models.Entregador", b =>
                 {
                     b.HasOne("EntregaRapida.Models.Plataforma", "plataforma")
@@ -400,8 +449,21 @@ namespace EntregaRapida.Migrations.BancoMigrations
                     b.Navigation("notificacao");
                 });
 
+            modelBuilder.Entity("EntregaRapida.Models.Users", b =>
+                {
+                    b.HasOne("EntregaRapida.Models.Entregador", "Entregador")
+                        .WithOne("Users")
+                        .HasForeignKey("EntregaRapida.Models.Users", "EntregadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Entregador");
+                });
+
             modelBuilder.Entity("EntregaRapida.Models.Entregador", b =>
                 {
+                    b.Navigation("Users");
+
                     b.Navigation("avaliacao");
 
                     b.Navigation("historico");

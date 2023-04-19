@@ -1,38 +1,9 @@
-@model EntregaRapida.Models.Entregador
+@model EntregaRapida.ViewModel.EntregadorUsersViewModel
 
 
 <h2>Cadastre-se como Entregador</h2>
 
-<form method="post" asp-controller="Entregador" asp-action="Cadastro">
-    @Html.AntiForgeryToken()
-
-    <div class="form-group">
-        <label asp-for="UserName" class="control-label"></label>
-        <input asp-for="UserName" class="form-control" />
-        <span asp-validation-for="Nome" class="text-danger"></span>
-    </div>
-        <div class="form-group">
-        <label asp-for="Password" class="control-label"></label>
-        <input asp-for="Password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-        <div class="form-group">
-        <label asp-for="PasswordConfirmed" class="control-label"></label>
-        <input asp-for="PasswordConfirmed" class="form-control" />
-        <span asp-validation-for="PasswordConfirmed" class="text-danger"></span>
-    </div>
-        <div class="form-group">
-        <label asp-for="Email" class="control-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-        <div class="form-group">
-        <label asp-for="EmailConfirmed" class="control-label"></label>
-        <input asp-for="EmailConfirmed" class="form-control" />
-        <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
-    </div>
-
-
+<form method="post" asp-controller="RegistroEntregador" asp-action="CadastroEntregadorUsers">
 
     <div class="form-group">
         <label asp-for="Nome" class="control-label"></label>
@@ -66,22 +37,49 @@
         @Html.DropDownListFor(model=>model.Modalidade,new
         SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Modalidade))))
     </div>
-     <div class="form-group">
+    <div class="form-group">
         <label asp-for="Veiculo" class="control-label"></label>
         @Html.DropDownListFor(model=>model.Veiculo,new
         SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Veiculo))))
     </div>
-      <div class="form-group">
-        <label asp-for="PlataformaId" class="control-label"></label>
-        <input asp-for="PlataformaId" class="form-control" value="1"/>
-        <span asp-validation-for="PlataformaId" class="text-danger"></span>
+    <div class="form-group">
+        <input type="hidden" asp-for="PlataformaId" class="form-control" value="1" />
     </div>
 
+
+     <div class="form-group">
+        <label asp-for="NomeUsuario" class="control-label"></label>
+        <input asp-for="NomeUsuario" class="form-control" />
+        <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+    </div>
+        <div class="form-group">
+        <label asp-for="Senha" class="control-label"></label>
+        <input asp-for="Senha" class="form-control" type="password" />
+        <span asp-validation-for="Senha" class="text-danger"></span>
+    </div>
+        <div class="form-group">
+        <label asp-for="Senhaconfirmar" class="control-label"></label>
+        <input asp-for="Senhaconfirmar" class="form-control" type="password"/>
+        <span asp-validation-for="Senhaconfirmar" class="text-danger"></span>
+    </div>
+        <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+        <div class="form-group">
+        <label asp-for="EmailConfirmar" class="control-label"></label>
+        <input asp-for="EmailConfirmar" class="form-control" />
+        <span asp-validation-for="EmailConfirmar" class="text-danger"></span>
+    </div>
+    
     <div class="form-group">
         <input type="submit" value="Cadastrar" class="btn btn-primary" />
     </div>
 </form>
 
- @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

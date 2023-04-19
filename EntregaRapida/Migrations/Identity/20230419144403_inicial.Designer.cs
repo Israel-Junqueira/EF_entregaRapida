@@ -8,11 +8,11 @@ using TabelasIdentity.Identity.Data;
 
 #nullable disable
 
-namespace EntregaRapida.Migrations
+namespace EntregaRapida.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230414154138_initial")]
-    partial class initial
+    [Migration("20230419144403_inicial")]
+    partial class inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

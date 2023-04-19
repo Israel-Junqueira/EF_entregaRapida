@@ -1,1 +1,3 @@
 Usarei quando tiver que apresentar duas models e uma unica view
+
+ou quando for criar uma view que necessita apenas de alguns dados

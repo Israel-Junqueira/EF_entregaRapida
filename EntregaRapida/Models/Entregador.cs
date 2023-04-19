@@ -6,22 +6,7 @@ using EntregaRapida.Models.Enum;
 namespace EntregaRapida.Models
 {
     public class Entregador
-    {   [Display(Name ="Nome do usuario")] 
-        public string UserName { get; set; }
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-        [Compare("Email")]
-        [DataType(DataType.EmailAddress)]
-         [Display(Name ="Confirmar Email")] 
-        public string EmailConfirmed { get; set; }
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-        [Compare("Password")]
-        [DataType(DataType.Password)]
-         [Display(Name ="Confirmar Password")] 
-        public string PasswordConfirmed { get; set; }
-
-
+    {
 
         public int EntregadorId ;
         private string _nome ;
@@ -38,7 +23,8 @@ namespace EntregaRapida.Models
         [EnumDataType(typeof(Modalidade))] //1:1 ok
         private Modalidade _modalidade { get; set; }
 
-
+        [ForeignKey("Id")]
+        public Users Users { get; set; }
 
         public int PlataformaId { get; set; }
         //Relacionamento
@@ -63,7 +49,8 @@ namespace EntregaRapida.Models
         }
         [MinLength(1,ErrorMessage ="Digite um nome para o entregador")]
         [Required]
-        [NotMapped]       
+        [NotMapped]  
+        [Display(Name ="Nome do Entregador")]
         public string Nome
         {
             get { return _nome; }
@@ -134,7 +121,8 @@ namespace EntregaRapida.Models
             get { return _veiculo; }
             set { _veiculo = value; }
         }
-        
+
+
     }
 
 

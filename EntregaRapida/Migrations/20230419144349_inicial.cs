@@ -4,10 +4,10 @@ using MySql.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace EntregaRapida.Migrations.BancoMigrations
+namespace EntregaRapida.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,11 +34,6 @@ namespace EntregaRapida.Migrations.BancoMigrations
                 {
                     EntregadorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    UserName = table.Column<string>(type: "longtext", nullable: true),
-                    Email = table.Column<string>(type: "longtext", nullable: true),
-                    EmailConfirmed = table.Column<string>(type: "longtext", nullable: true),
-                    Password = table.Column<string>(type: "longtext", nullable: true),
-                    PasswordConfirmed = table.Column<string>(type: "longtext", nullable: true),
                     PlataformaId = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "longtext", nullable: false),
                     StatusEntregador = table.Column<bool>(type: "tinyint(1)", nullable: false),
@@ -48,7 +43,8 @@ namespace EntregaRapida.Migrations.BancoMigrations
                     CNH = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
                     Pontuacao = table.Column<int>(type: "int", nullable: false),
                     Numero_de_Entregas = table.Column<int>(type: "int", nullable: false),
-                    Modalidade = table.Column<string>(type: "longtext", nullable: false)
+                    Modalidade = table.Column<string>(type: "longtext", nullable: false),
+                    Id = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -106,6 +102,40 @@ namespace EntregaRapida.Migrations.BancoMigrations
                         column: x => x.PlataformaId,
                         principalTable: "Plataforma",
                         principalColumn: "PlataformaId",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(255)", nullable: false),
+                    UserName = table.Column<string>(type: "longtext", nullable: true),
+                    Email = table.Column<string>(type: "longtext", nullable: true),
+                    PasswordHash = table.Column<string>(type: "longtext", nullable: true),
+                    PasswordConfirmed = table.Column<string>(type: "longtext", nullable: true),
+                    EntregadorId = table.Column<int>(type: "int", nullable: false),
+                    NormalizedUserName = table.Column<string>(type: "longtext", nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "longtext", nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    SecurityStamp = table.Column<string>(type: "longtext", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "longtext", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "longtext", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Entregadores_EntregadorId",
+                        column: x => x.EntregadorId,
+                        principalTable: "Entregadores",
+                        principalColumn: "EntregadorId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
@@ -282,6 +312,12 @@ namespace EntregaRapida.Migrations.BancoMigrations
                 name: "IX_pedido_LojistaId",
                 table: "pedido",
                 column: "LojistaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_EntregadorId",
+                table: "Users",
+                column: "EntregadorId",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -292,6 +328,9 @@ namespace EntregaRapida.Migrations.BancoMigrations
 
             migrationBuilder.DropTable(
                 name: "pagamentos");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "pedido");

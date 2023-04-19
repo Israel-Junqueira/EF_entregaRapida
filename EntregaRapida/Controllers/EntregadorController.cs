@@ -47,11 +47,11 @@ namespace EntregaRapida.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                   var user = await UserManager.FindByNameAsync(entregador.UserName);
+                   var user = await UserManager.FindByNameAsync(entregador.Nome);
                    if (user == null){
                     user = new IdentityUser()
                     {
-                        UserName = entregador.UserName,
+                        UserName = entregador.Nome,
 
                         
                     };

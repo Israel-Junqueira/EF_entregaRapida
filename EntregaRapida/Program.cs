@@ -23,7 +23,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(90); });//sessin
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //sessin
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Banco>().AddDefaultTokenProviders(); //identyty
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders(); //identyty
 builder.Services.AddIdentityCore<IdentityUser>(options => { });
 builder.Services.AddScoped<UserManager<IdentityUser>>();
 
@@ -50,6 +50,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Entregador}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

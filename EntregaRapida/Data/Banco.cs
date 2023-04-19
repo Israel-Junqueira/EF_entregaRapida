@@ -29,10 +29,17 @@ namespace EntregaRapida.Data
         public DbSet<Pagamento> pagamentos  { get; set; }
         public DbSet<Pedido>Pedidos { get; set; }
         public DbSet<Plataforma>Plataformas { get; set; }
+       // public DbSet<IdentityUser> IdentityUser { get; set; }
+        
         
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
-                
+
+            modelBuilder.Entity<Entregador>()
+            .HasOne(u => u.Users)
+            .WithOne(u => u.Entregador)
+            .HasForeignKey<Users>(p => p.EntregadorId);
+
             modelBuilder.Entity<Entregador>()
             .ToTable("Entregadores")
             .HasKey(p => p.EntregadorId);

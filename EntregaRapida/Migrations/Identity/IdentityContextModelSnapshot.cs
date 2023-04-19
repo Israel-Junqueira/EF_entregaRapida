@@ -7,7 +7,7 @@ using TabelasIdentity.Identity.Data;
 
 #nullable disable
 
-namespace EntregaRapida.Migrations
+namespace EntregaRapida.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
     partial class IdentityContextModelSnapshot : ModelSnapshot

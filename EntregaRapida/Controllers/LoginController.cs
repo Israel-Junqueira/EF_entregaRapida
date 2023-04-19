@@ -42,5 +42,13 @@ namespace EntregaRapida.Controllers {
             
             return View(LoginVM);
         }
+        [HttpGet]
+        public  IActionResult Register( ){
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Register(LoginViewModel loginViewModel){
+            return View();
+        }
     }
 }

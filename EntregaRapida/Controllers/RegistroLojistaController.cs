@@ -4,12 +4,12 @@ using EntregaRapida.Data;
 using EntregaRapida.Models;
 namespace EntregaRapida.Controllers{
 
-    public class LojistaController :Controller
+    public class RegistroLojistaController :Controller
     {
         private readonly ILojistas _Ilojista;
         private readonly Banco _dbBanco;
 
-        public LojistaController(Banco banco,ILojistas lojista)
+        public RegistroLojistaController(Banco banco,ILojistas lojista)
         {
             _Ilojista = lojista;
             _dbBanco = banco;
