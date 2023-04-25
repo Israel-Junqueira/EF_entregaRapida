@@ -15,14 +15,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Usuario/Desktop/ProjetoEF/EntregaRapida/Views/Entregador/Cadastro.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50cmVnYWRvclxDYWRhc3Ryby5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Usuario/Desktop/ProjetoEF/EntregaRapida/Views/Entregador/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50cmVnYWRvclxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Usuario/Desktop/ProjetoEF/EntregaRapida/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -33,6 +25,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Usuario/Desktop/ProjetoEF/EntregaRapida/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Usuario/Desktop/ProjetoEF/EntregaRapida/Views/RegistroEntregador/CadastroEntregadorUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cm9FbnRyZWdhZG9yXENhZGFzdHJvRW50cmVnYWRvclVzZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Usuario/Desktop/ProjetoEF/EntregaRapida/Views/RegistroEntregador/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cm9FbnRyZWdhZG9yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Usuario/Desktop/ProjetoEF/EntregaRapida/Views/RegistroLojista/Cadastro.cshtml]

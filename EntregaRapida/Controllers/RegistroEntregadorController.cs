@@ -36,19 +36,25 @@ namespace EntregaRapida.Controllers
           public async Task<IActionResult> CadastroEntregadorUsers(EntregadorUsersViewModel entregadorUsersView)
         {
             if(ModelState.IsValid){
-                var user = new Users(){UserName = entregadorUsersView.NomeUsuario,Email = entregadorUsersView.Email};
+                var user = new EntregadorUsersViewModel(){ UserName = entregadorUsersView.NomeUsuario,Email = entregadorUsersView.Email};
                 var verifica = _usermaneger.FindByNameAsync(entregadorUsersView.NomeUsuario);
                 
                 if(verifica != null ){
-                    var Entregador = new Entregador(){Celular = entregadorUsersView.Celular,CNH = entregadorUsersView.CNH,DDD = entregadorUsersView.DDD,Endereco = entregadorUsersView.Endereco,Nome=entregadorUsersView.Nome,Modalidade = entregadorUsersView.Modalidade , Veiculo = entregadorUsersView.Veiculo,PlataformaId = entregadorUsersView.PlataformaId};
-                    _dbcontext.Add(Entregador);
-                    _dbcontext.SaveChanges();
-                    var result = await _usermaneger.CreateAsync(user,entregadorUsersView.Senha);
+                      var result = await _usermaneger.CreateAsync(user,entregadorUsersView.Senha);
                     if (result.Succeeded){
+                        var userName = await _usermaneger.FindByNameAsync(user.UserName);
+                        var UserId = await _usermaneger.GetUserIdAsync(userName);
+
+                        var Entregador = new Entregador() { Celular = entregadorUsersView.Celular, CNH = entregadorUsersView.CNH, DDD = entregadorUsersView.DDD, Endereco = entregadorUsersView.Endereco, Nome = entregadorUsersView.Nome, Modalidade = entregadorUsersView.Modalidade, Veiculo = entregadorUsersView.Veiculo, PlataformaId = entregadorUsersView.PlataformaId, Idaspnetuser = UserId };
+                        _dbcontext.Add(Entregador);
+                        _dbcontext.SaveChanges();
+
                         return RedirectToAction("Login","Login");
                     }else{
                         this.ModelState.AddModelError("Registro","Falha ao realizar registro");
                     }
+                   
+                  
                 }
              
             }

@@ -2,12 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using EntregaRapida.Models.Enum;
+using Microsoft.AspNetCore.Identity;
 
 namespace EntregaRapida.Models
 {
     public class Entregador
     {
-
         public int EntregadorId ;
         private string _nome ;
         private string _endereco;
@@ -22,13 +22,11 @@ namespace EntregaRapida.Models
         private Veiculo _veiculo { get; set; }
         [EnumDataType(typeof(Modalidade))] //1:1 ok
         private Modalidade _modalidade { get; set; }
-
-        [ForeignKey("Id")]
-        public Users Users { get; set; }
-
+        public string Idaspnetuser { get; set; }
         public int PlataformaId { get; set; }
         //Relacionamento
         public Plataforma plataforma; //N:1 ok
+
         public virtual List<Avaliacao> avaliacao { get; set; }//1:N  falta fazer
         public virtual List<Historico> historico { get; set; } //1:N  ok
         public virtual List<Pedido> pedido { get; set; }//1:N  ok

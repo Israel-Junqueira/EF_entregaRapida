@@ -18,6 +18,7 @@ namespace EntregaRapida.Models{
         //chaves estrangeiras
         [EnumDataType(typeof(TipoComercio))] // 1:1 ✓  ok
         private TipoComercio _tipocomercio { get; set; }
+        public string Idaspnetuser { get; set; }
         public int PlataformaId { get; set; }
         //Relacionamentos
         public Plataforma plataforma { get; set; }

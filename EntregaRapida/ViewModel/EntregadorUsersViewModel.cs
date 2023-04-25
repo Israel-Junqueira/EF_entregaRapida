@@ -1,17 +1,20 @@
 using EntregaRapida.Models.Enum;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
 namespace EntregaRapida.ViewModel
 {
-    public class EntregadorUsersViewModel
+    public class EntregadorUsersViewModel :IdentityUser
     {
 
           //identity
         [Display(Name = "Nome do usuario")]
         [Required]
         public string NomeUsuario { get; set; }
+
         [DataType(DataType.EmailAddress)]
         [Required]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Confirmar Email")]

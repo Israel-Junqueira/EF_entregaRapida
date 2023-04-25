@@ -34,15 +34,11 @@ namespace EntregaRapida.Data
         
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
-
-            modelBuilder.Entity<Entregador>()
-            .HasOne(u => u.Users)
-            .WithOne(u => u.Entregador)
-            .HasForeignKey<Users>(p => p.EntregadorId);
+            
 
             modelBuilder.Entity<Entregador>()
             .ToTable("Entregadores")
-            .HasKey(p => p.EntregadorId);
+            .HasKey(p => p.EntregadorId);   
             modelBuilder.Entity<Entregador>()
             .Property(n => n.Nome)
             .HasColumnName("Nome");

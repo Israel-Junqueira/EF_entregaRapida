@@ -3,16 +3,19 @@
 <h1>login</h1>
 
 <form method="post" asp-controller="Login" asp-action="Login">
-    <div asp-validation-summary="All" class="text-danger"></div> <!--Esta anotação asp-validation-summary="All" é usada para mostrar todas as mensagens de validação associadas a um formulário, incluindo erros, avisos e informações.-->
-    <input type="hidden" asp-for="ReturnUrl"/>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <!--Esta anotação asp-validation-summary="All" é usada para mostrar todas as mensagens de validação associadas a um formulário, incluindo erros, avisos e informações.-->
+    <input type="hidden" asp-for="ReturnUrl" />
     <div class="form-group">
         <label asp-for="UserName" class="control-label"></label>
         <input asp-for="UserName" class="form-control" />
-        <span asp-validation-for="UserName" class="text-danger"></span> <!--A anotação asp-validation-for é usada para definir a validação de um campo em um formulário ASP.NET Core MVC. Ela gera automaticamente as tags de validação HTML relevantes para o campo especificado e atribui ao elemento HTML gerenciado uma classe de erro. Esta anotação também pode ser usada para definir a mensagem de erro a ser exibida, caso ocorra uma falha na validação do campo.-->
+        <span asp-validation-for="UserName" class="text-danger"></span>
+        <!--A anotação asp-validation-for é usada para definir a validação de um campo em um formulário ASP.NET Core MVC. Ela gera automaticamente as tags de validação HTML relevantes para o campo especificado e atribui ao elemento HTML gerenciado uma classe de erro. Esta anotação também pode ser usada para definir a mensagem de erro a ser exibida, caso ocorra uma falha na validação do campo.-->
     </div>
     <div class="form-group">
         <label asp-for="Password" class="control-label"></label>
         <input asp-for="Password" class="form-control" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
+    <button type="submit">Login</button>
 </form>

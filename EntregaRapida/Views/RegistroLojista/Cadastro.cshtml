@@ -1,15 +1,15 @@
-@model EntregaRapida.Models.Lojista
+@model EntregaRapida.ViewModel.RegistroLojistaViewModel;
 
 
 <h2>Cadastre-se como lojista</h2>
 
-<form method="post" asp-controller="Lojista" asp-action="Cadastro">
+<form method="post" asp-controller="RegistroLojista" asp-action="CadastroLojista">
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        <label asp-for="Nome" class="control-label"></label>
-        <input asp-for="Nome" class="form-control" />
-        <span asp-validation-for="Nome" class="text-danger"></span>
+        <label asp-for="NomeComercio" class="control-label"></label>
+        <input asp-for="NomeComercio" class="form-control" />
+        <span asp-validation-for="NomeComercio" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Endereco" class="control-label"></label>
@@ -32,11 +32,34 @@
         @Html.DropDownListFor(model=>model.TipoComercio,new
         SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.TipoComercio))))
     </div>
+     <div class="form-group">
+        <label asp-for="NomeUsuario" class="control-label"></label>
+        <input asp-for="NomeUsuario" class="form-control" />
+        <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+   <div class="form-group">
+        <label asp-for="EmailConfirmed" class="control-label"></label>
+        <input asp-for="EmailConfirmed" class="form-control" />
+        <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
+    </div>
+      <div class="form-group">
+        <label asp-for="Senha" class="control-label"></label>
+        <input asp-for="Senha" class="form-control" />
+        <span asp-validation-for="Senha" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="Senhaconfirmar" class="control-label"></label>
+        <input asp-for="Senhaconfirmar" class="form-control" />
+        <span asp-validation-for="Senhaconfirmar" class="text-danger"></span>
+    </div>
 
       <div class="form-group">
-        <label asp-for="PlataformaId" class="control-label"></label>
-        <input asp-for="PlataformaId" class="form-control" value="1"/>
-        <span asp-validation-for="PlataformaId" class="text-danger"></span>
+        <input asp-for="PlataformaId" class="form-control" value="1" type="hidden"/>
     </div>
 
     <div class="form-group">
