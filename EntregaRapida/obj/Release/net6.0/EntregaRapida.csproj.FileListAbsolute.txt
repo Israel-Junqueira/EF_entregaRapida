@@ -1,0 +1,9 @@
+C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida\obj\Release\net6.0\EntregaRapida.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida\obj\Release\net6.0\EntregaRapida.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida\obj\Release\net6.0\EntregaRapida.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida\obj\Release\net6.0\EntregaRapida.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida\obj\Release\net6.0\EntregaRapida.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida\obj\Release\net6.0\EntregaRapida.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida\obj\Release\net6.0\EntregaRapida.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida\obj\Release\net6.0\EntregaRapida.RazorAssemblyInfo.cache
+C:\Users\Usuario\Desktop\ProjetoEF\EntregaRapida\obj\Release\net6.0\EntregaRapida.RazorAssemblyInfo.cs
