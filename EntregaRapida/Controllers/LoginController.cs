@@ -28,6 +28,8 @@ namespace EntregaRapida.Controllers {
             }
             var user = await _usermaneger.FindByNameAsync(LoginVM.UserName);
             if(user != null){
+
+                
                 var result =  await _signInManager.PasswordSignInAsync(user,LoginVM.Password,false,false);
 
                 if(result.Succeeded){

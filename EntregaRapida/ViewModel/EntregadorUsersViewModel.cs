@@ -15,7 +15,7 @@ namespace EntregaRapida.ViewModel
         [DataType(DataType.EmailAddress)]
         [Required]
         [Display(Name = "E-mail")]
-        public string Email { get; set; }
+        public override string Email { get; set; }
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Confirmar Email")]
         [Compare("Email")]

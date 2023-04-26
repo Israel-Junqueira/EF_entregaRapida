@@ -12,7 +12,7 @@ namespace EntregaRapida.Controllers
     {
         private readonly UserManager<IdentityUser> _usermaneger;
         private readonly SignInManager<IdentityUser> _signInManager;
-         private readonly IEntregadores _IentregadoresRepositories;
+        private readonly IEntregadores _IentregadoresRepositories;
         private readonly Banco _dbcontext;
 
         public RegistroEntregadorController(Banco banco, IEntregadores _IentregadoresRepositories, UserManager<IdentityUser> userManager,SignInManager<IdentityUser> signInManager)
