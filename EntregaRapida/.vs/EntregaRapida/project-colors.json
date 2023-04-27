@@ -1,41 +1,11 @@
 {
   "Version": 1,
   "ProjectMap": {
-    "4dbde6ce-2742-4f77-a4a5-f0e0789875d3": {
-      "ProjectGuid": "4dbde6ce-2742-4f77-a4a5-f0e0789875d3",
-      "DisplayName": "TabelasIdentity.Identity",
-      "ColorIndex": 0
-    },
-    "93266da5-1b42-46d1-bc34-184e693601a8": {
-      "ProjectGuid": "93266da5-1b42-46d1-bc34-184e693601a8",
-      "DisplayName": "EntregaRapida",
-      "ColorIndex": 1
-    },
-    "5f976779-b0a7-4c57-a93e-4b0dfbc03695": {
-      "ProjectGuid": "5f976779-b0a7-4c57-a93e-4b0dfbc03695",
-      "DisplayName": "TabelasIdentity.Identity",
-      "ColorIndex": 2
-    },
-    "9d4a3cc5-86d8-4f51-a1d9-8fe721d27922": {
-      "ProjectGuid": "9d4a3cc5-86d8-4f51-a1d9-8fe721d27922",
-      "DisplayName": "EntregaRapida",
-      "ColorIndex": 3
-    },
-    "76bc145d-9569-4852-a553-382b340657bf": {
-      "ProjectGuid": "76bc145d-9569-4852-a553-382b340657bf",
-      "DisplayName": "EntregaRapida",
-      "ColorIndex": 4
-    },
     "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Arquivos Diversos",
       "ColorIndex": -1
-    },
-    "3cc2746e-f2ba-410a-a6d0-e53dee2bf5bb": {
-      "ProjectGuid": "3cc2746e-f2ba-410a-a6d0-e53dee2bf5bb",
-      "DisplayName": "EntregaRapida",
-      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 0
 }

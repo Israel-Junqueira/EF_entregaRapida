@@ -1,17 +1,23 @@
 using EntregaRapida.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using EntregaRapida.Models;
+using EntregaRapida.Data;
 
 namespace EntregaRapida.Controllers {
     public class LoginController : Controller
     {
         private readonly UserManager<IdentityUser> _usermaneger;
+        private readonly Banco _banco;
         private readonly SignInManager<IdentityUser> _signInManager;
-
-        public LoginController(UserManager<IdentityUser> usermaneger, SignInManager<IdentityUser> signInManager)
+        private readonly EntregadoresLogados _entregadoresLogados;
+        public LoginController(UserManager<IdentityUser> usermaneger, SignInManager<IdentityUser> signInManager, Banco banco,EntregadoresLogados _entregadorcokkie)
         {
             _usermaneger = usermaneger;
             _signInManager = signInManager;
+            _banco = banco;
+            _entregadoresLogados = _entregadorcokkie;
+
         }
 
         [HttpGet]
@@ -29,6 +35,9 @@ namespace EntregaRapida.Controllers {
             var user = await _usermaneger.FindByNameAsync(LoginVM.UserName);
             if(user != null){
 
+
+
+                _entregadoresLogados.StartSession(LoginVM);
                 
                 var result =  await _signInManager.PasswordSignInAsync(user,LoginVM.Password,false,false);
 
