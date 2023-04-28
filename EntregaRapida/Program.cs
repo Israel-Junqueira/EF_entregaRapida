@@ -23,7 +23,7 @@ builder.Services.AddTransient<ILojistas, LojistaRepository>();
 builder.Services.AddTransient<EntregadoresLogados>();
 builder.Services.AddControllersWithViews();
 //sessao
-builder.Services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(1); });
+builder.Services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(5); });
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();

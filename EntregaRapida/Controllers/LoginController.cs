@@ -34,22 +34,18 @@ namespace EntregaRapida.Controllers {
             }
             var user = await _usermaneger.FindByNameAsync(LoginVM.UserName);
             if(user != null){
-
-
-
-                _entregadoresLogados.StartSession(LoginVM);
                 
                 var result =  await _signInManager.PasswordSignInAsync(user,LoginVM.Password,false,false);
-
                 if(result.Succeeded){
-                    if(string.IsNullOrEmpty(LoginVM.ReturnUrl)){
+                    _entregadoresLogados.StartSession(LoginVM);
+                    if (string.IsNullOrEmpty(LoginVM.ReturnUrl)){
                         return RedirectToAction("Index","Home");
                     }
                     return Redirect(LoginVM.ReturnUrl);
                 }
                 return View(LoginVM);
             }
-            ModelState.AddModelError("","Falha ao realizar o login!!!");
+            ModelState.AddModelError("","Verifique o usuario ou senha e tente novamente");
             
             return View(LoginVM);
         }
