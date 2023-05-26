@@ -3,58 +3,51 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using EntregaRapida.Models;
 using EntregaRapida.Data;
+using EntregaRapida.Models.ClassHubs;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Http.Connections.Features;
+using Microsoft.Extensions.Caching.Memory;
 
-namespace EntregaRapida.Controllers {
+namespace EntregaRapida.Controllers
+{
     public class LoginController : Controller
     {
+        private readonly IHubContext<UsersHub> _hubContext;
         private readonly UserManager<IdentityUser> _usermaneger;
         private readonly Banco _banco;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly EntregadoresLogados _entregadoresLogados;
-        public LoginController(UserManager<IdentityUser> usermaneger, SignInManager<IdentityUser> signInManager, Banco banco,EntregadoresLogados _entregadorcokkie)
+        private readonly HttpContextAccessor _HttpContextAccessor1;
+
+        public LoginController(UserManager<IdentityUser> usermaneger, SignInManager<IdentityUser> signInManager, Banco banco, IHubContext<UsersHub> hubContext,HttpContextAccessor httpContextAccessor)
         {
             _usermaneger = usermaneger;
             _signInManager = signInManager;
             _banco = banco;
-            _entregadoresLogados = _entregadorcokkie;
+            this._hubContext = hubContext;
+            _HttpContextAccessor1 = httpContextAccessor;
 
         }
 
-        [HttpGet]
-        public IActionResult Login(string returnUrl){
-            return View(new LoginViewModel(){
-              ReturnUrl = returnUrl  
-            });
-        }
+
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel LoginVM){
-
-            if (!ModelState.IsValid){
-                 return View(LoginVM);
-            }
-            var user = await _usermaneger.FindByNameAsync(LoginVM.UserName);
-            if(user != null){
-                
-                var result =  await _signInManager.PasswordSignInAsync(user,LoginVM.Password,false,false);
-                if(result.Succeeded){
-                    _entregadoresLogados.StartSession(LoginVM);
-                    if (string.IsNullOrEmpty(LoginVM.ReturnUrl)){
-                        return RedirectToAction("Index","Home");
-                    }
-                    return Redirect(LoginVM.ReturnUrl);
-                }
-                return View(LoginVM);
-            }
-            ModelState.AddModelError("","Verifique o usuario ou senha e tente novamente");
-            
-            return View(LoginVM);
+        public async Task<IActionResult> Logout()
+        {
+            var http = _HttpContextAccessor1.HttpContext;
+            http.Session.Clear();
+            HttpContext.User = null;
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
+
         [HttpGet]
-        public  IActionResult Register( ){
+        public IActionResult Register()
+        {
             return View();
         }
         [HttpGet]
-        public IActionResult Register(LoginViewModel loginViewModel){
+        public IActionResult Register(LoginViewModel loginViewModel)
+        {
             return View();
         }
     }

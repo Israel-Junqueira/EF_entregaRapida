@@ -9,7 +9,7 @@ namespace EntregaRapida.Controllers{
 
     public class RegistroLojistaController :Controller
     {
-         private readonly UserManager<IdentityUser> _usermaneger;
+        private readonly UserManager<IdentityUser> _usermaneger;
         private readonly SignInManager<IdentityUser> _signInManager;
         
         private readonly ILojistas _ILojistaRepository;
@@ -38,7 +38,7 @@ namespace EntregaRapida.Controllers{
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-          public async Task<IActionResult> CadastroLojista(RegistroLojistaViewModel LojistaUsersView)
+          public async Task<IActionResult> Cadastro(RegistroLojistaViewModel LojistaUsersView)
         {
             if(ModelState.IsValid){
                 var user = new RegistroLojistaViewModel(){ UserName = LojistaUsersView.NomeUsuario ,Email = LojistaUsersView.Email};
@@ -46,8 +46,10 @@ namespace EntregaRapida.Controllers{
                 var verifica = _usermaneger.FindByNameAsync(LojistaUsersView.NomeUsuario);
                 
                 if(verifica != null ){
+                  
                       var result = await _usermaneger.CreateAsync(user,LojistaUsersView.Senha);
                     if (result.Succeeded){
+                        await _usermaneger.AddToRoleAsync(user, "Lojista");
                         var userName = await _usermaneger.FindByNameAsync(user.UserName);
                         var UserId = await _usermaneger.GetUserIdAsync(userName);
 
@@ -55,7 +57,7 @@ namespace EntregaRapida.Controllers{
                         _dbcontext.Add(Lojista);
                         _dbcontext.SaveChanges();
 
-                        return RedirectToAction("Login","Login");
+                        return RedirectToAction("Login","Account");
                     }else{
                         this.ModelState.AddModelError("Registro","Falha ao realizar registro");
                     }

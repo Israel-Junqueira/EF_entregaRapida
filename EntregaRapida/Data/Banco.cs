@@ -19,6 +19,7 @@ namespace EntregaRapida.Data
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseMySQL("Server=localhost;Port=3306;Database=projetoef;Uid=root;Pwd=;");
+           
     }
 
         public DbSet<Avaliacao>Avaliacoes { get; set; }

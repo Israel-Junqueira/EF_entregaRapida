@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Areas",
+    "\\Areas\\Comerciante",
+    "\\Areas\\Comerciante\\Views",
+    "\\Areas\\Comerciante\\Views\\PedidoCadastro",
+    "\\Controllers",
+    "\\Models",
+    "\\Models\\Enum",
+    "\\Services",
+    "\\Views"
   ],
+  "SelectedNode": "\\EntregaRapida.sln",
   "PreviewInSolutionExplorer": false
 }

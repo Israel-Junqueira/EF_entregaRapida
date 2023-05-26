@@ -1,12 +1,31 @@
-﻿@inject IHttpContextAccessor _httpContextAccessor;
-@model EntregaRapida.Models.Entregador
-@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
+@model IEnumerable<EntregadorConectado>
 
-<div class="text-center">
-    <h1 class="display-4"></h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <h1>Entregador Nome: @_httpContextAccessor.HttpContext.Session.GetString("NomeEntregador")</h1>
-    <h1>Entregador status: @_httpContextAccessor.HttpContext.Session.GetString("StatusEntregador")</h1>
-</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+
+
+
+<h1>Entregadores Online:</h1>
+<ul id="entregadoresOnline" style=list-style:none;></ul>
+
+@section scripts{
+  <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/entregadorHub").build();
+
+        connection.on("EntregadoresOnline", function (entregadores) {
+            var list = document.getElementById("entregadoresOnline");
+            list.innerHTML = "";
+            entregadores.forEach(function (entregador) {
+                var item = document.createElement("li");
+                item.innerText = entregador;
+                list.appendChild(item);
+            });
+        });
+
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
+        });
+    </script>
+}

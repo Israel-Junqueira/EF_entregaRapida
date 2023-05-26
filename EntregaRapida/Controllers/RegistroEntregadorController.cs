@@ -42,6 +42,7 @@ namespace EntregaRapida.Controllers
                 if(verifica != null ){
                       var result = await _usermaneger.CreateAsync(user,entregadorUsersView.Senha);
                     if (result.Succeeded){
+                        await _usermaneger.AddToRoleAsync(user, "Entregador");
                         var userName = await _usermaneger.FindByNameAsync(user.UserName);
                         var UserId = await _usermaneger.GetUserIdAsync(userName);
 
@@ -49,11 +50,11 @@ namespace EntregaRapida.Controllers
                         _dbcontext.Add(Entregador);
                         _dbcontext.SaveChanges();
 
-                        return RedirectToAction("Login","Login");
+                      return RedirectToAction("Login", "Account");
                     }else{
                         this.ModelState.AddModelError("Registro","Falha ao realizar registro");
                     }
-                   
+                   return RedirectToAction("Index", "Home");
                   
                 }
              

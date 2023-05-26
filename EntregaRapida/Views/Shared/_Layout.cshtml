@@ -22,25 +22,11 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="RegistroEntregador" asp-action="Index">IndexEntregador</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Entregador" asp-action="Index">IndexEntregador</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="RegistroEntregador"
-                                asp-action="CadastroEntregadorUsers">CadastroEntregador</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="RegistroLojista"
-                                asp-action="Cadastro">CadastroLojista</a>
-                        </li>
-                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Lojista"
-                                asp-action="Index">IndexLojista</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login"
-                            asp-action="Login">Login</a>
-                        </li>
+                        
                     </ul>
+                    @await Html.PartialAsync("_LoginPartial")
                 </div>
             </div>
         </nav>
@@ -56,6 +42,7 @@
             &copy; 2023 - EntregaRapida - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

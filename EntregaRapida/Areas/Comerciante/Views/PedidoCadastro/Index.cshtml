@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model EntregaRapida.Models.Pedido 
+@inject UserManager<IdentityUser> UserManager;
+
+
+<form method="post" asp-controller="CadastrarPedido" asp-action="CadastrarPedido">
+    @{
+        var userEndereço =  ViewData["UsuarioEndereco"];
+        var userId =  ViewData["LojistaId"];
+     
+    }
+    <div class="form-group">
+        <label asp-for="date" class="control-label"></label>
+        <input asp-for="date" class="form-control" />
+        <span asp-validation-for="date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="enderecoDestino" class="control-label"></label>
+        <input asp-for="enderecoDestino" class="form-control" value="Rua firmino Boga" />
+        <span asp-validation-for="enderecoDestino" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="enderecoOrigem" class="control-label"></label>
+        <input asp-for="enderecoOrigem" class="form-control" value="@userEndereço" readonly />
+        <span asp-validation-for="enderecoOrigem" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="statuspedido" class="control-label"></label>
+        <input asp-for="statuspedido" class="form-control" value="Pendente" readonly />
+        <span asp-validation-for="statuspedido" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Bairro" class="control-label"></label>
+        <input asp-for="Bairro" class="form-control" value="Nova Barra"  />
+        <span asp-validation-for="Bairro" class="text-danger"></span>
+    </div>
+        <div class="form-group">
+        <label asp-for="Cidade" class="control-label"></label>
+        <input asp-for="Cidade" class="form-control" value="Barra Bonita"  />
+        <span asp-validation-for="Cidade" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+         <form method="post" asp-controller="CadastrarPedido" asp-action="CadastrarPedido">
+         <h1>Isso aq colocar na proxima pra chamar a função de calcular a distancia </h1>
+        <label asp-for="distancia" class="control-label"></label>
+        <input asp-for="distancia" class="form-control" value="32" readonly />
+        <span asp-validation-for="distancia" class="text-danger"></span>
+        <div class="form-group">
+        <input type="submit" value="Calcular Distancia" class="btn btn-primary" />
+        </div>
+        </form>
+    </div>
+    <h1>OQ VOU FAZER AQ???</h1>
+     <div class="form-group">
+        <label asp-for="LojistaId" class="control-label"></label>
+        <input asp-for="LojistaId" class="form-control" value="@userId" readonly />
+        <span asp-validation-for="LojistaId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EntregadorId" class="control-label"></label>
+        <input asp-for="EntregadorId" class="form-control" value="1" readonly />
+        <span asp-validation-for="LojistaId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PagementoId" class="control-label"></label>
+        <input asp-for="PagementoId" class="form-control" value="1" readonly />
+        <span asp-validation-for="PagementoId" class="text-danger"></span>
+    </div>
+        <div class="form-group">
+        <label asp-for="HistoricoId" class="control-label"></label>
+        <input asp-for="HistoricoId" class="form-control" value="1" readonly />
+        <span asp-validation-for="HistoricoId" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="NotificacaoId" class="control-label"></label>
+        <input asp-for="NotificacaoId" class="form-control" value="1" readonly />
+        <span asp-validation-for="NotificacaoId" class="text-danger"></span>
+    </div>
+
+     <div class="form-group">
+        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+    </div>
+</form>

@@ -8,6 +8,8 @@ namespace EntregaRapida.Models{
         public int PedidoId { get; set; }
         public string enderecoOrigem { get; set; }
         public string enderecoDestino { get; set; }
+        public string Bairro { get; set; }
+        public string Cidade { get; set; }
         public double distancia { get; set; }
         public DateTime date { get; set; }
 

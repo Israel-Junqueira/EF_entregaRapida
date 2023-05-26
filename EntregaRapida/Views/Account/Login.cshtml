@@ -2,7 +2,7 @@
 
 <h1>login</h1>
 
-<form method="post" asp-controller="Login" asp-action="Login">
+<form method="post" asp-controller="Account" asp-action="Login">
     <div asp-validation-summary="All" class="text-danger"></div>
     <!--Esta anotação asp-validation-summary="All" é usada para mostrar todas as mensagens de validação associadas a um formulário, incluindo erros, avisos e informações.-->
     <input type="hidden" asp-for="ReturnUrl" />
