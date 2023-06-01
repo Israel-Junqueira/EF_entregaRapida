@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using EntregaRapida.Models.Enum;
+using EntregaRapida.Repository.Interfaces;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace EntregaRapida.Models.ClassHubs
@@ -7,10 +9,13 @@ namespace EntregaRapida.Models.ClassHubs
     {
         private readonly IHubContext<UsersHub> _hubContext;
         private readonly IMemoryCache _cache;
-        public UsersHub(IHubContext<UsersHub> hubContext, IMemoryCache cache)
+        private readonly IPedido _pedido;
+        public UsersHub(IHubContext<UsersHub> hubContext, IMemoryCache cache,IPedido pedido)
         {
             _hubContext = hubContext;
             _cache = cache;
+            _pedido = pedido;
+
             if (!_cache.TryGetValue("EntregadoresConectados", out List<EntregadorConectado> entregadoresConectados))
             {
                 entregadoresConectados = new List<EntregadorConectado>();
@@ -30,7 +35,7 @@ namespace EntregaRapida.Models.ClassHubs
             _cache.Set("EntregadoresConectados", entregadoresConectados);
             await Groups.AddToGroupAsync(connectionId, "EntregadoresOnline");
             await GetEntregadoresOnline();
-
+            await Clients.Caller.SendAsync("ObterPedidosPendentes");
             await base.OnConnectedAsync();
         }
 
@@ -60,7 +65,17 @@ namespace EntregaRapida.Models.ClassHubs
             var entregadores = entregadoresConectados.Select(e => e.Nome).ToList();
             await Clients.All.SendAsync("EntregadoresOnline", entregadores);
         }
+        public async Task ObterPedidosPendentes()
+        {
+             List<Pedido> pedidosPendetes = _pedido.Lista_de_Pedidos_Pendentes_Para_Entregador();
+            await Clients.Group("EntregadoresOnline").SendAsync("ReceberPedidosPendentes", pedidosPendetes);
+          
+        }
 
+        public async Task ReceberPedido(Pedido pedido)
+        {
+            await Clients.Group("EntregadoresOnline").SendAsync("ReceberPedido", pedido);
+        }
 
     }
 }

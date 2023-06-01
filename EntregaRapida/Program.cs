@@ -9,6 +9,7 @@ using TabelasIdentity.Identity.Data;
 using EntregaRapida.Models;
 using EntregaRapida.Models.ClassHubs;
 using EntregaRapida.Services;
+using EntregaRapida.Models.Enum;
 
 var builder = WebApplication.CreateBuilder(args);
 var banco = builder.Configuration.GetConnectionString("Banco");
@@ -27,8 +28,10 @@ builder.Services.AddDbContext<IdentityContext>(options => options.UseMySQL(build
 
 builder.Services.AddTransient<IEntregadores, EntregadoresRepository>(); //Esse método é usado para adicionar um serviço de tempo de execução transiente ao contêiner de injeção de dependência. Os serviços de tempo de execução transientes são criados cada vez que um consumidor solicita o serviço. Os serviços de tempo de execução transientes são adequados para serviços ligeiramente "pesados" para criar, mas que não necessitam de estado persistente.
 builder.Services.AddTransient<ILojistas, LojistaRepository>();
+builder.Services.AddTransient<IPedido,PedidoRepository>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<Banco>();
+
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
 

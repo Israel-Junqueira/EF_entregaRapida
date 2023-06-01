@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace EntregaRapida.Migrations
 {
     /// <inheritdoc />
-    public partial class inicial : Migration
+    public partial class Models : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,6 +34,7 @@ namespace EntregaRapida.Migrations
                 {
                     EntregadorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Idaspnetuser = table.Column<string>(type: "longtext", nullable: true),
                     PlataformaId = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "longtext", nullable: false),
                     StatusEntregador = table.Column<bool>(type: "tinyint(1)", nullable: false),
@@ -63,6 +64,7 @@ namespace EntregaRapida.Migrations
                 {
                     LojistaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Idaspnetuser = table.Column<string>(type: "longtext", nullable: true),
                     PlataformaId = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "longtext", nullable: true),
                     Endereco = table.Column<string>(type: "longtext", nullable: true),
@@ -75,29 +77,6 @@ namespace EntregaRapida.Migrations
                     table.PrimaryKey("PK_Lojista", x => x.LojistaId);
                     table.ForeignKey(
                         name: "FK_Lojista_Plataforma_PlataformaId",
-                        column: x => x.PlataformaId,
-                        principalTable: "Plataforma",
-                        principalColumn: "PlataformaId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Notificação",
-                columns: table => new
-                {
-                    NotificacaoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    mensagem = table.Column<string>(type: "longtext", nullable: true),
-                    PlataformaId = table.Column<int>(type: "int", nullable: false),
-                    PedidoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Notificação", x => x.NotificacaoId);
-                    table.ForeignKey(
-                        name: "FK_Notificação_Plataforma_PlataformaId",
                         column: x => x.PlataformaId,
                         principalTable: "Plataforma",
                         principalColumn: "PlataformaId",
@@ -166,17 +145,19 @@ namespace EntregaRapida.Migrations
                 name: "pedido",
                 columns: table => new
                 {
-                    PedidoId = table.Column<int>(type: "int", nullable: false),
+                    PedidoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     enderecoOrigem = table.Column<string>(type: "longtext", nullable: true),
+                    descricao = table.Column<string>(type: "longtext", nullable: true),
                     enderecoDestino = table.Column<string>(type: "longtext", nullable: true),
+                    Bairro = table.Column<string>(type: "longtext", nullable: true),
+                    Cidade = table.Column<string>(type: "longtext", nullable: true),
                     distancia = table.Column<double>(type: "double", nullable: false),
                     date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     statuspedido = table.Column<string>(type: "longtext", nullable: false),
-                    EntregadorId = table.Column<int>(type: "int", nullable: false),
+                    EntregadorId = table.Column<int>(type: "int", nullable: true),
                     LojistaId = table.Column<int>(type: "int", nullable: false),
-                    PagementoId = table.Column<int>(type: "int", nullable: false),
-                    NotificacaoId = table.Column<int>(type: "int", nullable: false),
-                    HistoricoId = table.Column<int>(type: "int", nullable: false)
+                    LojistaNome = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -188,42 +169,10 @@ namespace EntregaRapida.Migrations
                         principalColumn: "EntregadorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_pedido_Historicos_HistoricoId",
-                        column: x => x.HistoricoId,
-                        principalTable: "Historicos",
-                        principalColumn: "HistoricoId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_pedido_Lojista_LojistaId",
                         column: x => x.LojistaId,
                         principalTable: "Lojista",
                         principalColumn: "LojistaId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_pedido_Notificação_PedidoId",
-                        column: x => x.PedidoId,
-                        principalTable: "Notificação",
-                        principalColumn: "NotificacaoId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "pagamentos",
-                columns: table => new
-                {
-                    PagamentoId = table.Column<int>(type: "int", nullable: false),
-                    date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    PedidoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_pagamentos", x => x.PagamentoId);
-                    table.ForeignKey(
-                        name: "FK_pagamentos_pedido_PagamentoId",
-                        column: x => x.PagamentoId,
-                        principalTable: "pedido",
-                        principalColumn: "PedidoId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
@@ -259,19 +208,9 @@ namespace EntregaRapida.Migrations
                 column: "PlataformaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notificação_PlataformaId",
-                table: "Notificação",
-                column: "PlataformaId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_pedido_EntregadorId",
                 table: "pedido",
                 column: "EntregadorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_pedido_HistoricoId",
-                table: "pedido",
-                column: "HistoricoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_pedido_LojistaId",
@@ -286,16 +225,10 @@ namespace EntregaRapida.Migrations
                 name: "Avaliacao");
 
             migrationBuilder.DropTable(
-                name: "pagamentos");
-
-            migrationBuilder.DropTable(
-                name: "pedido");
-
-            migrationBuilder.DropTable(
                 name: "Historicos");
 
             migrationBuilder.DropTable(
-                name: "Notificação");
+                name: "pedido");
 
             migrationBuilder.DropTable(
                 name: "Entregadores");

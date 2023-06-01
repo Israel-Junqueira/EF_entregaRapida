@@ -8,8 +8,8 @@ namespace EntregaRapida.Models{
         private double Preco { get; set; }
         public DateTime date { get; set; }
 
-        public int PedidoId { get; set; }
-        public Pedido pedido { get; set; } //ok
+      //  public int PedidoId { get; set; }
+       // public Pedido pedido { get; set; } //ok
 
     }
 }

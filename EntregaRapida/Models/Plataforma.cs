@@ -10,6 +10,6 @@ namespace EntregaRapida.Models
         
         public virtual List<Entregador> entregadores { get; set; }//1:N  ✓  ok
         public virtual List<Lojista> lojista { get; set; }//1:N  ✓  ok
-        public virtual List<Notificacao> notificacao { get; set; }
+     // public virtual List<Notificacao> notificacao { get; set; } TABELA DESATIVADA
     }
 }

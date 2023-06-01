@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntregaRapida.Migrations
 {
     [DbContext(typeof(Banco))]
-    [Migration("20230425143458_inicial")]
-    partial class inicial
+    [Migration("20230529120002_Models")]
+    partial class Models
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,9 @@ namespace EntregaRapida.Migrations
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("Endereco");
+
+                    b.Property<string>("Idaspnetuser")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Modalidade")
                         .IsRequired()
@@ -149,6 +152,9 @@ namespace EntregaRapida.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("Endereco");
 
+                    b.Property<string>("Idaspnetuser")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Nome")
                         .HasColumnType("longtext")
                         .HasColumnName("Nome");
@@ -172,69 +178,34 @@ namespace EntregaRapida.Migrations
                     b.ToTable("Lojista", (string)null);
                 });
 
-            modelBuilder.Entity("EntregaRapida.Models.Notificacao", b =>
-                {
-                    b.Property<int>("NotificacaoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("PedidoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlataformaId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("date")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("mensagem")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("NotificacaoId");
-
-                    b.HasIndex("PlataformaId");
-
-                    b.ToTable("Notificação", (string)null);
-                });
-
-            modelBuilder.Entity("EntregaRapida.Models.Pagamento", b =>
-                {
-                    b.Property<int>("PagamentoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PedidoId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("date")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("PagamentoId");
-
-                    b.ToTable("pagamentos");
-                });
-
             modelBuilder.Entity("EntregaRapida.Models.Pedido", b =>
                 {
                     b.Property<int>("PedidoId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("EntregadorId")
-                        .HasColumnType("int");
+                    b.Property<string>("Bairro")
+                        .HasColumnType("longtext");
 
-                    b.Property<int>("HistoricoId")
+                    b.Property<string>("Cidade")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("EntregadorId")
                         .HasColumnType("int");
 
                     b.Property<int>("LojistaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("NotificacaoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PagementoId")
-                        .HasColumnType("int");
+                    b.Property<string>("LojistaNome")
+                        .HasColumnType("longtext")
+                        .HasColumnName("LojistaNome");
 
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("descricao")
+                        .HasColumnType("longtext")
+                        .HasColumnName("descricao");
 
                     b.Property<double>("distancia")
                         .HasColumnType("double");
@@ -252,8 +223,6 @@ namespace EntregaRapida.Migrations
                     b.HasKey("PedidoId");
 
                     b.HasIndex("EntregadorId");
-
-                    b.HasIndex("HistoricoId");
 
                     b.HasIndex("LojistaId");
 
@@ -331,41 +300,12 @@ namespace EntregaRapida.Migrations
                     b.Navigation("plataforma");
                 });
 
-            modelBuilder.Entity("EntregaRapida.Models.Notificacao", b =>
-                {
-                    b.HasOne("EntregaRapida.Models.Plataforma", "Plataforma")
-                        .WithMany("notificacao")
-                        .HasForeignKey("PlataformaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Plataforma");
-                });
-
-            modelBuilder.Entity("EntregaRapida.Models.Pagamento", b =>
-                {
-                    b.HasOne("EntregaRapida.Models.Pedido", "pedido")
-                        .WithOne("pagamento")
-                        .HasForeignKey("EntregaRapida.Models.Pagamento", "PagamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("pedido");
-                });
-
             modelBuilder.Entity("EntregaRapida.Models.Pedido", b =>
                 {
                     b.HasOne("EntregaRapida.Models.Entregador", "entregador")
                         .WithMany("pedido")
                         .HasForeignKey("EntregadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntregaRapida.Models.Enum.Historico", "historico")
-                        .WithMany("pedido")
-                        .HasForeignKey("HistoricoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EntregaRapida.Models.Lojista", "lojista")
                         .WithMany("pedido")
@@ -373,19 +313,9 @@ namespace EntregaRapida.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntregaRapida.Models.Notificacao", "notificacao")
-                        .WithMany("pedido")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("entregador");
 
-                    b.Navigation("historico");
-
                     b.Navigation("lojista");
-
-                    b.Navigation("notificacao");
                 });
 
             modelBuilder.Entity("EntregaRapida.Models.Entregador", b =>
@@ -394,11 +324,6 @@ namespace EntregaRapida.Migrations
 
                     b.Navigation("historico");
 
-                    b.Navigation("pedido");
-                });
-
-            modelBuilder.Entity("EntregaRapida.Models.Enum.Historico", b =>
-                {
                     b.Navigation("pedido");
                 });
 
@@ -411,23 +336,11 @@ namespace EntregaRapida.Migrations
                     b.Navigation("pedido");
                 });
 
-            modelBuilder.Entity("EntregaRapida.Models.Notificacao", b =>
-                {
-                    b.Navigation("pedido");
-                });
-
-            modelBuilder.Entity("EntregaRapida.Models.Pedido", b =>
-                {
-                    b.Navigation("pagamento");
-                });
-
             modelBuilder.Entity("EntregaRapida.Models.Plataforma", b =>
                 {
                     b.Navigation("entregadores");
 
                     b.Navigation("lojista");
-
-                    b.Navigation("notificacao");
                 });
 #pragma warning restore 612, 618
         }

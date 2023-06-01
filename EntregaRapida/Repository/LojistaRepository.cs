@@ -19,7 +19,7 @@ namespace EntregaRapida.Repository{
         public Lojista Endereco_lojista(string lojista)
         {
             var user = _userManager.FindByNameAsync(lojista);
-            var usuario= _dbBanco.Lojistas.FirstOrDefault(x=> x.Nome == lojista);
+            var usuario= _dbBanco.Lojistas.FirstOrDefault(x=> x.Idaspnetuser == user.Result.Id);
             return usuario;
         }
 

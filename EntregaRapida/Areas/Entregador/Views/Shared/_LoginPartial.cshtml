@@ -24,9 +24,8 @@
 {
       var usuario = await Usermaneger.FindByNameAsync(User.Identity.Name);
       var roles = await Usermaneger.GetRolesAsync(usuario);
-   
-  
-    if(roles.Contains("Lojista")){
+       
+      if(roles.Contains("Lojista")){
        <ul class ="nav navbar-brand navbar-right">
        <a class="nav-link btn btn-link py-0" style="width:auto" asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante" >
         Logística
@@ -40,6 +39,7 @@
        {
         
        };
+
 
 }
 

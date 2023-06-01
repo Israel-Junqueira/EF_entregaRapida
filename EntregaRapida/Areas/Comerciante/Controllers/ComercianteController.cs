@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using EntregaRapida.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EntregaRapida.Areas.Comerciante.Controllers
@@ -7,10 +8,17 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
     [Authorize("Lojista")]
     public class ComercianteController : Controller
     {
+        private readonly IPedido _pedido;
+        public ComercianteController(IPedido pedido)
+        {
+            _pedido = pedido;
+        }
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var PedidosPendentes = _pedido.Lista_de_Pedidos_Pendentes_DoEntregador_logado(User.Identity.Name);
+
+            return View(PedidosPendentes);
         }
     }
 }

@@ -15,6 +15,6 @@ namespace EntregaRapida.Models.Enum
         //relacionamentos
         public Entregador entregador { get; set; } //1:N  ✓ok
         public Lojista lojista { get; set; } //1:N  ✓ ok
-        public virtual List<Pedido> pedido { get; set; } //1:N  ✓ ok
+      //  public virtual List<Pedido> pedido { get; set; } //1:N  ✓ ok Cancelei por Hora
     }
 }

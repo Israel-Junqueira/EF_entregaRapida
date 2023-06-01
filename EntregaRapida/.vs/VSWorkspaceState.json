@@ -2,12 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\Areas",
-    "\\Areas\\Comerciante",
-    "\\Areas\\Comerciante\\Views",
-    "\\Areas\\Comerciante\\Views\\PedidoCadastro",
-    "\\Controllers",
+    "\\Areas\\Entregador",
+    "\\Areas\\Entregador\\Views",
+    "\\Areas\\Entregador\\Views\\Shared",
     "\\Models",
     "\\Models\\Enum",
+    "\\Repository",
+    "\\Repository\\Interfaces",
     "\\Services",
     "\\Views"
   ],

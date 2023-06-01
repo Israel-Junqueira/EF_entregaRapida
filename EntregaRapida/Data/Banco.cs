@@ -26,8 +26,8 @@ namespace EntregaRapida.Data
         public DbSet<Entregador>Entregadores { get; set; }
         public DbSet<Historico>Historicos { get; set; }
         public DbSet<Lojista>Lojistas { get; set; }
-        public DbSet<Notificacao>Notificacoes { get; set; }
-        public DbSet<Pagamento> pagamentos  { get; set; }
+        //public DbSet<Notificacao>Notificacoes { get; set; }
+       // public DbSet<Pagamento> pagamentos  { get; set; }
         public DbSet<Pedido>Pedidos { get; set; }
         public DbSet<Plataforma>Plataformas { get; set; }
        // public DbSet<IdentityUser> IdentityUser { get; set; }
@@ -103,12 +103,12 @@ namespace EntregaRapida.Data
             .WithOne(c=> c.plataforma) 
             .HasForeignKey(c=> c.PlataformaId)
             .OnDelete(DeleteBehavior.Cascade);
-            
+            /*
             modelBuilder.Entity<Plataforma>()
             .HasMany(n=> n.notificacao)
             .WithOne(p=>p.Plataforma)
             .HasForeignKey(k=> k.PlataformaId);
-
+            */
             // Mapeando Lojista
             modelBuilder.Entity<Lojista>()
             .ToTable("Lojista")
@@ -153,33 +153,45 @@ namespace EntregaRapida.Data
              .ToTable("Historicos")
              .HasKey(k=> k.HistoricoId);
              
-             modelBuilder.Entity<Historico>()
+            /*Canceleeiii por HORAAAAAAAAAAAAAAA <------------
+             * 
+             * modelBuilder.Entity<Historico>()
             .HasMany(s=> s.pedido) 
             .WithOne(c=> c.historico) 
             .HasForeignKey(c=> c.HistoricoId)
             .OnDelete(DeleteBehavior.Cascade);
-
+            */
             //ligações das classes notificacao
+            /* TABELA NOTIFICAÇÂO DESATIVADA
             modelBuilder.Entity<Notificacao>()
             .ToTable("Notificação")
             .HasKey(k=>k.NotificacaoId);
+            */
+            /*
             modelBuilder.Entity<Notificacao>() //Linha 1: Esta linha esta criando uma entidade chamada Pedido.
             .HasMany(n=>n.pedido)//Linha 2: Esta linha define um relacionamento de um para um entre o Pedido e a Notificação.
             .WithOne(p=>p.notificacao)//Linha 3: Esta linha define o Pedido como a chave estrangeira na Notificação.
             .HasForeignKey(n=>n.PedidoId)
             .OnDelete(DeleteBehavior.Cascade);//Linha 4: Esta linha especifica que ao excluir um pedido, a notificação associada também será excluída.
-
+            */
             //relações da classe pedido
             modelBuilder.Entity<Pedido>()
             .ToTable("pedido")
             .HasKey(k=> k.PedidoId);
+            /* modelBuilder.Entity<Pedido>()
+             .HasOne(n=> n.pagamento)
+             .WithOne(p=>p.pedido)
+             .HasForeignKey<Pagamento>(p=>p.PagamentoId)
+             .OnDelete(DeleteBehavior.Cascade);*/
             modelBuilder.Entity<Pedido>()
-            .HasOne(n=> n.pagamento)
-            .WithOne(p=>p.pedido)
-            .HasForeignKey<Pagamento>(p=>p.PagamentoId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .Property(p => p.LojistaNome)
+            .HasColumnName("LojistaNome");
+            modelBuilder.Entity<Pedido>()
+            .Property(p => p.descricao)
+            .HasColumnName("descricao");
 
-             modelBuilder.Entity<Pedido>()
+
+            modelBuilder.Entity<Pedido>()
             .Property(p=>p.statuspedido)
             .HasConversion(v => v.ToString(),v=>(StatusPedido)Enum.Parse(typeof(StatusPedido),v));
             
