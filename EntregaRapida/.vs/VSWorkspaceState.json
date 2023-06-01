@@ -6,6 +6,7 @@
     "\\Areas\\Entregador\\Views",
     "\\Areas\\Entregador\\Views\\Shared",
     "\\Models",
+    "\\Models\\ClassHubs",
     "\\Models\\Enum",
     "\\Repository",
     "\\Repository\\Interfaces",

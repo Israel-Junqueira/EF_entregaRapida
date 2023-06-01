@@ -50,26 +50,27 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
             }
             try
             {
+             
                 var Novopedido = new Pedido
                 {
                     Bairro = pedido.Bairro,
                     Cidade = pedido.Cidade,
                     date = pedido.date,
+                    descricao = pedido.descricao,
                     distancia = pedido.distancia,
                     enderecoOrigem = pedido.enderecoOrigem,
                     enderecoDestino = pedido.enderecoDestino,
                     LojistaId = pedido.LojistaId,
                     EntregadorId = pedido.EntregadorId,
-                    LojistaNome = pedido.LojistaNome
+                    LojistaNome = pedido.LojistaNome,
+                 
+
                 };
 
-                 _context.AddAsync(Novopedido);
-                 _context.SaveChangesAsync();
+                _context.AddAsync(Novopedido);
+                _context.SaveChangesAsync();
 
-                //var userHub = _hubContext.Clients.Group("EntregadoresOnline") as UsersHub;
 
-                // Chamar o método ReceberPedido no UserHub
-                // userHub.ReceberPedido(Novopedido);
 
                 _hubContext.Clients.Group("EntregadoresOnline").SendAsync("ReceberPedido", Novopedido);
                 return RedirectToAction("Index", "Comerciante", new { area = "Comerciante" });

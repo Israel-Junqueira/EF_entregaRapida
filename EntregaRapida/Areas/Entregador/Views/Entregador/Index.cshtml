@@ -1,7 +1,7 @@
 ﻿@using EntregaRapida.Models
 @using EntregaRapida.Models.Enum
 @model List<Pedido> 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Historico de Entregas</a>
@@ -16,6 +16,7 @@
         var connection = new signalR.HubConnectionBuilder().withUrl("/entregadorHub").build();
 
         connection.on("ReceberPedido", function (pedido) {
+
             var container = document.getElementById("pedidos-container");
 
             var card = document.createElement("div");
@@ -23,7 +24,7 @@
 
             var cardHeader = document.createElement("div");
             cardHeader.classList.add("card-header");
-            cardHeader.textContent = "Pedido ID: " + pedido.pedidoId;
+            cardHeader.textContent = "Pedido #: " + pedido.pedidoId;
 
             var cardBody = document.createElement("div");
             cardBody.classList.add("card-body");
@@ -31,39 +32,68 @@
             var cardTitle = document.createElement("h5");
             cardTitle.classList.add("card-title");
             cardTitle.textContent = pedido.descricao;
+            
+            //nome Lojista
+            var LojistaNome = document.createElement("h5");
+            LojistaNome.classList.add("card-text");
+            LojistaNome.textContent = "Comerciante: " + pedido.lojistaNome;
+            
+            //Endereço do cliente
+            var enderecoDestino = document.createElement("h5");
+            enderecoDestino.classList.add("card-text");
+            enderecoDestino.textContent = "Endereço de Destino: " + pedido.enderecoDestino;
 
-            var cardText = document.createElement("p");
-            cardText.classList.add("card-text");
-            cardText.textContent = "Endereço de Destino: " + pedido.enderecoDestino;
+            var enderecoOrigem = document.createElement("h5");
+            enderecoOrigem.classList.add("card-text");
+            enderecoOrigem.textContent = "Endereço do Lojista: " + pedido.enderecoOrigem;
 
-            var entregadorId = document.createElement("p");
-            entregadorId.classList.add("card-text");
-            entregadorId.textContent = "Entregador ID: " + pedido.EntregadorId;
-
-            var lojistaId = document.createElement("p");
-            lojistaId.classList.add("card-text");
-            lojistaId.textContent = "Lojista ID: " + pedido.LojistaId;
+            var distancia = document.createElement("h5");
+            distancia.classList.add("card-text");
+            distancia.textContent = pedido.distancia+"Km";
 
             var btnEntregar = document.createElement("a");
             btnEntregar.href = "#";
-            btnEntregar.classList.add("btn", "btn-primary");
+            btnEntregar.classList.add("btn", "btn-success");
             btnEntregar.textContent = "Entregar";
 
             cardBody.appendChild(cardTitle);
-            cardBody.appendChild(cardText);
-            cardBody.appendChild(entregadorId);
-            cardBody.appendChild(lojistaId);
+            cardBody.appendChild(LojistaNome);
+            cardBody.appendChild(enderecoDestino);
+            cardBody.appendChild(enderecoOrigem);
+            cardBody.appendChild(distancia);
             cardBody.appendChild(btnEntregar);
 
             var cardFooter = document.createElement("div");
             cardFooter.classList.add("card-footer", "text-muted");
-            cardFooter.textContent = "Data: " + pedido.date;
+                 var datamodel = pedido.date;
+                console.log(datamodel);
+                var data = moment(datamodel).format("DD/MM/YYYY");
+                 console.log(data);
+                var datahora = moment(pedido.date).hour();
+                 console.log(datahora);
+                var hora = moment(pedido.date).format("HH:mm");
+               
+
+                if (datahora >= 6 && datahora < 12  ){
+                cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Manhã";
+                }else if (datahora >= 12 && datahora < 18){
+                    cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Tarde ";
+                }else if (datahora >= 18 && datahora < 24){
+                    cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Noite ";
+                }else if (datahora >= 0 && datahora < 6){
+                    cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Madrugada ";
+                }
+                else{
+                    cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " Horario invalido! ";
+                }
+            
 
             card.appendChild(cardHeader);
             card.appendChild(cardBody);
             card.appendChild(cardFooter);
 
             container.appendChild(card);
+           
         });
 
         connection.on("ReceberPedidosPendentes", function (pedidosPendentes) {
@@ -72,12 +102,14 @@
             container.innerHTML = ""; // Limpar o conteúdo anterior
 
             pedidosPendentes.forEach(function (pedido) {
+           
+
                 var card = document.createElement("div");
                 card.classList.add("card", "text-center", "mt-4");
 
                 var cardHeader = document.createElement("div");
                 cardHeader.classList.add("card-header");
-                cardHeader.textContent = "Pedido ID: " + pedido.pedidoId;
+                cardHeader.textContent = "Pedido #: " + pedido.pedidoId;
 
                 var cardBody = document.createElement("div");
                 cardBody.classList.add("card-body");
@@ -86,32 +118,71 @@
                 cardTitle.classList.add("card-title");
                 cardTitle.textContent = pedido.descricao;
 
-                var cardText = document.createElement("p");
-                cardText.classList.add("card-text");
-                cardText.textContent = "Endereço de Destino: " + pedido.enderecoDestino;
+                //NOME DO LOJISTA
+                var lojistaNome = document.createElement("h5");
+                lojistaNome.classList.add("card-text");
+                lojistaNome.textContent = "Comerciante: " + pedido.lojistaNome;
 
-                var entregadorId = document.createElement("p");
-                entregadorId.classList.add("card-text");
-                entregadorId.textContent = "Entregador ID: " + pedido.EntregadorId;
+                //Endereço do cleinte
+                var endDestino = document.createElement("h5");
+                endDestino.classList.add("card-text");
+                endDestino.textContent = "Endereço de Destino: " + pedido.enderecoDestino;
 
-                var lojistaId = document.createElement("p");
-                lojistaId.classList.add("card-text");
-                lojistaId.textContent = "Lojista ID: " + pedido.LojistaId;
+                var endOrigem = document.createElement("h5");
+                endOrigem.classList.add("card-text");
+                endOrigem.textContent = "Endereço do Lojista: " + pedido.enderecoOrigem;
 
+                var distancia = document.createElement("h5");
+                distancia.classList.add("card-text");
+                distancia.textContent = pedido.distancia+"Km";
+
+                //BOTAO
                 var btnEntregar = document.createElement("a");
                 btnEntregar.href = "#";
-                btnEntregar.classList.add("btn", "btn-primary");
+                btnEntregar.classList.add("btn", "btn-success");
                 btnEntregar.textContent = "Entregar";
 
-                cardBody.appendChild(cardTitle);
-                cardBody.appendChild(cardText);
-                cardBody.appendChild(entregadorId);
-                cardBody.appendChild(lojistaId);
-                cardBody.appendChild(btnEntregar);
 
                 var cardFooter = document.createElement("div");
                 cardFooter.classList.add("card-footer", "text-muted");
-                cardFooter.textContent = "Data: " + pedido.date;
+
+                var datamodel = pedido.date;
+                console.log(datamodel);
+                var data = moment(datamodel).format("DD/MM/YYYY");
+                 console.log(data);
+                var datahora = moment(pedido.date).hour();
+                 console.log(datahora);
+                var hora = moment(pedido.date).format("HH:mm");
+               
+
+                if (datahora >= 6 && datahora < 12  ){
+                cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Manhã";
+                }else if (datahora >= 12 && datahora < 18){
+                    cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Tarde ";
+                }else if (datahora >= 18 && datahora < 24){
+                    cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Noite ";
+                }else if (datahora >= 0 && datahora < 6){
+                    cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Madrugada ";
+                }
+                else{
+                    cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " Horario invalido! ";
+                }
+                
+                //Titulo Pedido
+                cardBody.appendChild(cardTitle);
+                //Nome do lojista
+                cardBody.appendChild(lojistaNome);
+                //Endereço do cliente
+                cardBody.appendChild(endDestino);
+                //Endereço do lojista                
+                cardBody.appendChild(endOrigem);
+                //distancia
+                cardBody.appendChild(distancia);
+                //botao
+                cardBody.appendChild(btnEntregar);
+                
+
+           
 
                 card.appendChild(cardHeader);
                 card.appendChild(cardBody);
@@ -119,12 +190,13 @@
 
                 container.appendChild(card);
 
-                 window.scrollTo(0, document.body.scrollHeight);
+               window.scrollTo(0, document.body.scrollHeight);
             });
         });
 
         connection.start().then(function () {
             connection.invoke("ObterPedidosPendentes");
+            
             
         }).catch(function (err) {
             console.error(err.toString());

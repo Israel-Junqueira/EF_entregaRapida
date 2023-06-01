@@ -21,7 +21,7 @@ public class HomeController : Controller
         _entregadoresConectados = new List<EntregadorConectado>();
     }
 
-    public async Task<IActionResult> Index()
+    public  IActionResult Index()
      {
         var entregadoresConectados = _entregadoresConectados;
 
