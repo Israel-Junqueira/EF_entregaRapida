@@ -34,5 +34,6 @@
     <Folder Include="Areas\Comerciante\Models\" />
     <Folder Include="Areas\Entregador\Data\" />
     <Folder Include="Areas\Entregador\Models\" />
+    <Folder Include="Areas\Entregador\Views\EntregarPedido\" />
   </ItemGroup>
 </Project>

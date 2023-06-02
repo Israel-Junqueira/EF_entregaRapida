@@ -1,0 +1,44 @@
+﻿@model List<Pedido>;
+
+   <h1> Historico dos pedidos concluidos</h1>
+   <h5 id="PedidosCadastrados">Pedidos Cadastrados:</h5>
+    <h5 id="PedidosemEntrega">Pedidos em Entrega:</h5>
+    <h5 id="PedidosConcluidos">Pedidos Concluidos:</h5>
+    <h5 id="PedidosDisponiveis">Pedidos Disponiveis:</h5>
+
+    <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th class="text-center">Pedido ID</th>
+            <th class="text-center">Endereço de Origem</th>
+            <th class="text-center">Endereço de Destino</th>
+            <th class="text-center">Bairro</th>
+            <th class="text-center">Cidade</th>
+            <th class="text-center">Distância</th>
+            <th class="text-center">Data</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Entregador ID</th>
+            <th class="text-center">Lojista ID</th>
+        </tr>
+    </thead>
+    <tbody>
+             @foreach (var pedido in Model)
+            {
+            if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Entregue)
+            {
+             <tr>
+                <td class="text-center">@pedido.PedidoId</td>
+                <td class="text-center">@pedido.enderecoOrigem</td>
+                <td class="text-center">@pedido.enderecoDestino</td>
+                <td class="text-center">@pedido.Bairro</td>
+                <td class="text-center">@pedido.Cidade</td>
+                <td class="text-center">@pedido.distancia</td>
+                <td class="text-center">@pedido.date</td>
+                <td class="text-center">@pedido.statuspedido</td>
+                <td class="text-center">@pedido.EntregadorId</td>
+                <td class="text-center">@pedido.LojistaId</td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

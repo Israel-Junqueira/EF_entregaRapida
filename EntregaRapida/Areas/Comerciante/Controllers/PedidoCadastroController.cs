@@ -80,5 +80,12 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
                 return View("Error", ex);
             };
         }
+        [HttpGet]
+        [Route("PedidoCadastroController/HistoricoPedido")]
+        public IActionResult HistoricoPedido()
+        {
+            var pedidos = _pedido.Lista_de_Pedidos_Do_Lojista(User.Identity.Name);
+            return View(pedidos);
+        }
     }
 }

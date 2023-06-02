@@ -16,7 +16,7 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var PedidosPendentes = _pedido.Lista_de_Pedidos_Pendentes_DoEntregador_logado(User.Identity.Name);
+            var PedidosPendentes = _pedido.Lista_de_Pedidos_Do_Lojista(User.Identity.Name);
 
             return View(PedidosPendentes);
         }

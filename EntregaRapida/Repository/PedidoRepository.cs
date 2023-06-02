@@ -16,14 +16,48 @@ namespace EntregaRapida.Repository
         }
         public Pedido BuscarPedido { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public void Adiciona_entregador_ao_Pedido(int entregadorId,int pedidoId)
+        {
+            var Pedido = _context.Pedidos.FirstOrDefault(x => x.PedidoId == pedidoId);
+            if (Pedido == null)
+            {
+
+            }
+            else
+            {
+                Pedido.EntregadorId = entregadorId;
+                _context.SaveChanges();
+              
+            }
+            
+        }
+        public void Muda_Status_do_Pedido(int pedidoId)
+        {
+            var Pedido = _context.Pedidos.FirstOrDefault(x => x.PedidoId == pedidoId);
+            if(Pedido == null)
+            {
+
+            }
+            else
+            {
+
+                Pedido.statuspedido = Models.Enum.StatusPedido.Preparado;
+                _context.SaveChanges();
+            }
+        }
+
         public List<Pedido> Lista_de_Pedidos_Pendentes_Para_Entregador()
         {
             return _context.Pedidos.Where(x => x.statuspedido == Models.Enum.StatusPedido.Pendente).ToList();
         }
 
-        List<Pedido> IPedido.Lista_de_Pedidos_Pendentes_DoEntregador_logado(string UserName)
+       
+
+        List<Pedido> IPedido.Lista_de_Pedidos_Do_Lojista(string UserName)
         {
-            return _context.Pedidos.Where(x => x.statuspedido == Models.Enum.StatusPedido.Pendente && x.LojistaNome == UserName).ToList();
+            return _context.Pedidos.Where(x => x.statuspedido == Models.Enum.StatusPedido.Pendente || x.statuspedido == Models.Enum.StatusPedido.Preparado ||
+            x.statuspedido == Models.Enum.StatusPedido.Acaminho|| x.statuspedido == Models.Enum.StatusPedido.Paralizado|| x.statuspedido == Models.Enum.StatusPedido.Entregue 
+            && x.LojistaNome == UserName).ToList();
         }
     }
 }

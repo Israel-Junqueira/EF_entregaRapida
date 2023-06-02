@@ -1,11 +1,11 @@
 ﻿@using EntregaRapida.Models
 @model List<Pedido> 
 
-<h1>fala meu consagrado</h1>
 
 <a class="nav-link btn btn-link py-0" asp-controller="PedidoCadastro" asp-action="Index" asp-area="Comerciante" style="color:black">Nova Entrega</a>
-
-<h1>Meus Pedidos</h1>
+<a class="nav-link btn btn-link py-0" asp-controller="PedidoCadastro" asp-action="HistoricoPedido" asp-area="Comerciante" style="color:black">Historico</a>
+<a class="nav-link btn btn-link py-0" asp-controller="Comerciante" asp-action="Perfil" asp-area="Comerciante" style="color:black">Meus Dados</a>
+ <h1>Pedidos Pendentes</h1>
 <table class="table table-striped table-bordered table-hover">
     <thead class="thead-light">
         <tr>
@@ -24,7 +24,11 @@
     <tbody>
              @foreach (var pedido in Model)
         {
-            <tr>
+            if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Pendente)
+            {
+             
+               
+             <tr>
                 <td class="text-center">@pedido.PedidoId</td>
                 <td class="text-center">@pedido.enderecoOrigem</td>
                 <td class="text-center">@pedido.enderecoDestino</td>
@@ -36,6 +40,127 @@
                 <td class="text-center">@pedido.EntregadorId</td>
                 <td class="text-center">@pedido.LojistaId</td>
             </tr>
+            }
         }
     </tbody>
 </table>
+
+
+ <h1>Entregador a caminho</h1>
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th class="text-center">Pedido ID</th>
+            <th class="text-center">Endereço de Origem</th>
+            <th class="text-center">Endereço de Destino</th>
+            <th class="text-center">Bairro</th>
+            <th class="text-center">Cidade</th>
+            <th class="text-center">Distância</th>
+            <th class="text-center">Data</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Entregador ID</th>
+            <th class="text-center">Lojista ID</th>
+        </tr>
+    </thead>
+    <tbody>
+             @foreach (var pedido in Model)
+        {
+            if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Preparado)
+            {
+               
+                <tr>
+                    <td class="text-center">@pedido.PedidoId</td>
+                <td class="text-center">@pedido.enderecoOrigem</td>
+                <td class="text-center">@pedido.enderecoDestino</td>
+                <td class="text-center">@pedido.Bairro</td>
+                <td class="text-center">@pedido.Cidade</td>
+                <td class="text-center">@pedido.distancia</td>
+                <td class="text-center">@pedido.date</td>
+                <td class="text-center">@pedido.statuspedido</td>
+                <td class="text-center">@pedido.EntregadorId</td>
+                <td class="text-center">@pedido.LojistaId</td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+
+ <h1>Enviando para o cliente</h1>
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th class="text-center">Pedido ID</th>
+            <th class="text-center">Endereço de Origem</th>
+            <th class="text-center">Endereço de Destino</th>
+            <th class="text-center">Bairro</th>
+            <th class="text-center">Cidade</th>
+            <th class="text-center">Distância</th>
+            <th class="text-center">Data</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Entregador ID</th>
+            <th class="text-center">Lojista ID</th>
+        </tr>
+    </thead>
+    <tbody>
+             @foreach (var pedido in Model)
+        {
+            if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Acaminho)
+            {
+               
+                <tr>
+                    <td class="text-center">@pedido.PedidoId</td>
+                <td class="text-center">@pedido.enderecoOrigem</td>
+                <td class="text-center">@pedido.enderecoDestino</td>
+                <td class="text-center">@pedido.Bairro</td>
+                <td class="text-center">@pedido.Cidade</td>
+                <td class="text-center">@pedido.distancia</td>
+                <td class="text-center">@pedido.date</td>
+                <td class="text-center">@pedido.statuspedido</td>
+                <td class="text-center">@pedido.EntregadorId</td>
+                <td class="text-center">@pedido.LojistaId</td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+
+ <h1>Problemas com entrega</h1>
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th class="text-center">Pedido ID</th>
+            <th class="text-center">Endereço de Origem</th>
+            <th class="text-center">Endereço de Destino</th>
+            <th class="text-center">Bairro</th>
+            <th class="text-center">Cidade</th>
+            <th class="text-center">Distância</th>
+            <th class="text-center">Data</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Entregador ID</th>
+            <th class="text-center">Lojista ID</th>
+        </tr>
+    </thead>
+    <tbody>
+             @foreach (var pedido in Model)
+        {
+            if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Paralizado)
+            {
+               
+                <tr>
+                    <td class="text-center">@pedido.PedidoId</td>
+                <td class="text-center">@pedido.enderecoOrigem</td>
+                <td class="text-center">@pedido.enderecoDestino</td>
+                <td class="text-center">@pedido.Bairro</td>
+                <td class="text-center">@pedido.Cidade</td>
+                <td class="text-center">@pedido.distancia</td>
+                <td class="text-center">@pedido.date</td>
+                <td class="text-center">@pedido.statuspedido</td>
+                <td class="text-center">@pedido.EntregadorId</td>
+                <td class="text-center">@pedido.LojistaId</td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+
+ 

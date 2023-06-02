@@ -4,6 +4,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" />
   <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Historico de Entregas</a>
   <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Meus Dados</a>
 
@@ -50,11 +53,43 @@
             var distancia = document.createElement("h5");
             distancia.classList.add("card-text");
             distancia.textContent = pedido.distancia+"Km";
+            
 
+            var controller = "EntregarPedidoController"
+            var action = "Entregar"
+            var area = "Entregador"
+        //  var Id = pedido.pedidoId;
+        //  var url = "/" + controller + "/" + action +"/"+ Id;
+        //  btnEntregar.setAttribute("href",url);
             var btnEntregar = document.createElement("a");
-            btnEntregar.href = "#";
             btnEntregar.classList.add("btn", "btn-success");
             btnEntregar.textContent = "Entregar";
+            btnEntregar.onclick = function() {
+            atribuirEntregadorAoPedido(pedido.pedidoId)
+            }
+
+            function atribuirEntregadorAoPedido(pedidoId){
+                $.ajax({
+                            url: '@Url.Action("Entregar", "EntregarPedido", new { area = "Entregador" })',
+                            type: 'POST',
+                            data: { pedidoId: pedidoId },
+                            success: function (result) {
+                                // Lógica para tratar a resposta do servidor, se necessário
+                                // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
+                                 Swal.fire({
+                                title: 'Solicitação de entrega enviada!',
+                                text: 'Aguarde o comerciante confirmar',
+                                icon: 'warning',
+                                confirmButtonText: 'OK'
+                              }).then(function() {
+                                // Lógica adicional a ser executada após o usuário clicar em "OK"
+                              });
+                                                        },
+                            error: function (xhr, status, error) {
+                                // Lógica para tratar erros de requisição, se necessário
+                            }
+                        });
+            }
 
             cardBody.appendChild(cardTitle);
             cardBody.appendChild(LojistaNome);
@@ -137,21 +172,54 @@
                 distancia.textContent = pedido.distancia+"Km";
 
                 //BOTAO
+                var controller = "EntregarPedidoController"
+                var action = "Entregar"
+                var area = "Entregador"
+            //    var Id = pedido.pedidoId;
+            //    var url = "/" + controller + "/" + action +"/"+ Id;
+            //   btnEntregar.setAttribute("href",url);
                 var btnEntregar = document.createElement("a");
-                btnEntregar.href = "#";
                 btnEntregar.classList.add("btn", "btn-success");
                 btnEntregar.textContent = "Entregar";
+
+                btnEntregar.onclick = function() {
+                atribuirEntregadorAoPedido(pedido.pedidoId)
+                }
+
+                function atribuirEntregadorAoPedido(pedidoId){
+                    $.ajax({
+                                url: '@Url.Action("Entregar", "EntregarPedido", new { area = "Entregador" })',
+                                type: 'POST',
+                                data: { pedidoId: pedidoId },
+                                success: function (result) {
+                                    // Lógica para tratar a resposta do servidor, se necessário
+                                    // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
+                                     Swal.fire({
+                                    title: 'Solicitação de entrega enviada!',
+                                    text: 'Aguarde o comerciante confirmar',
+                                    icon: 'warning',
+                                    confirmButtonText: 'OK'
+                                  }).then(function() {
+                                    // Lógica adicional a ser executada após o usuário clicar em "OK"
+                                  });
+                                                            },
+                                error: function (xhr, status, error) {
+                                    // Lógica para tratar erros de requisição, se necessário
+                                }
+                            });
+                }
+
 
 
                 var cardFooter = document.createElement("div");
                 cardFooter.classList.add("card-footer", "text-muted");
 
                 var datamodel = pedido.date;
-                console.log(datamodel);
+              
                 var data = moment(datamodel).format("DD/MM/YYYY");
-                 console.log(data);
+               
                 var datahora = moment(pedido.date).hour();
-                 console.log(datahora);
+              
                 var hora = moment(pedido.date).format("HH:mm");
                
 

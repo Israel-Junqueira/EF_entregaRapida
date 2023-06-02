@@ -19,6 +19,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcQ29tZXJjaWFudGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[c:/Users/Usuario/Desktop/ProjetoEF/EntregaRapida/Areas/Comerciante/Views/PedidoCadastro/HistoricoPedido.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcUGVkaWRvQ2FkYXN0cm9cSGlzdG9yaWNvUGVkaWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [c:/Users/Usuario/Desktop/ProjetoEF/EntregaRapida/Areas/Comerciante/Views/PedidoCadastro/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcUGVkaWRvQ2FkYXN0cm9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

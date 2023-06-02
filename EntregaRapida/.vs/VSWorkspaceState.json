@@ -2,11 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Areas",
-    "\\Areas\\Entregador",
-    "\\Areas\\Entregador\\Views",
-    "\\Areas\\Entregador\\Views\\Shared",
+    "\\Areas\\Comerciante",
+    "\\Areas\\Comerciante\\Controllers",
     "\\Models",
-    "\\Models\\ClassHubs",
     "\\Models\\Enum",
     "\\Repository",
     "\\Repository\\Interfaces",
