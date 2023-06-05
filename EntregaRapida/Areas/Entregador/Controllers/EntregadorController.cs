@@ -23,6 +23,7 @@ namespace EntregaRapida.Areas.Entregador.Controllers
         [Route("EntregadorController/Index")]
         public IActionResult Index()
         {
+           
             List<Pedido> pedidosPendentes = _pedido.Lista_de_Pedidos_Pendentes_Para_Entregador();
             // Envia os pedidos pendentes aos entregadores online
             _hubContext.Clients.Group("EntregadoresOnline").SendAsync("ReceberPedidosPendentes", pedidosPendentes); //SIGNALR

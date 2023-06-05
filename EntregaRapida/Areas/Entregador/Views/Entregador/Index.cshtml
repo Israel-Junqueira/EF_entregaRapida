@@ -185,7 +185,6 @@
                 btnEntregar.onclick = function() {
                 atribuirEntregadorAoPedido(pedido.pedidoId)
                 }
-
             function atribuirEntregadorAoPedido(pedidoId){
                 $.ajax({
                             url: '@Url.Action("Entregar", "EntregarPedido", new { area = "Entregador", IdPedido = "__pedidoId__" })'.replace('__pedidoId__', pedidoId),
