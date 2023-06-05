@@ -70,9 +70,8 @@
 
             function atribuirEntregadorAoPedido(pedidoId){
                 $.ajax({
-                            url: '@Url.Action("Entregar", "EntregarPedido", new { area = "Entregador" })',
+                            url: '@Url.Action("Entregar", "EntregarPedido", new { area = "Entregador", IdPedido = "__pedidoId__" })'.replace('__pedidoId__', pedidoId),
                             type: 'POST',
-                            data: { pedidoId: pedidoId },
                             success: function (result) {
                                 // Lógica para tratar a resposta do servidor, se necessário
                                 // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
@@ -82,7 +81,7 @@
                                 icon: 'warning',
                                 confirmButtonText: 'OK'
                               }).then(function() {
-                                // Lógica adicional a ser executada após o usuário clicar em "OK"
+                                 location.reload(true); 
                               });
                                                         },
                             error: function (xhr, status, error) {
@@ -90,6 +89,7 @@
                             }
                         });
             }
+
 
             cardBody.appendChild(cardTitle);
             cardBody.appendChild(LojistaNome);
@@ -186,28 +186,28 @@
                 atribuirEntregadorAoPedido(pedido.pedidoId)
                 }
 
-                function atribuirEntregadorAoPedido(pedidoId){
-                    $.ajax({
-                                url: '@Url.Action("Entregar", "EntregarPedido", new { area = "Entregador" })',
-                                type: 'POST',
-                                data: { pedidoId: pedidoId },
-                                success: function (result) {
-                                    // Lógica para tratar a resposta do servidor, se necessário
-                                    // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
-                                     Swal.fire({
-                                    title: 'Solicitação de entrega enviada!',
-                                    text: 'Aguarde o comerciante confirmar',
-                                    icon: 'warning',
-                                    confirmButtonText: 'OK'
-                                  }).then(function() {
-                                    // Lógica adicional a ser executada após o usuário clicar em "OK"
-                                  });
-                                                            },
-                                error: function (xhr, status, error) {
-                                    // Lógica para tratar erros de requisição, se necessário
-                                }
-                            });
-                }
+            function atribuirEntregadorAoPedido(pedidoId){
+                $.ajax({
+                            url: '@Url.Action("Entregar", "EntregarPedido", new { area = "Entregador", IdPedido = "__pedidoId__" })'.replace('__pedidoId__', pedidoId),
+                            type: 'POST',
+                            success: function (result) {
+                                // Lógica para tratar a resposta do servidor, se necessário
+                                // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
+                                 Swal.fire({
+                                title: 'Solicitação de entrega enviada!',
+                                text: 'Aguarde o comerciante confirmar',
+                                icon: 'warning',
+                                confirmButtonText: 'OK'
+                              }).then(function() {
+                                 location.reload(true); 
+                              });
+                                                        },
+                            error: function (xhr, status, error) {
+                                // Lógica para tratar erros de requisição, se necessário
+                            }
+                        });
+            }
+
 
 
 
