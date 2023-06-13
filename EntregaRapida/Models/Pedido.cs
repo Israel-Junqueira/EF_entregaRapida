@@ -17,6 +17,8 @@ namespace EntregaRapida.Models{
         [EnumDataType(typeof(StatusPedido))]    
         public StatusPedido statuspedido { get; set; } //  ✓ ok
         public int? EntregadorId { get; set; }
+        public string? EntregadorNome { get; set; }
+        public string ContextId { get; set; } //testando
         public int LojistaId { get; set; }
         public string LojistaNome { get; set; }
 

@@ -45,36 +45,44 @@ namespace EntregaRapida.Controllers
             var user = await _usermaneger.FindByNameAsync(LoginVM.UserName);
             if (user != null)
             {
-
+                
                 var result = await _signInManager.PasswordSignInAsync(user, LoginVM.Password, false, false);
                 if (result.Succeeded)
                 {
-                    var httpContext = HttpContext;
-                    var hubContext = this._hubContext;
 
-
-                    await hubContext.Groups.AddToGroupAsync(httpContext.Connection.Id, "EntregadoresOnline");
+                    var ususario = await _usermaneger.FindByNameAsync(LoginVM.UserName);
+                    var roles = await _usermaneger.GetRolesAsync(ususario);
 
                     if (string.IsNullOrEmpty(LoginVM.ReturnUrl))
                     {
-                        var ususario = await _usermaneger.FindByNameAsync(LoginVM.UserName);
-                        var roles = await _usermaneger.GetRolesAsync(ususario);
+                        var httpContext = HttpContext;
+                        var hubContext = this._hubContext;
 
                         if (roles.Contains("Lojista"))
                         {
+                            string comercianteId = httpContext.Connection.Id;
+                            await _hubContext.Clients.Group(comercianteId).SendAsync("AdicionarComercianteAoGrupo", comercianteId);
+                            ViewData["ComercianteId"] = comercianteId;
+                        
                             return RedirectToAction("Index", "Comerciante", new { area = "Comerciante" });
                         }
-                        else if(roles.Contains("Entregador"))
+                        else if (roles.Contains("Entregador"))
                         {
+                            await hubContext.Groups.AddToGroupAsync(httpContext.Connection.Id, "EntregadoresOnline");
+
                             return RedirectToAction("Index", "Entregador", new { area = "Entregador" });
                         }
                         else
                         {
                             return RedirectToAction("Index", "Admin", new { area = "Admin" });
                         }
-                        
+
                     }
                     return Redirect(LoginVM.ReturnUrl);
+
+                    
+                  
+                 
                 }
                 return View(LoginVM);
             }

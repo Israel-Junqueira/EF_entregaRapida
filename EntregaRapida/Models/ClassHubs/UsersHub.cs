@@ -1,7 +1,9 @@
 ﻿using EntregaRapida.Models.Enum;
 using EntregaRapida.Repository.Interfaces;
+using EntregaRapida.Services;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Caching.Memory;
+
 
 namespace EntregaRapida.Models.ClassHubs
 {
@@ -10,11 +12,13 @@ namespace EntregaRapida.Models.ClassHubs
         private readonly IHubContext<UsersHub> _hubContext;
         private readonly IMemoryCache _cache;
         private readonly IPedido _pedido;
-        public UsersHub(IHubContext<UsersHub> hubContext, IMemoryCache cache,IPedido pedido)
+        private readonly ComercianteService _comercianteService;
+        public UsersHub(IHubContext<UsersHub> hubContext, IMemoryCache cache,IPedido pedido, ComercianteService comerciante)
         {
             _hubContext = hubContext;
             _cache = cache;
             _pedido = pedido;
+            _comercianteService = comerciante;
 
             if (!_cache.TryGetValue("EntregadoresConectados", out List<EntregadorConectado> entregadoresConectados))
             {
@@ -33,6 +37,8 @@ namespace EntregaRapida.Models.ClassHubs
             var entregadoresConectados = _cache.Get<List<EntregadorConectado>>("EntregadoresConectados");
             entregadoresConectados.Add(entregador);
             _cache.Set("EntregadoresConectados", entregadoresConectados);
+
+
             await Groups.AddToGroupAsync(connectionId, "EntregadoresOnline");
             await GetEntregadoresOnline();
             await Clients.Caller.SendAsync("ObterPedidosPendentes");
@@ -75,7 +81,26 @@ namespace EntregaRapida.Models.ClassHubs
         public async Task ReceberPedido(Pedido pedido)
         {
             await Clients.Group("EntregadoresOnline").SendAsync("ReceberPedido", pedido);
+       }
+
+        public async Task AdicionarComercianteAoGrupo(string comercianteId)
+        {
+            await Groups.AddToGroupAsync(comercianteId, comercianteId); 
+            await Clients.Caller.SendAsync("ComercianteAdicionadoAoGrupo");
         }
 
+
+        public async void ReceberSolicitacaoEntrega(string mensagem)
+        {
+            // await Clients.Group(comercianteId).SendAsync("ReceberSolicitacaoEntrega", pedidoId);
+            var usuario = Context.ConnectionId;
+            await Clients.User(usuario).SendAsync("EnviarNotificacao", mensagem);
+
+        }
+
+        public async Task EnviarSolicitacaoEntrega(string Entregador, string lojista, string mensagem, string connectionId)
+        {
+            await Clients.All.SendAsync("RecebeParametros", Entregador, lojista, mensagem, connectionId);
+        }
     }
 }

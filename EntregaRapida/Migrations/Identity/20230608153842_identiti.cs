@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace EntregaRapida.Migrations.Identity
 {
     /// <inheritdoc />
-    public partial class Models : Migration
+    public partial class identiti : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

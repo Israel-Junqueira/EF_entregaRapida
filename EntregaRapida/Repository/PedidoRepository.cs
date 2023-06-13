@@ -19,6 +19,7 @@ namespace EntregaRapida.Repository
         public void Adiciona_entregador_ao_Pedido(int entregadorId,int pedidoId)
         {
             var Pedido = _context.Pedidos.FirstOrDefault(x => x.PedidoId == pedidoId);
+            var Entregador = _context.Entregadores.FirstOrDefault(x => x.EntregadorId == entregadorId);
             if (Pedido == null)
             {
 
@@ -26,6 +27,7 @@ namespace EntregaRapida.Repository
             else
             {
                 Pedido.EntregadorId = entregadorId;
+                Pedido.EntregadorNome = Entregador.Nome; 
                 _context.SaveChanges();
               
             }

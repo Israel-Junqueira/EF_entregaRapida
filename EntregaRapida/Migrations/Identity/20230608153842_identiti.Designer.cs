@@ -11,8 +11,8 @@ using TabelasIdentity.Identity.Data;
 namespace EntregaRapida.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230529120015_Models")]
-    partial class Models
+    [Migration("20230608153842_identiti")]
+    partial class identiti
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

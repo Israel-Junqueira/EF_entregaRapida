@@ -31,13 +31,16 @@ builder.Services.AddTransient<ILojistas, LojistaRepository>();
 builder.Services.AddTransient<IPedido,PedidoRepository>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<Banco>();
+//classes de serviço
+builder.Services.AddScoped<ComercianteService>();
+
 
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
 
 //identyty
 builder.Services.AddScoped<HttpContextAccessor>();
-builder.Services.AddSession();
+builder.Services.AddSession(); 
 builder.Services.AddIdentityCore<IdentityUser>(options => { });
 builder.Services.AddScoped<UserManager<IdentityUser>>();
 //Interface para criar o perfil do usuario
@@ -102,6 +105,7 @@ app.UseEndpoints(endpoints => {
     endpoints.MapHub<UsersHub>("/entregadorHub");
 
 });
+
 //fim
 
 app.Run();

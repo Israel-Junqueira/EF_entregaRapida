@@ -50,7 +50,7 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
             }
             try
             {
-             
+                var httpcontext = HttpContext;
                 var Novopedido = new Pedido
                 {
                     Bairro = pedido.Bairro,
@@ -63,6 +63,8 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
                     LojistaId = pedido.LojistaId,
                     EntregadorId = pedido.EntregadorId,
                     LojistaNome = pedido.LojistaNome,
+                    ContextId = httpcontext.Connection.Id
+                    
                  
 
                 };

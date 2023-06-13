@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace EntregaRapida.Migrations
 {
     /// <inheritdoc />
-    public partial class Models : Migration
+    public partial class models : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -156,6 +156,8 @@ namespace EntregaRapida.Migrations
                     date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     statuspedido = table.Column<string>(type: "longtext", nullable: false),
                     EntregadorId = table.Column<int>(type: "int", nullable: true),
+                    EntregadorNome = table.Column<string>(type: "longtext", nullable: true),
+                    ContextId = table.Column<string>(type: "longtext", nullable: true),
                     LojistaId = table.Column<int>(type: "int", nullable: false),
                     LojistaNome = table.Column<string>(type: "longtext", nullable: true)
                 },

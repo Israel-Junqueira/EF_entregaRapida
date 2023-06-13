@@ -64,31 +64,43 @@
             var btnEntregar = document.createElement("a");
             btnEntregar.classList.add("btn", "btn-success");
             btnEntregar.textContent = "Entregar";
-            btnEntregar.onclick = function() {
-            atribuirEntregadorAoPedido(pedido.pedidoId)
-            }
+            console.log(pedido.contextId);
+            console.log(pedido.pedidoId);
 
-            function atribuirEntregadorAoPedido(pedidoId){
+            btnEntregar.onclick = function() {
+                var connectionidLojista
+                var pedidoId= pedido.pedidoId;
+                var entregador;
+                var msg ="Entregador "+ entregador + "Solicitou a entrega do Pedido: #"+pedidoId;
+                var lojista = pedido.LojistaNome;
+                connection.invoke("EnviarSolicitacaoEntrega",entregador,lojista,msg,)
+                atribuirEntregadorAoPedido(pedido.pedidoId,pedido.contextId);
+               
+            };
+      
+            function atribuirEntregadorAoPedido(pedidoId,contextId){
                 $.ajax({
-                            url: '@Url.Action("Entregar", "EntregarPedido", new { area = "Entregador", IdPedido = "__pedidoId__" })'.replace('__pedidoId__', pedidoId),
+                    
+                            url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", IdPedido = "__pedidoId__",comercianteId = "__comercianteId__" })'.replace('__pedidoId__', pedidoId).replace('__comercianteId__', contextId),
                             type: 'POST',
                             success: function (result) {
                                 // Lógica para tratar a resposta do servidor, se necessário
                                 // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
-                                 Swal.fire({
+                              
+                                Swal.fire({
                                 title: 'Solicitação de entrega enviada!',
                                 text: 'Aguarde o comerciante confirmar',
                                 icon: 'warning',
                                 confirmButtonText: 'OK'
                               }).then(function() {
-                                 location.reload(true); 
+                                 //location.reload(true); 
                               });
                                                         },
                             error: function (xhr, status, error) {
                                 // Lógica para tratar erros de requisição, se necessário
                             }
                         });
-            }
+            };
 
 
             cardBody.appendChild(cardTitle);
@@ -100,13 +112,10 @@
 
             var cardFooter = document.createElement("div");
             cardFooter.classList.add("card-footer", "text-muted");
-                 var datamodel = pedido.date;
-                console.log(datamodel);
-                var data = moment(datamodel).format("DD/MM/YYYY");
-                 console.log(data);
-                var datahora = moment(pedido.date).hour();
-                 console.log(datahora);
-                var hora = moment(pedido.date).format("HH:mm");
+            var datamodel = pedido.date;
+            var data = moment(datamodel).format("DD/MM/YYYY");
+            var datahora = moment(pedido.date).hour();
+            var hora = moment(pedido.date).format("HH:mm");
                
 
                 if (datahora >= 6 && datahora < 12  ){
@@ -181,32 +190,36 @@
                 var btnEntregar = document.createElement("a");
                 btnEntregar.classList.add("btn", "btn-success");
                 btnEntregar.textContent = "Entregar";
+                console.log(pedido.contextId);
+                console.log(pedido.pedidoId);
+               btnEntregar.onclick = function() {
+                atribuirEntregadorAoPedido(pedido.pedidoId,pedido.contextId);
+               console.log(pedido.contextId);
+            };
 
-                btnEntregar.onclick = function() {
-                atribuirEntregadorAoPedido(pedido.pedidoId)
-                }
-
-            function atribuirEntregadorAoPedido(pedidoId){
+          
+            function atribuirEntregadorAoPedido(pedidoId,contextId){
                 $.ajax({
-                            url: '@Url.Action("Entregar", "EntregarPedido", new { area = "Entregador", IdPedido = "__pedidoId__" })'.replace('__pedidoId__', pedidoId),
+                    
+                            url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", IdPedido = "__pedidoId__",comercianteId = "__comercianteId__" })'.replace('__pedidoId__', pedidoId).replace('__comercianteId__', contextId),
                             type: 'POST',
                             success: function (result) {
                                 // Lógica para tratar a resposta do servidor, se necessário
                                 // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
-                                 Swal.fire({
+                                Swal.fire({
                                 title: 'Solicitação de entrega enviada!',
                                 text: 'Aguarde o comerciante confirmar',
                                 icon: 'warning',
                                 confirmButtonText: 'OK'
                               }).then(function() {
-                                 location.reload(true); 
+                                 //location.reload(true); //da um refreshe na pagina
                               });
                                                         },
                             error: function (xhr, status, error) {
                                 // Lógica para tratar erros de requisição, se necessário
                             }
                         });
-            }
+            };
 
 
 

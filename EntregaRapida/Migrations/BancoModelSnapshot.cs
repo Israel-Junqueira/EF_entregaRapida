@@ -187,8 +187,16 @@ namespace EntregaRapida.Migrations
                     b.Property<string>("Cidade")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ContextId")
+                        .HasColumnType("longtext")
+                        .HasColumnName("ContextId");
+
                     b.Property<int?>("EntregadorId")
                         .HasColumnType("int");
+
+                    b.Property<string>("EntregadorNome")
+                        .HasColumnType("longtext")
+                        .HasColumnName("EntregadorNome");
 
                     b.Property<int>("LojistaId")
                         .HasColumnType("int");

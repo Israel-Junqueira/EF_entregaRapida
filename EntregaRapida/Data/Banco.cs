@@ -187,6 +187,13 @@ namespace EntregaRapida.Data
             .Property(p => p.LojistaNome)
             .HasColumnName("LojistaNome");
             modelBuilder.Entity<Pedido>()
+           .Property(p => p.ContextId)
+           .HasColumnName("ContextId");
+            modelBuilder.Entity<Pedido>()
+            .Property(p => p.EntregadorNome)
+            .HasColumnName("EntregadorNome");
+
+            modelBuilder.Entity<Pedido>()
             .Property(p => p.descricao)
             .HasColumnName("descricao");
 

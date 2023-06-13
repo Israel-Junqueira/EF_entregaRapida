@@ -29,5 +29,7 @@ namespace EntregaRapida.Areas.Entregador.Controllers
 
             return View();
         }
+
+       
     }
 }

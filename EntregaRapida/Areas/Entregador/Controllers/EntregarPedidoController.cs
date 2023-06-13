@@ -1,8 +1,10 @@
 ﻿using EntregaRapida.Data;
+using EntregaRapida.Models.ClassHubs;
 using EntregaRapida.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace EntregaRapida.Areas.Entregador.Controllers
 {
@@ -13,14 +15,16 @@ namespace EntregaRapida.Areas.Entregador.Controllers
         private readonly Banco _context;
         private readonly UserManager<IdentityUser> _UserManager;
         private readonly IPedido _pedido;
-        public EntregarPedidoController(Banco context,UserManager<IdentityUser> identityUser,IPedido pedido)
+        private readonly IHubContext<UsersHub> _hubContext;
+        public EntregarPedidoController(Banco context,UserManager<IdentityUser> identityUser,IPedido pedido, IHubContext<UsersHub> pedidoHubContext)
         {
             _context = context;
             _UserManager = identityUser;
             _pedido = pedido;
+            _hubContext = pedidoHubContext;
         }
 
-        [Route("EntregarPedidoController/Entregar/{IdPedido}")]
+     //   [Route("EntregarPedidoController/Entregar/{IdPedido}")]
         [HttpPost]
         public IActionResult Entregar(int IdPedido)
         {
@@ -30,6 +34,19 @@ namespace EntregaRapida.Areas.Entregador.Controllers
             _pedido.Muda_Status_do_Pedido(IdPedido);
 
           return Json(new {success = true});
+        }
+       
+        [Route("EntregarPedidoController/Entregar/{comercianteId}/{IdPedido}")]
+        [HttpPost]
+        public async Task<IActionResult> SolicitarEntrega(string comercianteId, int pedidoId)
+        {
+            var entregador = User.Identity.Name;
+            string mensagem = "O entregador "+entregador+" selecionou o pedido #" + pedidoId + ". Deseja aceitá-lo?";
+            // await _hubContext.Clients.Group(comercianteId).SendAsync("ReceberNotificacao", mensagem);
+            // await _hubContext.Clients.Group(comercianteId).SendAsync("ReceberSolicitacaoEntrega", mensagem);
+           await _hubContext.Clients.Group(comercianteId).SendAsync("ReceberSolicitacaoEntrega", mensagem);
+           return RedirectToAction("Index", "Entregador", new { area = "Entregador" });
+           // return Json(new { success = true });
         }
     }
 }
