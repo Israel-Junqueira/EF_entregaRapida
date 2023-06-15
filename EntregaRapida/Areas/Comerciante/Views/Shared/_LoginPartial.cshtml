@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
 
+<link rel="stylesheet" type="text/css" href="~/css/style_Pagina_Lojista.css">
+
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> Usermaneger;
 
@@ -8,8 +10,8 @@
 {
     <form asp-area="" asp-controller="Login" asp-action="Logout" method="post" class="navbar-left">
         <ul class ="nav navbar-brand navbar-lef">
-            <button type="submit" style="width:auto" class="nav-link btn btn-link py-0">
-                    Sair : @User.Identity.Name
+            <button id="sair" type="submit"  class="btn btn-outline-light">
+                    Desconectar 
             </button>
         </ul>
      </form>
@@ -27,7 +29,7 @@
        
       if(roles.Contains("Lojista")){
        <ul class ="nav navbar-brand navbar-right">
-       <a class="nav-link btn btn-link py-0" style="width:auto" asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante" >
+       <a class="btn btn-outline-light"  asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante" >
         Logística
        </a>
        </ul>

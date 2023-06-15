@@ -134,6 +134,29 @@ namespace EntregaRapida.Migrations
                     b.ToTable("Historicos", (string)null);
                 });
 
+            modelBuilder.Entity("EntregaRapida.Models.HubServices.solicitacoes", b =>
+                {
+                    b.Property<int>("solicitacoesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status_Solicitacao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("logistaId")
+                        .HasColumnType("longtext")
+                        .HasColumnName("logistaId");
+
+                    b.Property<int>("pedidoId")
+                        .HasColumnType("int")
+                        .HasColumnName("pedidoId");
+
+                    b.HasKey("solicitacoesId");
+
+                    b.ToTable("solicitacoes", (string)null);
+                });
+
             modelBuilder.Entity("EntregaRapida.Models.Lojista", b =>
                 {
                     b.Property<int>("LojistaId")

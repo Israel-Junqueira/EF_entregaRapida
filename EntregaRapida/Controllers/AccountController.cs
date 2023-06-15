@@ -60,10 +60,6 @@ namespace EntregaRapida.Controllers
 
                         if (roles.Contains("Lojista"))
                         {
-                            string comercianteId = httpContext.Connection.Id;
-                            await _hubContext.Clients.Group(comercianteId).SendAsync("AdicionarComercianteAoGrupo", comercianteId);
-                            ViewData["ComercianteId"] = comercianteId;
-                        
                             return RedirectToAction("Index", "Comerciante", new { area = "Comerciante" });
                         }
                         else if (roles.Contains("Entregador"))

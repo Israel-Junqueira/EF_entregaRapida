@@ -1,5 +1,6 @@
 ﻿using EntregaRapida.Data;
 using EntregaRapida.Models.ClassHubs;
+using EntregaRapida.Models.HubServices;
 using EntregaRapida.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -36,17 +37,19 @@ namespace EntregaRapida.Areas.Entregador.Controllers
           return Json(new {success = true});
         }
        
-        [Route("EntregarPedidoController/Entregar/{comercianteId}/{IdPedido}")]
+        [Route("EntregarPedidoController/Entregar/{lojistaId}/{pedidoId}")]
         [HttpPost]
-        public async Task<IActionResult> SolicitarEntrega(string comercianteId, int pedidoId)
+        public  IActionResult SolicitarEntrega(string lojistaId, int pedidoId)
         {
-            var entregador = User.Identity.Name;
-            string mensagem = "O entregador "+entregador+" selecionou o pedido #" + pedidoId + ". Deseja aceitá-lo?";
-            // await _hubContext.Clients.Group(comercianteId).SendAsync("ReceberNotificacao", mensagem);
-            // await _hubContext.Clients.Group(comercianteId).SendAsync("ReceberSolicitacaoEntrega", mensagem);
-           await _hubContext.Clients.Group(comercianteId).SendAsync("ReceberSolicitacaoEntrega", mensagem);
-           return RedirectToAction("Index", "Entregador", new { area = "Entregador" });
-           // return Json(new { success = true });
+            var solicitacao = new Models.HubServices.solicitacoes { logistaId = lojistaId, pedidoId = pedidoId, Status_Solicitacao = Models.Enum.Status_Solicitacao.Pendente};
+            _context.AddAsync(solicitacao);
+            _context.SaveChanges();
+
+             var entregador =  User.Identity.Name;
+
+          //  await _hubContext.Clients.Group(comercianteId).SendAsync("ReceberSolicitacaoEntrega", mensagem);
+          //  return RedirectToAction("Index", "Entregador", new { area = "Entregador" });
+            return Json(entregador);
         }
     }
 }

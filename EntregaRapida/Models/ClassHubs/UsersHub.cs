@@ -1,6 +1,7 @@
 ﻿using EntregaRapida.Models.Enum;
 using EntregaRapida.Repository.Interfaces;
 using EntregaRapida.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -13,12 +14,14 @@ namespace EntregaRapida.Models.ClassHubs
         private readonly IMemoryCache _cache;
         private readonly IPedido _pedido;
         private readonly ComercianteService _comercianteService;
-        public UsersHub(IHubContext<UsersHub> hubContext, IMemoryCache cache,IPedido pedido, ComercianteService comerciante)
+        private readonly UserManager<IdentityUser> _usermaneger;
+        public UsersHub(IHubContext<UsersHub> hubContext, IMemoryCache cache,IPedido pedido, ComercianteService comerciante, UserManager<IdentityUser> usermaneger)
         {
             _hubContext = hubContext;
             _cache = cache;
             _pedido = pedido;
             _comercianteService = comerciante;
+            _usermaneger = usermaneger;
 
             if (!_cache.TryGetValue("EntregadoresConectados", out List<EntregadorConectado> entregadoresConectados))
             {
@@ -29,20 +32,28 @@ namespace EntregaRapida.Models.ClassHubs
         // Métodos para gerenciar a conexão e desconexão dos clientes
         public async override Task OnConnectedAsync()
         {
+
             // Adicionar o cliente a um grupo "Entregadores"
             var userName = Context.User.Identity.Name;
-            var connectionId = Context.ConnectionId;
-            var entregador = new EntregadorConectado { Nome = userName,ConnectionId = connectionId };
+            var ususario = await _usermaneger.FindByNameAsync(userName);
+            var roles = await _usermaneger.GetRolesAsync(ususario);
+            if (roles.Contains("Entregador"))
+            {
+                var connectionId = Context.ConnectionId;
+                var entregador = new EntregadorConectado { Nome = userName, ConnectionId = connectionId };
 
-            var entregadoresConectados = _cache.Get<List<EntregadorConectado>>("EntregadoresConectados");
-            entregadoresConectados.Add(entregador);
-            _cache.Set("EntregadoresConectados", entregadoresConectados);
+                var entregadoresConectados = _cache.Get<List<EntregadorConectado>>("EntregadoresConectados");
+                entregadoresConectados.Add(entregador);
+                _cache.Set("EntregadoresConectados", entregadoresConectados);
+                await Groups.AddToGroupAsync(connectionId, "EntregadoresOnline");
 
 
-            await Groups.AddToGroupAsync(connectionId, "EntregadoresOnline");
-            await GetEntregadoresOnline();
+            }
+           
             await Clients.Caller.SendAsync("ObterPedidosPendentes");
             await base.OnConnectedAsync();
+            await GetEntregadoresOnline();
+
         }
 
         public async override Task OnDisconnectedAsync(Exception exception)
@@ -71,6 +82,7 @@ namespace EntregaRapida.Models.ClassHubs
             var entregadores = entregadoresConectados.Select(e => e.Nome).ToList();
             await Clients.All.SendAsync("EntregadoresOnline", entregadores);
         }
+
         public async Task ObterPedidosPendentes()
         {
              List<Pedido> pedidosPendetes = _pedido.Lista_de_Pedidos_Pendentes_Para_Entregador();
@@ -83,24 +95,10 @@ namespace EntregaRapida.Models.ClassHubs
             await Clients.Group("EntregadoresOnline").SendAsync("ReceberPedido", pedido);
        }
 
-        public async Task AdicionarComercianteAoGrupo(string comercianteId)
+     
+        public async Task EnviarSolicitacaoEntrega(string Entregador, string lojista, string mensagem, int pedidoId)
         {
-            await Groups.AddToGroupAsync(comercianteId, comercianteId); 
-            await Clients.Caller.SendAsync("ComercianteAdicionadoAoGrupo");
-        }
-
-
-        public async void ReceberSolicitacaoEntrega(string mensagem)
-        {
-            // await Clients.Group(comercianteId).SendAsync("ReceberSolicitacaoEntrega", pedidoId);
-            var usuario = Context.ConnectionId;
-            await Clients.User(usuario).SendAsync("EnviarNotificacao", mensagem);
-
-        }
-
-        public async Task EnviarSolicitacaoEntrega(string Entregador, string lojista, string mensagem, string connectionId)
-        {
-            await Clients.All.SendAsync("RecebeParametros", Entregador, lojista, mensagem, connectionId);
+            await Clients.User(lojista).SendAsync("RecebeParametros", Entregador, lojista, mensagem, pedidoId);
         }
     }
 }

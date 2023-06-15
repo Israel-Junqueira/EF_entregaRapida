@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace EntregaRapida.Migrations
 {
     /// <inheritdoc />
-    public partial class models : Migration
+    public partial class Models : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,6 +25,22 @@ namespace EntregaRapida.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Plataforma", x => x.PlataformaId);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "solicitacoes",
+                columns: table => new
+                {
+                    solicitacoesId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    logistaId = table.Column<string>(type: "longtext", nullable: true),
+                    pedidoId = table.Column<int>(type: "int", nullable: false),
+                    Status_Solicitacao = table.Column<string>(type: "longtext", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_solicitacoes", x => x.solicitacoesId);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
@@ -231,6 +247,9 @@ namespace EntregaRapida.Migrations
 
             migrationBuilder.DropTable(
                 name: "pedido");
+
+            migrationBuilder.DropTable(
+                name: "solicitacoes");
 
             migrationBuilder.DropTable(
                 name: "Entregadores");

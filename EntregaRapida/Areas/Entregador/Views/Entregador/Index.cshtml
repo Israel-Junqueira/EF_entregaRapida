@@ -68,12 +68,6 @@
             console.log(pedido.pedidoId);
 
             btnEntregar.onclick = function() {
-                var connectionidLojista
-                var pedidoId= pedido.pedidoId;
-                var entregador;
-                var msg ="Entregador "+ entregador + "Solicitou a entrega do Pedido: #"+pedidoId;
-                var lojista = pedido.LojistaNome;
-                connection.invoke("EnviarSolicitacaoEntrega",entregador,lojista,msg,)
                 atribuirEntregadorAoPedido(pedido.pedidoId,pedido.contextId);
                
             };
@@ -81,19 +75,34 @@
             function atribuirEntregadorAoPedido(pedidoId,contextId){
                 $.ajax({
                     
-                            url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", IdPedido = "__pedidoId__",comercianteId = "__comercianteId__" })'.replace('__pedidoId__', pedidoId).replace('__comercianteId__', contextId),
+                            url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", pedidoId = "__pedidoId__",lojistaId = "__lojistaId__" })'.replace('__pedidoId__', pedidoId).replace('__lojistaId__', contextId),
                             type: 'POST',
                             success: function (result) {
                                 // Lógica para tratar a resposta do servidor, se necessário
                                 // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
+                                console.log(result +"result")
+                                    var pedidoId= pedido.pedidoId;
+                                    var entregador = result;
+                                    var msg ="Entregador "+ entregador + "Solicitou a entrega do Pedido: #"+pedidoId;
+                                    var lojistacontextId = pedido.contextId;
+
+                                     console.log( pedidoId + " Id do pedido");
+                                     console.log( entregador + " nome do entregador");
+                                     console.log( msg);
+                                     console.log( lojistacontextId + "Id do lojista");
+
+                                     connection.invoke("EnviarSolicitacaoEntrega",entregador,lojistacontextId,msg,pedidoId);
                               
+                                            console.log(result)
+
                                 Swal.fire({
                                 title: 'Solicitação de entrega enviada!',
                                 text: 'Aguarde o comerciante confirmar',
                                 icon: 'warning',
                                 confirmButtonText: 'OK'
                               }).then(function() {
-                                 //location.reload(true); 
+                                     
+                            //faz alguma coisa ao clicar em ok
                               });
                                                         },
                             error: function (xhr, status, error) {
@@ -192,26 +201,43 @@
                 btnEntregar.textContent = "Entregar";
                 console.log(pedido.contextId);
                 console.log(pedido.pedidoId);
-               btnEntregar.onclick = function() {
+                btnEntregar.onclick = function() {
                 atribuirEntregadorAoPedido(pedido.pedidoId,pedido.contextId);
-               console.log(pedido.contextId);
+    
             };
 
           
             function atribuirEntregadorAoPedido(pedidoId,contextId){
                 $.ajax({
                     
-                            url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", IdPedido = "__pedidoId__",comercianteId = "__comercianteId__" })'.replace('__pedidoId__', pedidoId).replace('__comercianteId__', contextId),
+                            url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", pedidoId = "__pedidoId__",lojistaId = "__lojistaId__" })'.replace('__pedidoId__', pedidoId).replace('__lojistaId__', contextId),
                             type: 'POST',
                             success: function (result) {
                                 // Lógica para tratar a resposta do servidor, se necessário
                                 // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
+                                console.log(result)
+
+                                    var pedidoId= pedido.pedidoId;
+                                    var entregador = result;
+                                    var msg ="Entregador "+ entregador + "Solicitou a entrega do Pedido: #"+pedidoId;
+                                    var lojistacontextId = pedido.contextId;
+
+                                     console.log(typeof pedidoId)
+                                     console.log( pedidoId + " Id do pedido");
+                                     console.log("Nome do zé ruela:" + entregador );
+                                     console.log( msg);
+                                     console.log( lojistacontextId + " Id do lojista");
+                                     connection.invoke("EnviarSolicitacaoEntrega",entregador,lojistacontextId,msg,pedidoId);
+
                                 Swal.fire({
                                 title: 'Solicitação de entrega enviada!',
                                 text: 'Aguarde o comerciante confirmar',
                                 icon: 'warning',
                                 confirmButtonText: 'OK'
                               }).then(function() {
+
+                                
+                               
                                  //location.reload(true); //da um refreshe na pagina
                               });
                                                         },

@@ -2,197 +2,305 @@
 @model List<Pedido>
 
 
-<a class="nav-link btn btn-link py-0" asp-controller="PedidoCadastro" asp-action="Index" asp-area="Comerciante" style="color:black">Nova Entrega</a>
-<a class="nav-link btn btn-link py-0" asp-controller="PedidoCadastro" asp-action="HistoricoPedido" asp-area="Comerciante" style="color:black">Historico</a>
-<a class="nav-link btn btn-link py-0" asp-controller="Comerciante" asp-action="Perfil" asp-area="Comerciante" style="color:black">Meus Dados</a>
 
+<link rel="stylesheet" type="text/css" href="~/css/style_Pagina_Lojista.css">
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
-<script>
-    
 
-            const connection = new signalR.HubConnectionBuilder().withUrl("/entregadorHub").build();
-            const comercianteId = "@ViewBag.ComercianteId"; //o viewBag ta na accontCOntroller
-            console.log("Testeeee")
-
-            connection.on("RecebeParametros",function(usuarioQueMandou,Mensagem,UsuarioQuerecebe){
-
-
-            });
-
-            connection.start()
-                .then(() => {
-                    connection.invoke("AdicionarComercianteAoGrupo", comerci anteId)
-                        .catch(error => console.error(error));
-                })
-                .catch(error => console.error(error));
-      
-
-            connection.on("ComercianteAdicionadoAoGrupo", () => {
-                console.log("Comerciante adicionado ao grupo com sucesso");
-                alert("Comerciante adicionado")
-            });
-    
-     
-</script>
-
-<h1>Pedidos Pendentes</h1>
-<table class="table table-striped table-bordered table-hover">
-    <thead class="thead-light">
-        <tr>
-            <th class="text-center">Pedido ID</th>
-            <th class="text-center">Endereço de Origem</th>
-            <th class="text-center">Endereço de Destino</th>
-            <th class="text-center">Bairro</th>
-            <th class="text-center">Cidade</th>
-            <th class="text-center">Distância</th>
-            <th class="text-center">Data</th>
-            <th class="text-center">Status</th>
-            <th class="text-center">Entregador ID</th>
-            <th class="text-center">Entregador</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var pedido in Model)
-        {
-            if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Pendente)
-            {
-
-
-                <tr>
-                    <td class="text-center">@pedido.PedidoId</td>
-                    <td class="text-center">@pedido.enderecoOrigem</td>
-                    <td class="text-center">@pedido.enderecoDestino</td>
-                    <td class="text-center">@pedido.Bairro</td>
-                    <td class="text-center">@pedido.Cidade</td>
-                    <td class="text-center">@pedido.distancia</td>
-                    <td class="text-center">@pedido.date</td>
-                    <td class="text-center">@pedido.statuspedido</td>
-                    <td class="text-center">@pedido.EntregadorId</td>
-                    <td class="text-center">@pedido.EntregadorNome</td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+<div id="content">
+    <div id="user-menu">
+        <!-- Espaço para imagem e nome do usuário -->
+        <div id="user-info">
+            <!-- Imagem do usuário -->
+            <img src="~/img/usuario/1.jpeg" alt="Usuário" id="user-image">
+            <!-- Nome do usuário -->
+            <ul>
+                <div><h3 id="user-name">@User.Identity.Name</h3></div>
+                <div><h3 id="user-loja"></h3></div>
+            </ul>
+        </div>
+        <!-- Menu lateral -->
+        <nav id="menu">
+            <ul>
+                <a id="font" asp-controller="PedidoCadastro" asp-action="Index" asp-area="Comerciante" style="color:black;text-decoration: none;">Nova Entrega</a>
+                <br />
+                <a id="font" asp-controller="PedidoCadastro" asp-action="HistoricoPedido" asp-area="Comerciante" style="color:black;text-decoration: none;">Historico</a>
+                <br />
+                <a id="font" asp-controller="Comerciante" asp-action="Perfil" asp-area="Comerciante" style="color:black;text-decoration: none;">Meus Dados</a>
+            </ul>
+        </nav>
+    </div>
+    <div id="dash-feed">
+        <!-- Dashboards -->
+        <div id="dashboard-container">
+            <!-- Dashboard 1 -->
+            <div class="dashboard">Dashboard 1</div>
+            <!-- Dashboard 2 -->
+            <div class="dashboard">Dashboard 2</div>
+            <!-- Dashboard 3 -->
+            <div class="dashboard">Dashboard 3</div>
+            <!-- Dashboard 4 -->
+            <div class="dashboard">Dashboard 4</div>
+        </div>
+        <!-- Feed de pedidos -->
+        <div id="feed">
+            <h3>PEDIDOS</h3>
+            <h1>Pedidos Pendentes</h1>
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Pedido ID</th>
+                        <th class="text-center">Endereço de Origem</th>
+                        <th class="text-center">Endereço de Destino</th>
+                        <th class="text-center">Bairro</th>
+                        <th class="text-center">Cidade</th>
+                        <th class="text-center">Distância</th>
+                        <th class="text-center">Data</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Entregador ID</th>
+                        <th class="text-center">Entregador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pedido in Model)
+                    {
+                        if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Pendente)
+                        {
 
 
-<h1>Entregador a caminho</h1>
-<table class="table table-striped table-bordered table-hover">
-    <thead class="thead-light">
-        <tr>
-            <th class="text-center">Pedido ID</th>
-            <th class="text-center">Endereço de Origem</th>
-            <th class="text-center">Endereço de Destino</th>
-            <th class="text-center">Bairro</th>
-            <th class="text-center">Cidade</th>
-            <th class="text-center">Distância</th>
-            <th class="text-center">Data</th>
-            <th class="text-center">Status</th>
-            <th class="text-center">Entregador ID</th>
-            <th class="text-center">Entregador</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var pedido in Model)
-        {
-            if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Preparado)
-            {
+                            <tr>
+                                <td class="text-center">@pedido.PedidoId</td>
+                                <td class="text-center">@pedido.enderecoOrigem</td>
+                                <td class="text-center">@pedido.enderecoDestino</td>
+                                <td class="text-center">@pedido.Bairro</td>
+                                <td class="text-center">@pedido.Cidade</td>
+                                <td class="text-center">@pedido.distancia</td>
+                                <td class="text-center">@pedido.date</td>
+                                <td class="text-center">@pedido.statuspedido</td>
+                                <td class="text-center">@pedido.EntregadorId</td>
+                                <td class="text-center">@pedido.EntregadorNome</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <h1>Entregador a caminho</h1>
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Pedido ID</th>
+                        <th class="text-center">Endereço de Origem</th>
+                        <th class="text-center">Endereço de Destino</th>
+                        <th class="text-center">Bairro</th>
+                        <th class="text-center">Cidade</th>
+                        <th class="text-center">Distância</th>
+                        <th class="text-center">Data</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Entregador ID</th>
+                        <th class="text-center">Entregador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pedido in Model)
+                    {
+                        if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Preparado)
+                        {
 
-                <tr>
-                    <td class="text-center">@pedido.PedidoId</td>
-                    <td class="text-center">@pedido.enderecoOrigem</td>
-                    <td class="text-center">@pedido.enderecoDestino</td>
-                    <td class="text-center">@pedido.Bairro</td>
-                    <td class="text-center">@pedido.Cidade</td>
-                    <td class="text-center">@pedido.distancia</td>
-                    <td class="text-center">@pedido.date</td>
-                    <td class="text-center">@pedido.statuspedido</td>
-                    <td class="text-center">@pedido.EntregadorId</td>
-                    <td class="text-center">@pedido.EntregadorNome</td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+                            <tr>
+                                <td class="text-center">@pedido.PedidoId</td>
+                                <td class="text-center">@pedido.enderecoOrigem</td>
+                                <td class="text-center">@pedido.enderecoDestino</td>
+                                <td class="text-center">@pedido.Bairro</td>
+                                <td class="text-center">@pedido.Cidade</td>
+                                <td class="text-center">@pedido.distancia</td>
+                                <td class="text-center">@pedido.date</td>
+                                <td class="text-center">@pedido.statuspedido</td>
+                                <td class="text-center">@pedido.EntregadorId</td>
+                                <td class="text-center">@pedido.EntregadorNome</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
 
-<h1>Enviando para o cliente</h1>
-<table class="table table-striped table-bordered table-hover">
-    <thead class="thead-light">
-        <tr>
-            <th class="text-center">Pedido ID</th>
-            <th class="text-center">Endereço de Origem</th>
-            <th class="text-center">Endereço de Destino</th>
-            <th class="text-center">Bairro</th>
-            <th class="text-center">Cidade</th>
-            <th class="text-center">Distância</th>
-            <th class="text-center">Data</th>
-            <th class="text-center">Status</th>
-            <th class="text-center">Entregador ID</th>
-            <th class="text-center">Entregador</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var pedido in Model)
-        {
-            if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Acaminho)
-            {
+            <h1>Enviando para o cliente</h1>
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Pedido ID</th>
+                        <th class="text-center">Endereço de Origem</th>
+                        <th class="text-center">Endereço de Destino</th>
+                        <th class="text-center">Bairro</th>
+                        <th class="text-center">Cidade</th>
+                        <th class="text-center">Distância</th>
+                        <th class="text-center">Data</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Entregador ID</th>
+                        <th class="text-center">Entregador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pedido in Model)
+                    {
+                        if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Acaminho)
+                        {
 
-                <tr>
-                    <td class="text-center">@pedido.PedidoId</td>
-                    <td class="text-center">@pedido.enderecoOrigem</td>
-                    <td class="text-center">@pedido.enderecoDestino</td>
-                    <td class="text-center">@pedido.Bairro</td>
-                    <td class="text-center">@pedido.Cidade</td>
-                    <td class="text-center">@pedido.distancia</td>
-                    <td class="text-center">@pedido.date</td>
-                    <td class="text-center">@pedido.statuspedido</td>
-                    <td class="text-center">@pedido.EntregadorId</td>
-                    <td class="text-center">@pedido.EntregadorNome</td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+                            <tr>
+                                <td class="text-center">@pedido.PedidoId</td>
+                                <td class="text-center">@pedido.enderecoOrigem</td>
+                                <td class="text-center">@pedido.enderecoDestino</td>
+                                <td class="text-center">@pedido.Bairro</td>
+                                <td class="text-center">@pedido.Cidade</td>
+                                <td class="text-center">@pedido.distancia</td>
+                                <td class="text-center">@pedido.date</td>
+                                <td class="text-center">@pedido.statuspedido</td>
+                                <td class="text-center">@pedido.EntregadorId</td>
+                                <td class="text-center">@pedido.EntregadorNome</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
 
-<h1>Problemas com entrega</h1>
-<table class="table table-striped table-bordered table-hover">
-    <thead class="thead-light">
-        <tr>
-            <th class="text-center">Pedido ID</th>
-            <th class="text-center">Endereço de Origem</th>
-            <th class="text-center">Endereço de Destino</th>
-            <th class="text-center">Bairro</th>
-            <th class="text-center">Cidade</th>
-            <th class="text-center">Distância</th>
-            <th class="text-center">Data</th>
-            <th class="text-center">Status</th>
-            <th class="text-center">Entregador ID</th>
-            <th class="text-center">Entregador</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var pedido in Model)
-        {
-            if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Paralizado)
-            {
+            <h1>Problemas com entrega</h1>
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Pedido ID</th>
+                        <th class="text-center">Endereço de Origem</th>
+                        <th class="text-center">Endereço de Destino</th>
+                        <th class="text-center">Bairro</th>
+                        <th class="text-center">Cidade</th>
+                        <th class="text-center">Distância</th>
+                        <th class="text-center">Data</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Entregador ID</th>
+                        <th class="text-center">Entregador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pedido in Model)
+                    {
+                        if (pedido.statuspedido == EntregaRapida.Models.Enum.StatusPedido.Paralizado)
+                        {
 
-                <tr>
-                    <td class="text-center">@pedido.PedidoId</td>
-                    <td class="text-center">@pedido.enderecoOrigem</td>
-                    <td class="text-center">@pedido.enderecoDestino</td>
-                    <td class="text-center">@pedido.Bairro</td>
-                    <td class="text-center">@pedido.Cidade</td>
-                    <td class="text-center">@pedido.distancia</td>
-                    <td class="text-center">@pedido.date</td>
-                    <td class="text-center">@pedido.statuspedido</td>
-                    <td class="text-center">@pedido.EntregadorId</td>
-                    <td class="text-center">@pedido.EntregadorNome</td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+                            <tr>
+                                <td class="text-center">@pedido.PedidoId</td>
+                                <td class="text-center">@pedido.enderecoOrigem</td>
+                                <td class="text-center">@pedido.enderecoDestino</td>
+                                <td class="text-center">@pedido.Bairro</td>
+                                <td class="text-center">@pedido.Cidade</td>
+                                <td class="text-center">@pedido.distancia</td>
+                                <td class="text-center">@pedido.date</td>
+                                <td class="text-center">@pedido.statuspedido</td>
+                                <td class="text-center">@pedido.EntregadorId</td>
+                                <td class="text-center">@pedido.EntregadorNome</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+        <script>
+                                    const connection = new signalR.HubConnectionBuilder().withUrl("/entregadorHub").build();
+                                    connection.on("RecebeParametros",function(Entregador,lojista,Mensagem,pedido){
+                                        console.log(lojista);
+                                         var card = '<div class="card">' +
+                                                    '<h5 class="card-header">Pedido #' + pedido + '</h5>' +
+                                                    '<div class="card-body">' +
+                                                    '<h5 class="card-title">Entregador: ' + Entregador + ' solicitou para fazer a entrega!</h5>' +
+                                                    '<a href="#" class="btn btn-primary">Aceitar</a>' +
+                                                    '<a href="#" class="btn btn-danger">Recusar</a>' +
+                                                    '<a href="#" class="btn btn-info">Entregador</a>'+
+                                                    '</div>' +
+                                                    '</div>';
+        
+                                                $('#solicitacoes').append(card);
+        
+                                           
+                                    });
+
+                                    connection.start()
+                                        .then(() => {
+                                        //pode chamar outro invoke ou fazer qualquer outra logica
+                                        }).catch(error => console.error(error));
+
+                                   //função que adiciona o modelo do comercio na index do comerciante
+                                        $(document).ready(function() {
+                                            $.ajax({
+                                                url: '@Url.Action("GetTipoNegocio","Comerciante",new{area = "Comerciante"})',
+                                                type: 'GET',
+                                                success: function(result) {
+                                                    $('#user-loja').text("Modelo:"+result);
+                                                    console.log("tipo:"+result)
+                                                },
+                                                error: function() {
+                                                    $('#user-loja').text('Erro ao obter tipo de negócio');
+                                                }
+                                            });
+                                        });
+                                    //trás a todos as solicitações desse entregador
+                                           $(document).ready(function() {
+                                            $.ajax({
+                                                url: '@Url.Action("GetTipoNegocio","Comerciante",new{area = "Comerciante"})',
+                                                type: 'GET',
+                                                success: function(result) {
+                                                    $('#user-loja').text("Modelo:"+result);
+                                                    console.log("tipo:"+result)
+                                                },
+                                                error: function() {
+                                                    $('#user-loja').text('Erro ao obter tipo de negócio');
+                                                }
+                                            });
+                                        });
+
+
+                                  connection.on("EntregadoresOnline", function (entregadores) {
+                                        console.log(entregadores)
+
+                                        var list = document.getElementById("Entregadores_On");
+                                        list.innerHTML = "";
+
+                                    entregadores.forEach(function (entregador) {
+                                        var item = document.createElement("li");
+
+                                        var checkbox = document.createElement("input");
+                                        checkbox.type = "checkbox";
+                                        checkbox.value = entregador;
+                                        checkbox.id = "checkbox_" + entregador;
+
+                                        var label = document.createElement("label");
+                                        label.htmlFor = checkbox.id;
+                                        label.appendChild(document.createTextNode(entregador));
+
+                                        item.appendChild(checkbox);
+                                        item.appendChild(label);
+
+                                        list.appendChild(item);
+                                    });
+                                });
+
+        </script>
+    </div>
+    <!-- Exibição dos usuários online -->
+    <div id="delivery-status">
+        <h3>ENTREGADORES ONLINE</h3>
+        <ul id="Entregadores_On"></ul>
+        <p>--------------------------------------------</p>
+        <div id="solicitacoes"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 

@@ -25,6 +25,7 @@ namespace EntregaRapida.Areas.Entregador.Controllers
         {
             List<Pedido> pedidosPendentes = _pedido.Lista_de_Pedidos_Pendentes_Para_Entregador();
             // Envia os pedidos pendentes aos entregadores online
+            ViewData["ContextIdEntregador"] = HttpContext.Connection.Id;
             _hubContext.Clients.Group("EntregadoresOnline").SendAsync("ReceberPedidosPendentes", pedidosPendentes); //SIGNALR
 
             return View();

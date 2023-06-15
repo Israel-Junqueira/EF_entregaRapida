@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntregaRapida.Migrations
 {
     [DbContext(typeof(Banco))]
-    [Migration("20230608153820_models")]
-    partial class models
+    [Migration("20230615191736_Models")]
+    partial class Models
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,6 +135,29 @@ namespace EntregaRapida.Migrations
                     b.HasIndex("LojistaId");
 
                     b.ToTable("Historicos", (string)null);
+                });
+
+            modelBuilder.Entity("EntregaRapida.Models.HubServices.solicitacoes", b =>
+                {
+                    b.Property<int>("solicitacoesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status_Solicitacao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("logistaId")
+                        .HasColumnType("longtext")
+                        .HasColumnName("logistaId");
+
+                    b.Property<int>("pedidoId")
+                        .HasColumnType("int")
+                        .HasColumnName("pedidoId");
+
+                    b.HasKey("solicitacoesId");
+
+                    b.ToTable("solicitacoes", (string)null);
                 });
 
             modelBuilder.Entity("EntregaRapida.Models.Lojista", b =>

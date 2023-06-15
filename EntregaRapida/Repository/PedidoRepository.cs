@@ -55,11 +55,13 @@ namespace EntregaRapida.Repository
 
        
 
-        List<Pedido> IPedido.Lista_de_Pedidos_Do_Lojista(string UserName)
+        List<Pedido> IPedido.Lista_de_Pedidos_Do_Lojista(string UserId)
         {
-            return _context.Pedidos.Where(x => x.statuspedido == Models.Enum.StatusPedido.Pendente || x.statuspedido == Models.Enum.StatusPedido.Preparado ||
-            x.statuspedido == Models.Enum.StatusPedido.Acaminho|| x.statuspedido == Models.Enum.StatusPedido.Paralizado|| x.statuspedido == Models.Enum.StatusPedido.Entregue 
-            && x.LojistaNome == UserName).ToList();
+           // var LojistaId = _context.Lojistas.FirstOrDefault(x => x.Idaspnetuser == UserId);
+
+            return _context.Pedidos.Where(x=> x.ContextId == UserId &&( x.statuspedido == Models.Enum.StatusPedido.Preparado ||
+            x.statuspedido == Models.Enum.StatusPedido.Acaminho || x.statuspedido == Models.Enum.StatusPedido.Paralizado || x.statuspedido == Models.Enum.StatusPedido.Entregue ||
+             x.statuspedido == Models.Enum.StatusPedido.Pendente)).ToList();
         }
     }
 }

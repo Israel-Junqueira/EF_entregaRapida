@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using EntregaRapida.Repository.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using EntregaRapida.Models.ClassHubs;
+using System.Security.Claims;
 
 namespace EntregaRapida.Areas.Comerciante.Controllers
 {
@@ -63,7 +64,7 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
                     LojistaId = pedido.LojistaId,
                     EntregadorId = pedido.EntregadorId,
                     LojistaNome = pedido.LojistaNome,
-                    ContextId = httpcontext.Connection.Id
+                    ContextId = httpcontext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value
                     
                  
 

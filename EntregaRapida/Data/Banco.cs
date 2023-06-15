@@ -6,8 +6,7 @@ using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Security.Claims;
-
-
+using EntregaRapida.Models.HubServices;
 
 namespace EntregaRapida.Data
 {
@@ -27,15 +26,27 @@ namespace EntregaRapida.Data
         public DbSet<Historico>Historicos { get; set; }
         public DbSet<Lojista>Lojistas { get; set; }
         //public DbSet<Notificacao>Notificacoes { get; set; }
-       // public DbSet<Pagamento> pagamentos  { get; set; }
+        // public DbSet<Pagamento> pagamentos  { get; set; }
         public DbSet<Pedido>Pedidos { get; set; }
         public DbSet<Plataforma>Plataformas { get; set; }
        // public DbSet<IdentityUser> IdentityUser { get; set; }
         
-        
+        public DbSet<solicitacoes> Solicitacoes { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
-            
+
+            modelBuilder.Entity<solicitacoes>()
+            .ToTable("solicitacoes")
+            .HasKey(p=>p.solicitacoesId);
+            modelBuilder.Entity<solicitacoes>()
+            .Property(n => n.logistaId)
+            .HasColumnName("logistaId");
+            modelBuilder.Entity<solicitacoes>()
+            .Property(n => n.pedidoId)
+            .HasColumnName("pedidoId");
+            modelBuilder.Entity<solicitacoes>()
+            .Property(n => n.Status_Solicitacao)
+            .HasConversion(v => v.ToString(), v => (Status_Solicitacao)Enum.Parse(typeof(Modalidade), v));
 
             modelBuilder.Entity<Entregador>()
             .ToTable("Entregadores")
@@ -49,10 +60,10 @@ namespace EntregaRapida.Data
             modelBuilder.Entity<Entregador>()
             .Property(n => n.Celular)
             .HasColumnName("Celular");
-             modelBuilder.Entity<Entregador>()
+            modelBuilder.Entity<Entregador>()
             .Property(n => n.DDD)
             .HasColumnName("DDD");
-             modelBuilder.Entity<Entregador>()
+            modelBuilder.Entity<Entregador>()
             .Property(n => n.CNH)
             .HasColumnName("CNH");
             modelBuilder.Entity<Entregador>()

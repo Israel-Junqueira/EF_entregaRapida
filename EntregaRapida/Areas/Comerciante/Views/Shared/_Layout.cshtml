@@ -7,37 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EntregaRapida</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/EntregaRapida.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="~/css/style_Pagina_Lojista.css">
 
 </head>
 <body>
- <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EntregaRapida</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+      <header>
+        <!-- Logo -->
+        <div id="logo" >
+            <a  asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="~/img/logo.png" alt="Logo">
+            </a>
+        </div>
+        <!-- Botão de sair -->
+        <div id="sair">
+            @await Html.PartialAsync("_LoginPartial")
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Entregador" asp-action="Index">IndexEntregador</a>
+                            <a class="btn btn-outline-light" asp-area="" asp-controller="Entregador" asp-action="Index">IndexEntregador</a>
                         </li>
                     </ul>
-                    @await Html.PartialAsync("_LoginPartial")
                 </div>
-            </div>
-        </nav>
+        </div>
+            
     </header>
+          
+            
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
 
-            <h1>Layout</h1>
+           
         </main>
     </div>
+    <footer>
+        <!-- Rodapé -->
+        <div id="rodape1">Rodapé 1</div>
+        <div id="rodape2">Rodapé 2</div>
+        <div id="rodape3">Rodapé 3</div>
+    </footer>
     <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

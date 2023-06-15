@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VK4dESkSu76arhtGIq0bgmP5KbfaQezUZ1PBmuzmRgI=",
+  "Hash": "cFLASdL7CepH9BdOrVOl45a2jOsJXx8FAKnSvagjBzM=",
   "Source": "EntregaRapida",
   "BasePath": "_content/EntregaRapida",
   "Mode": "Default",
@@ -1088,6 +1088,23 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\wwwroot\\css\\style_Pagina_Lojista.css",
+      "SourceId": "EntregaRapida",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\wwwroot\\",
+      "BasePath": "_content/EntregaRapida",
+      "RelativePath": "css/style_Pagina_Lojista.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style_Pagina_Lojista.css"
+    },
+    {
       "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\wwwroot\\favicon.ico",
       "SourceId": "EntregaRapida",
       "SourceType": "Discovered",
@@ -1103,6 +1120,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\wwwroot\\img\\logo.png",
+      "SourceId": "EntregaRapida",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\wwwroot\\",
+      "BasePath": "_content/EntregaRapida",
+      "RelativePath": "img/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\wwwroot\\img\\usuario\\1.jpeg",
+      "SourceId": "EntregaRapida",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\wwwroot\\",
+      "BasePath": "_content/EntregaRapida",
+      "RelativePath": "img/usuario/1.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\usuario\\1.jpeg"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\wwwroot\\js\\site.js",
