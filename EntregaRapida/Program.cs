@@ -29,6 +29,7 @@ builder.Services.AddDbContext<IdentityContext>(options => options.UseMySQL(build
 builder.Services.AddTransient<IEntregadores, EntregadoresRepository>(); //Esse método é usado para adicionar um serviço de tempo de execução transiente ao contêiner de injeção de dependência. Os serviços de tempo de execução transientes são criados cada vez que um consumidor solicita o serviço. Os serviços de tempo de execução transientes são adequados para serviços ligeiramente "pesados" para criar, mas que não necessitam de estado persistente.
 builder.Services.AddTransient<ILojistas, LojistaRepository>();
 builder.Services.AddTransient<IPedido,PedidoRepository>();
+builder.Services.AddTransient<Isolicitacoes, SolicitacoesRepository>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<Banco>();
 //classes de serviço
@@ -89,7 +90,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
            name: "default",
-           pattern: "{controller=Home}/{action=Index}/{id?}");
+           pattern: "{controller=Account}/{action=Login}/{id?}");
     endpoints.MapControllerRoute(
         name: "Entregadores",
         pattern: "Entregador/{controller=Entregador}/{action=Index}/{id?}");

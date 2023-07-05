@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntregaRapida.Migrations
 {
     [DbContext(typeof(Banco))]
-    [Migration("20230615191736_Models")]
+    [Migration("20230626190852_Models")]
     partial class Models
     {
         /// <inheritdoc />
@@ -38,6 +38,10 @@ namespace EntregaRapida.Migrations
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("Celular");
+
+                    b.Property<int>("CorridasIncompletas")
+                        .HasColumnType("int")
+                        .HasColumnName("CorridasIncompletas");
 
                     b.Property<string>("DDD")
                         .IsRequired()
@@ -143,9 +147,21 @@ namespace EntregaRapida.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("CorridasDoEntregador")
+                        .HasColumnType("int")
+                        .HasColumnName("CorridasDoEntregador");
+
+                    b.Property<string>("EntregadorNome")
+                        .HasColumnType("longtext")
+                        .HasColumnName("EntregadorNome");
+
                     b.Property<string>("Status_Solicitacao")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("aspnetuseridEntregador")
+                        .HasColumnType("longtext")
+                        .HasColumnName("aspnetuseridEntregador");
 
                     b.Property<string>("logistaId")
                         .HasColumnType("longtext")

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using System.Security.Claims;
 
 namespace EntregaRapida.Areas.Entregador.Controllers
 {
@@ -17,39 +18,73 @@ namespace EntregaRapida.Areas.Entregador.Controllers
         private readonly UserManager<IdentityUser> _UserManager;
         private readonly IPedido _pedido;
         private readonly IHubContext<UsersHub> _hubContext;
-        public EntregarPedidoController(Banco context,UserManager<IdentityUser> identityUser,IPedido pedido, IHubContext<UsersHub> pedidoHubContext)
+        private readonly Isolicitacoes _isolicitacoes;
+        private readonly IEntregadores _entregadores;
+        public EntregarPedidoController(Banco context,UserManager<IdentityUser> identityUser,IPedido pedido, IHubContext<UsersHub> pedidoHubContext,Isolicitacoes isolicitacoes,IEntregadores entregadores)
         {
+            _entregadores = entregadores;
+            _isolicitacoes = isolicitacoes;
             _context = context;
             _UserManager = identityUser;
             _pedido = pedido;
             _hubContext = pedidoHubContext;
         }
 
-     //   [Route("EntregarPedidoController/Entregar/{IdPedido}")]
-        [HttpPost]
-        public IActionResult Entregar(int IdPedido)
-        {
-            var EntregadorOnline = User.Identity.Name;
-            var IdEntregador = _context.Entregadores.FirstOrDefault(x => x.Nome == EntregadorOnline);
-            _pedido.Adiciona_entregador_ao_Pedido(IdEntregador.EntregadorId,IdPedido);
-            _pedido.Muda_Status_do_Pedido(IdPedido);
-
-          return Json(new {success = true});
-        }
        
-        [Route("EntregarPedidoController/Entregar/{lojistaId}/{pedidoId}")]
+        [Route("EntregarPedidoController/SolicitarEntrega/{lojistaId}/{pedidoId}")]
         [HttpPost]
         public  IActionResult SolicitarEntrega(string lojistaId, int pedidoId)
         {
-            var solicitacao = new Models.HubServices.solicitacoes { logistaId = lojistaId, pedidoId = pedidoId, Status_Solicitacao = Models.Enum.Status_Solicitacao.Pendente};
-            _context.AddAsync(solicitacao);
-            _context.SaveChanges();
+            try
+            {
+                var entregador = User.Identity.Name;
+                var idEntregador = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var verify = _isolicitacoes.IsolicitacoesExists(pedidoId, entregador);
 
-             var entregador =  User.Identity.Name;
+                if (verify == false)
+                {
+                    try
+                    {
+                        var Entregador = _entregadores.GetCorridasIncompletas(idEntregador);
 
-          //  await _hubContext.Clients.Group(comercianteId).SendAsync("ReceberSolicitacaoEntrega", mensagem);
-          //  return RedirectToAction("Index", "Entregador", new { area = "Entregador" });
-            return Json(entregador);
+                        var solicitacao = new solicitacoes
+                        {
+                            logistaId = lojistaId,
+                            pedidoId = pedidoId,
+                            EntregadorNome = User.Identity.Name,
+                            Status_Solicitacao = Models.Enum.Status_Solicitacao.Pendente,
+                            CorridasDoEntregador = Entregador.CorridasIncompletas,
+                            aspnetuseridEntregador = idEntregador
+                        };
+
+
+                        _context.AddAsync(solicitacao);
+                        _context.SaveChanges();
+                        return Json(entregador);
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                   
+                }
+                else
+                {
+                    return new ObjectResult(new { Error = "Você já solicitou uma entrega" })
+                    {
+                        StatusCode = 406
+                    };
+                }
+            }
+            catch (Exception ex )
+            {
+
+                return Json(new { Error = ex.ToString() });
+            }
+          
+            
+            
         }
     }
 }

@@ -31,7 +31,7 @@ namespace EntregaRapida.Data
         public DbSet<Plataforma>Plataformas { get; set; }
        // public DbSet<IdentityUser> IdentityUser { get; set; }
         
-        public DbSet<solicitacoes> Solicitacoes { get; set; }
+        public DbSet<solicitacoes> solicitacoes { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder){
 
@@ -45,12 +45,23 @@ namespace EntregaRapida.Data
             .Property(n => n.pedidoId)
             .HasColumnName("pedidoId");
             modelBuilder.Entity<solicitacoes>()
+            .Property(n => n.EntregadorNome)
+            .HasColumnName("EntregadorNome");
+            modelBuilder.Entity<solicitacoes>()
             .Property(n => n.Status_Solicitacao)
-            .HasConversion(v => v.ToString(), v => (Status_Solicitacao)Enum.Parse(typeof(Modalidade), v));
-
+            .HasConversion(v => v.ToString(), v => (Status_Solicitacao)Enum.Parse(typeof(Status_Solicitacao), v));
+            modelBuilder.Entity<solicitacoes>()
+            .Property(n => n.CorridasDoEntregador)
+            .HasColumnName("CorridasDoEntregador");
+            modelBuilder.Entity<solicitacoes>()
+            .Property(n => n.aspnetuseridEntregador)
+            .HasColumnName("aspnetuseridEntregador");
             modelBuilder.Entity<Entregador>()
             .ToTable("Entregadores")
-            .HasKey(p => p.EntregadorId);   
+            .HasKey(p => p.EntregadorId);
+            modelBuilder.Entity<Entregador>()
+            .Property(n => n.CorridasIncompletas)
+            .HasColumnName("CorridasIncompletas");
             modelBuilder.Entity<Entregador>()
             .Property(n => n.Nome)
             .HasColumnName("Nome");

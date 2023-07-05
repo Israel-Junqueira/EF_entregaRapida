@@ -66,7 +66,7 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
                     LojistaNome = pedido.LojistaNome,
                     ContextId = httpcontext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value
                     
-                 
+                  
 
                 };
 

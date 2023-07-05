@@ -4,12 +4,13 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> Usermaneger;
 
+<!--Verifica se tem alguem logado-->
 @if (User.Identity.IsAuthenticated)
 {
-    <form asp-area="" asp-controller="Login" asp-action="Logout" method="post" class="navbar-left">
-        <ul class ="nav navbar-brand navbar-lef">
-            <button type="submit" style="width:auto" class="nav-link btn btn-link py-0">
-                    Sair : @User.Identity.Name
+    <form asp-controller="Login" asp-action="Logout" method="post" class="navbar-left">
+        <ul class ="nav navbar-nav navbar-lef">
+            <button type="submit" style="color:black" class="nav-link btn btn-link py-0">
+                    Sair 
             </button>
         </ul>
      </form>
@@ -20,26 +21,28 @@
         <a class="nav-link btn btn-link py-0" asp-controller="Account" asp-action="Register" style="color:black">Registro</a>
     </ul>
 }
+<!--Verifica qual a identidade do cara logado lojissta ou Entregador-->
 @if (User.Identity.IsAuthenticated)
 {
       var usuario = await Usermaneger.FindByNameAsync(User.Identity.Name);
       var roles = await Usermaneger.GetRolesAsync(usuario);
    
   
-    if(roles.Contains("Lojista")){
-       <ul class ="nav navbar-brand navbar-right">
-       <a class="nav-link btn btn-link py-0" style="width:auto" asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante" >
-        Logística
-       </a>
-       </ul>
-        }else if (roles.Contains("Entregador")){
-         <a class="nav-link btn btn-link py-0" style="width:auto" asp-controller="Entregador" asp-action="Index" asp-area="Entregador" >
-        Delivery
-       </a>
-       }else 
+    if(roles.Contains("Lojista"))
        {
-        
-       };
+       <ul class ="nav navbar-nav navbar-right">
+           <a class="nav-link btn btn-link py-0" style="color:black" asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante" >
+            Logística
+           </a>
+       </ul>
+        }else if (roles.Contains("Entregador"))
+        {
+        <ul class ="nav navbar-nav navbar-right">
+            <a class="nav-link btn btn-link py-0" style="color:black" asp-controller="Entregador" asp-action="Index" asp-area="Entregador" >
+               Delivery
+            </a>
+        </ul>
+        }
 
 }
 

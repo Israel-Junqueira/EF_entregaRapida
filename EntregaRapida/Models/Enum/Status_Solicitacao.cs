@@ -4,6 +4,6 @@
     {
         Pendente,
         Aceito,
-        Negado 
+        Negado,
     }
 }

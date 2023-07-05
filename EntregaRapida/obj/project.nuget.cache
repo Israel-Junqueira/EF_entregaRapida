@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vkRBa8giTvgJnZdGxgr6eFTRJB2Tuq82/9v2SkaABwLfn/IEzQnbsFIQUCEBvmnxr9UaCNo+Co+6x3u591tthA==",
+  "dgSpecHash": "6JoYQyn3voUeIZqbE3aJ/ftNplAZiwzL8J5QpqxwAnbqs2EyaHihMUE0ElECExxtJfAGFQ2Z9wB2MurOjW1IMQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\EntregaRapida.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

@@ -18,34 +18,40 @@ namespace EntregaRapida.Repository
 
         public void Adiciona_entregador_ao_Pedido(int entregadorId,int pedidoId)
         {
-            var Pedido = _context.Pedidos.FirstOrDefault(x => x.PedidoId == pedidoId);
-            var Entregador = _context.Entregadores.FirstOrDefault(x => x.EntregadorId == entregadorId);
-            if (Pedido == null)
+            try
+            {
+                var Pedido = _context.Pedidos.FirstOrDefault(x => x.PedidoId == pedidoId);
+                var Entregador = _context.Entregadores.FirstOrDefault(x => x.EntregadorId == entregadorId);
+
+                Pedido.EntregadorId = entregadorId;
+                Pedido.EntregadorNome = Entregador.Nome;
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
             {
 
+                throw ex;
             }
-            else
-            {
-                Pedido.EntregadorId = entregadorId;
-                Pedido.EntregadorNome = Entregador.Nome; 
-                _context.SaveChanges();
-              
-            }
+          
+            
             
         }
         public void Muda_Status_do_Pedido(int pedidoId)
         {
-            var Pedido = _context.Pedidos.FirstOrDefault(x => x.PedidoId == pedidoId);
-            if(Pedido == null)
-            {
 
-            }
-            else
+            try
             {
-
+                var Pedido = _context.Pedidos.FirstOrDefault(x => x.PedidoId == pedidoId);
                 Pedido.statuspedido = Models.Enum.StatusPedido.Preparado;
                 _context.SaveChanges();
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+         
+          
         }
 
         public List<Pedido> Lista_de_Pedidos_Pendentes_Para_Entregador()

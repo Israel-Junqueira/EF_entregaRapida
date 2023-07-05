@@ -4,6 +4,7 @@
     "\\Areas",
     "\\Areas\\Comerciante",
     "\\Areas\\Comerciante\\Controllers",
+    "\\Data",
     "\\Models",
     "\\Models\\Enum",
     "\\Repository",

@@ -1,14 +1,14 @@
 ﻿@using EntregaRapida.Models
 @using EntregaRapida.Models.Enum
-@model List<Pedido> 
+@model List<Pedido>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" />
-  <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Historico de Entregas</a>
-  <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Meus Dados</a>
+<a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Historico de Entregas</a>
+<a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Meus Dados</a>
 
 
 
@@ -17,6 +17,31 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var connection = new signalR.HubConnectionBuilder().withUrl("/entregadorHub").build();
+
+        connection.on("solicitacaoAceita",function(mensagem){
+            Swal.fire({
+              title: 'Solicitação Aceita!',
+              text: mensagem,
+              imageUrl: 'https://www.androidplanet.nl/wp-content/uploads/2022/08/google-maps-android-tips-uitgelicht.jpg',
+              imageWidth: 500,
+              imageHeight: 200,
+              imageAlt: 'Custom image',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Sim'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Iniciando corrida !!',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              }
+            });
+        });
 
         connection.on("ReceberPedido", function (pedido) {
 
@@ -35,12 +60,12 @@
             var cardTitle = document.createElement("h5");
             cardTitle.classList.add("card-title");
             cardTitle.textContent = pedido.descricao;
-            
+
             //nome Lojista
             var LojistaNome = document.createElement("h5");
             LojistaNome.classList.add("card-text");
             LojistaNome.textContent = "Comerciante: " + pedido.lojistaNome;
-            
+
             //Endereço do cliente
             var enderecoDestino = document.createElement("h5");
             enderecoDestino.classList.add("card-text");
@@ -53,7 +78,7 @@
             var distancia = document.createElement("h5");
             distancia.classList.add("card-text");
             distancia.textContent = pedido.distancia+"Km";
-            
+
 
             var controller = "EntregarPedidoController"
             var action = "Entregar"
@@ -69,47 +94,52 @@
 
             btnEntregar.onclick = function() {
                 atribuirEntregadorAoPedido(pedido.pedidoId,pedido.contextId);
-               
+
             };
-      
-            function atribuirEntregadorAoPedido(pedidoId,contextId){
-                $.ajax({
-                    
-                            url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", pedidoId = "__pedidoId__",lojistaId = "__lojistaId__" })'.replace('__pedidoId__', pedidoId).replace('__lojistaId__', contextId),
-                            type: 'POST',
-                            success: function (result) {
-                                // Lógica para tratar a resposta do servidor, se necessário
-                                // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
-                                console.log(result +"result")
-                                    var pedidoId= pedido.pedidoId;
-                                    var entregador = result;
-                                    var msg ="Entregador "+ entregador + "Solicitou a entrega do Pedido: #"+pedidoId;
-                                    var lojistacontextId = pedido.contextId;
 
-                                     console.log( pedidoId + " Id do pedido");
-                                     console.log( entregador + " nome do entregador");
-                                     console.log( msg);
-                                     console.log( lojistacontextId + "Id do lojista");
+             function atribuirEntregadorAoPedido(pedidoId, contextId) {
+                  $.ajax({
+                    url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", pedidoId = "__pedidoId__",lojistaId = "__lojistaId__" })'.replace('__pedidoId__', pedidoId).replace('__lojistaId__', contextId),
+                    type: 'POST',
+                    success: function(result) {
+                      // Lógica para tratar a resposta do servidor, se necessário
+                      // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
+                      console.log(result);
+                      var pedidoId = pedido.pedidoId;
+                      var entregador = result;
+                      var msg = "Entregador " + entregador + " solicitou a entrega do Pedido: #" + pedidoId;
+                      var lojistacontextId = pedido.contextId;
 
-                                     connection.invoke("EnviarSolicitacaoEntrega",entregador,lojistacontextId,msg,pedidoId);
-                              
-                                            console.log(result)
+                      console.log(typeof pedidoId);
+                      console.log(pedidoId + " Id do pedido");
+                      console.log("Nome do zé ruela: " + entregador);
+                      console.log(msg);
+                      console.log(lojistacontextId + " Id do lojista");
+                      connection.invoke("EnviarSolicitacaoEntrega", entregador, lojistacontextId, msg, pedidoId);
 
-                                Swal.fire({
-                                title: 'Solicitação de entrega enviada!',
-                                text: 'Aguarde o comerciante confirmar',
-                                icon: 'warning',
-                                confirmButtonText: 'OK'
-                              }).then(function() {
-                                     
-                            //faz alguma coisa ao clicar em ok
-                              });
-                                                        },
-                            error: function (xhr, status, error) {
-                                // Lógica para tratar erros de requisição, se necessário
-                            }
+                      Swal.fire({
+                        title: 'Solicitação de entrega enviada!',
+                        text: 'Aguarde o comerciante confirmar',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                      }).then(function() {
+                        //location.reload(true); //da um refreshe na pagina
+                      });
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr.status);
+                      if (xhr.status === 406) {
+                        Swal.fire({
+                          title: 'Você já solicitou a entrega!',
+                          text: 'Sua solicitação já chegou ao comerciante. Aguarde até que ele aceite.',
+                          icon: 'warning',
+                          confirmButtonColor: '#3085d6',
+                          confirmButtonText: 'OK'
                         });
-            };
+                     }
+                     }
+                  });
+                };
 
 
             cardBody.appendChild(cardTitle);
@@ -125,7 +155,7 @@
             var data = moment(datamodel).format("DD/MM/YYYY");
             var datahora = moment(pedido.date).hour();
             var hora = moment(pedido.date).format("HH:mm");
-               
+
 
                 if (datahora >= 6 && datahora < 12  ){
                 cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Manhã";
@@ -139,14 +169,14 @@
                 else{
                     cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " Horario invalido! ";
                 }
-            
+
 
             card.appendChild(cardHeader);
             card.appendChild(cardBody);
             card.appendChild(cardFooter);
 
             container.appendChild(card);
-           
+
         });
 
         connection.on("ReceberPedidosPendentes", function (pedidosPendentes) {
@@ -155,7 +185,7 @@
             container.innerHTML = ""; // Limpar o conteúdo anterior
 
             pedidosPendentes.forEach(function (pedido) {
-           
+
 
                 var card = document.createElement("div");
                 card.classList.add("card", "text-center", "mt-4");
@@ -203,49 +233,54 @@
                 console.log(pedido.pedidoId);
                 btnEntregar.onclick = function() {
                 atribuirEntregadorAoPedido(pedido.pedidoId,pedido.contextId);
-    
+
             };
 
-          
-            function atribuirEntregadorAoPedido(pedidoId,contextId){
-                $.ajax({
-                    
-                            url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", pedidoId = "__pedidoId__",lojistaId = "__lojistaId__" })'.replace('__pedidoId__', pedidoId).replace('__lojistaId__', contextId),
-                            type: 'POST',
-                            success: function (result) {
-                                // Lógica para tratar a resposta do servidor, se necessário
-                                // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
-                                console.log(result)
+            //solicita entrega
+                  function atribuirEntregadorAoPedido(pedidoId, contextId) {
+                  $.ajax({
+                    url: '@Url.Action("SolicitarEntrega", "EntregarPedido", new { area = "Entregador", pedidoId = "__pedidoId__",lojistaId = "__lojistaId__" })'.replace('__pedidoId__', pedidoId).replace('__lojistaId__', contextId),
+                    type: 'POST',
+                    success: function(result) {
+                      // Lógica para tratar a resposta do servidor, se necessário
+                      // Por exemplo, atualizar a página ou exibir uma mensagem de sucesso
+                      console.log(result);
+                      var pedidoId = pedido.pedidoId;
+                      var entregador = result;
+                      var msg = "Entregador " + entregador + " solicitou a entrega do Pedido: #" + pedidoId;
+                      var lojistacontextId = pedido.contextId;
 
-                                    var pedidoId= pedido.pedidoId;
-                                    var entregador = result;
-                                    var msg ="Entregador "+ entregador + "Solicitou a entrega do Pedido: #"+pedidoId;
-                                    var lojistacontextId = pedido.contextId;
+                      console.log(typeof pedidoId);
+                      console.log(pedidoId + " Id do pedido");
+                      console.log("Nome do zé ruela: " + entregador);
+                      console.log(msg);
+                      console.log(lojistacontextId + " Id do lojista");
+                      connection.invoke("EnviarSolicitacaoEntrega", entregador, lojistacontextId, msg, pedidoId);
 
-                                     console.log(typeof pedidoId)
-                                     console.log( pedidoId + " Id do pedido");
-                                     console.log("Nome do zé ruela:" + entregador );
-                                     console.log( msg);
-                                     console.log( lojistacontextId + " Id do lojista");
-                                     connection.invoke("EnviarSolicitacaoEntrega",entregador,lojistacontextId,msg,pedidoId);
-
-                                Swal.fire({
-                                title: 'Solicitação de entrega enviada!',
-                                text: 'Aguarde o comerciante confirmar',
-                                icon: 'warning',
-                                confirmButtonText: 'OK'
-                              }).then(function() {
-
-                                
-                               
-                                 //location.reload(true); //da um refreshe na pagina
-                              });
-                                                        },
-                            error: function (xhr, status, error) {
-                                // Lógica para tratar erros de requisição, se necessário
-                            }
+                      Swal.fire({
+                        title: 'Solicitação de entrega enviada!',
+                        text: 'Aguarde o comerciante confirmar',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                      }).then(function() {
+                        //location.reload(true); //da um refreshe na pagina
+                      });
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr.status);
+                      if (xhr.status === 406) {
+                        Swal.fire({
+                          title: 'Você já solicitou a entrega!',
+                          text: 'Sua solicitação já chegou ao comerciante. Aguarde até que ele aceite.',
+                          icon: 'warning',
+                          confirmButtonColor: '#3085d6',
+                          confirmButtonText: 'OK'
                         });
-            };
+                     }
+                     }
+                  });
+                };
+
 
 
 
@@ -254,13 +289,13 @@
                 cardFooter.classList.add("card-footer", "text-muted");
 
                 var datamodel = pedido.date;
-              
+
                 var data = moment(datamodel).format("DD/MM/YYYY");
-               
+
                 var datahora = moment(pedido.date).hour();
-              
+
                 var hora = moment(pedido.date).format("HH:mm");
-               
+
 
                 if (datahora >= 6 && datahora < 12  ){
                 cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " da Manhã";
@@ -274,37 +309,33 @@
                 else{
                     cardFooter.textContent = "Data: "+ data + " | Horario de lançamento "+ hora + " Horario invalido! ";
                 }
-                
+
                 //Titulo Pedido
                 cardBody.appendChild(cardTitle);
                 //Nome do lojista
                 cardBody.appendChild(lojistaNome);
                 //Endereço do cliente
                 cardBody.appendChild(endDestino);
-                //Endereço do lojista                
+                //Endereço do lojista
                 cardBody.appendChild(endOrigem);
                 //distancia
                 cardBody.appendChild(distancia);
                 //botao
                 cardBody.appendChild(btnEntregar);
-                
-
-           
-
                 card.appendChild(cardHeader);
                 card.appendChild(cardBody);
                 card.appendChild(cardFooter);
 
                 container.appendChild(card);
 
-               window.scrollTo(0, document.body.scrollHeight);
+              // window.scrollTo(0, document.body.scrollHeight);
             });
         });
 
         connection.start().then(function () {
             connection.invoke("ObterPedidosPendentes");
-            
-            
+
+
         }).catch(function (err) {
             console.error(err.toString());
         });

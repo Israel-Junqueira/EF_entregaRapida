@@ -36,6 +36,9 @@ namespace EntregaRapida.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     logistaId = table.Column<string>(type: "longtext", nullable: true),
                     pedidoId = table.Column<int>(type: "int", nullable: false),
+                    EntregadorNome = table.Column<string>(type: "longtext", nullable: true),
+                    CorridasDoEntregador = table.Column<int>(type: "int", nullable: false),
+                    aspnetuseridEntregador = table.Column<string>(type: "longtext", nullable: true),
                     Status_Solicitacao = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
@@ -53,6 +56,7 @@ namespace EntregaRapida.Migrations
                     Idaspnetuser = table.Column<string>(type: "longtext", nullable: true),
                     PlataformaId = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "longtext", nullable: false),
+                    CorridasIncompletas = table.Column<int>(type: "int", nullable: false),
                     StatusEntregador = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     Endereco = table.Column<string>(type: "longtext", nullable: false),
                     DDD = table.Column<string>(type: "varchar(3)", maxLength: 3, nullable: false),

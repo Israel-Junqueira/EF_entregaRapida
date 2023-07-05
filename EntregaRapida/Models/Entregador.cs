@@ -17,6 +17,7 @@ namespace EntregaRapida.Models
         private string _CNH ;
         private int _pontuacao;
         private int _numeroEntrega;
+        private int _corridasIncompletas;
         //chaves estrangeitas
         [EnumDataType(typeof(Veiculo))] //1:1 OK
         private Veiculo _veiculo { get; set; }
@@ -24,9 +25,9 @@ namespace EntregaRapida.Models
         private Modalidade _modalidade { get; set; }
         public string Idaspnetuser { get; set; }
         public int PlataformaId { get; set; }
+
         //Relacionamento
         public Plataforma plataforma; //N:1 ok
-
         public virtual List<Avaliacao> avaliacao { get; set; }//1:N  falta fazer
         public virtual List<Historico> historico { get; set; } //1:N  ok
         public virtual List<Pedido> pedido { get; set; }//1:N  ok
@@ -53,6 +54,12 @@ namespace EntregaRapida.Models
         {
             get { return _nome; }
             set { _nome = value; }
+        }
+
+        public int CorridasIncompletas
+        {
+            get { return _corridasIncompletas; }
+            set { _corridasIncompletas= value; }
         }
    
         public bool StatusEntregador

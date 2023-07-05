@@ -1,4 +1,5 @@
-﻿using EntregaRapida.Models.Enum;
+﻿using EntregaRapida.Data;
+using EntregaRapida.Models.Enum;
 using EntregaRapida.Repository.Interfaces;
 using EntregaRapida.Services;
 using Microsoft.AspNetCore.Identity;
@@ -15,8 +16,10 @@ namespace EntregaRapida.Models.ClassHubs
         private readonly IPedido _pedido;
         private readonly ComercianteService _comercianteService;
         private readonly UserManager<IdentityUser> _usermaneger;
-        public UsersHub(IHubContext<UsersHub> hubContext, IMemoryCache cache,IPedido pedido, ComercianteService comerciante, UserManager<IdentityUser> usermaneger)
+        private readonly Banco _banco;
+        public UsersHub(IHubContext<UsersHub> hubContext, IMemoryCache cache,IPedido pedido, ComercianteService comerciante, UserManager<IdentityUser> usermaneger,Banco banco)
         {
+            _banco = banco;
             _hubContext = hubContext;
             _cache = cache;
             _pedido = pedido;
@@ -90,15 +93,33 @@ namespace EntregaRapida.Models.ClassHubs
           
         }
 
+        public async Task AvisaEntregadorPedidoAceito(string idEntregador, int idPedido)
+        {
+            string mensagem = $"Solicitação do pedido[{idPedido}] foi aceita, Iniciar Corrida com google maps ?";
+             await Clients.User(idEntregador).SendAsync("solicitacaoAceita", mensagem);
+        }
+
         public async Task ReceberPedido(Pedido pedido)
         {
             await Clients.Group("EntregadoresOnline").SendAsync("ReceberPedido", pedido);
-       }
+        }
 
      
         public async Task EnviarSolicitacaoEntrega(string Entregador, string lojista, string mensagem, int pedidoId)
         {
-            await Clients.User(lojista).SendAsync("RecebeParametros", Entregador, lojista, mensagem, pedidoId);
+            try
+            {
+                var solicitacao = _banco.solicitacoes.FirstOrDefault(x => x.EntregadorNome == Entregador && x.pedidoId == pedidoId);
+                await Clients.User(lojista).SendAsync("RecebeParametros", Entregador, lojista, mensagem, pedidoId, solicitacao);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+
+           
         }
     }
 }

@@ -206,83 +206,152 @@
 
 
         <script>
-                                    const connection = new signalR.HubConnectionBuilder().withUrl("/entregadorHub").build();
-                                    connection.on("RecebeParametros",function(Entregador,lojista,Mensagem,pedido){
-                                        console.log(lojista);
-                                         var card = '<div class="card">' +
-                                                    '<h5 class="card-header">Pedido #' + pedido + '</h5>' +
-                                                    '<div class="card-body">' +
-                                                    '<h5 class="card-title">Entregador: ' + Entregador + ' solicitou para fazer a entrega!</h5>' +
-                                                    '<a href="#" class="btn btn-primary">Aceitar</a>' +
-                                                    '<a href="#" class="btn btn-danger">Recusar</a>' +
-                                                    '<a href="#" class="btn btn-info">Entregador</a>'+
-                                                    '</div>' +
-                                                    '</div>';
-        
-                                                $('#solicitacoes').append(card);
-        
-                                           
-                                    });
+                const connection = new signalR.HubConnectionBuilder().withUrl("/entregadorHub").build();
+                connection.on("RecebeParametros",function(Entregador,lojista,Mensagem,pedido,solicitacao){
+                    console.log(lojista);
+                    console.log(Mensagem);
+                    console.log(solicitacao);
+                     var card = '<div class="card">' +
+                                        '<h5 class="card-header">Pedido #' + pedido + '</h5>' +
+                                        '<div class="card-body">' +
+                                        '<h5 class="card-title">Entregador ' + Entregador + ' solicitou para fazer a entrega do pedido ' +pedido+ '.</br>'+Entregador+' está com ['+solicitacao.corridasDoEntregador+'] entregas em andamento antes da sua. </h5>' +
+                                        '<a href="/Entregador/EntregarPedidoController/Entregar/' + pedido + '/' + Entregador + '" class="btn btn-primary btn-aceitar">Aceitar</a>' +
+                                        '<a href="#" class="btn btn-danger">Recusar</a>' +
+                                        '<a href="#" class="btn btn-info">Entregador</a>'+
+                                        '</div>' +
+                                        '</div>';
 
-                                    connection.start()
-                                        .then(() => {
-                                        //pode chamar outro invoke ou fazer qualquer outra logica
-                                        }).catch(error => console.error(error));
+                                    $('#solicitacoes').append(card);
+                             });
 
-                                   //função que adiciona o modelo do comercio na index do comerciante
-                                        $(document).ready(function() {
+                                       $('#solicitacoes').on('click', '.btn-aceitar', function(e) {
+                                            e.preventDefault();
+
+                                            // Obtenha os dados necessários do botão (por exemplo, ID do pedido, nome do entregador)
+                                            var PedidoHref = $(this).attr('href');
+                                            var PedidoId = PedidoHref.split('/')[4];
+                                            var idPedido = PedidoId;
+                                            var entregadorNome = $(this).attr('href').split('/').pop();
+                                            console.log(idPedido)
+                                            console.log(entregadorNome)
+
+                                            // Faça uma chamada AJAX para a ação correta no controlador adequado
+                                            //essa chama quando o servidor ainda nao fez o carregamento da pagina
                                             $.ajax({
-                                                url: '@Url.Action("GetTipoNegocio","Comerciante",new{area = "Comerciante"})',
-                                                type: 'GET',
-                                                success: function(result) {
-                                                    $('#user-loja').text("Modelo:"+result);
-                                                    console.log("tipo:"+result)
+                                                url: '@Url.Action("Acceptrequest", "Comerciante", new { area = "Comerciante", IdPedido = "__IdPedido__",EntregadorNome = "__EntregadorNome__" })'.replace('__IdPedido__', idPedido).replace('__EntregadorNome__', entregadorNome),
+                                                type: 'POST',
+                                                success: function(retorno) {
+                                                     location.reload(true); 
+                                                      connection.invoke("AvisaEntregadorPedidoAceito",retorno.idEntregador,retorno.idPedido);
+                                                      connection.invoke("ObterPedidosPendentes");
+                                                      
                                                 },
                                                 error: function() {
-                                                    $('#user-loja').text('Erro ao obter tipo de negócio');
-                                                }
-                                            });
-                                        });
-                                    //trás a todos as solicitações desse entregador
-                                           $(document).ready(function() {
-                                            $.ajax({
-                                                url: '@Url.Action("GetTipoNegocio","Comerciante",new{area = "Comerciante"})',
-                                                type: 'GET',
-                                                success: function(result) {
-                                                    $('#user-loja').text("Modelo:"+result);
-                                                    console.log("tipo:"+result)
-                                                },
-                                                error: function() {
-                                                    $('#user-loja').text('Erro ao obter tipo de negócio');
+                                                    // Trate erros, se houver
                                                 }
                                             });
                                         });
 
+                connection.start()
+                    .then(() => {
+                    //pode chamar outro invoke ou fazer qualquer outra logica
+                    }).catch(error => console.error(error));
 
-                                  connection.on("EntregadoresOnline", function (entregadores) {
-                                        console.log(entregadores)
+               //função que adiciona o modelo do comercio na index do comerciante
+                    $(document).ready(function() {
+                        $.ajax({
+                            url: '@Url.Action("GetTipoNegocio","Comerciante",new{area = "Comerciante"})',
+                            type: 'GET',
+                            success: function(result) {
+                                $('#user-loja').text("Modelo:"+result);
+                                console.log("tipo:"+result)
+                            },
+                            error: function() {
+                                $('#user-loja').text('Erro ao obter tipo de negócio');
+                            }
+                        });
+                    });
+                //trás a todos as solicitações desse entregador
+                       $(document).ready(function() {
+                            $.ajax({
+                                url: '@Url.Action("GetSolicitacoes","ComercianteController",new{area = "Comerciante"})',
+                                type: 'GET',
+                                success: function(solicitacoes) {
+                                    $.each(solicitacoes, function(index,solicitacao) {
+                                     //   console.log(solicitacao)
+                                    var card = '<div class="card">' +
+                                        '<h5 class="card-header">Pedido #' + solicitacao.pedidoId + '</h5>' +
+                                        '<div class="card-body">' +
+                                        '<h5 class="card-title">Entregador ' + solicitacao.entregadorNome + ' solicitou para fazer a entrega do pedido ' +solicitacao.pedidoId+ '.</br>'+solicitacao.entregadorNome+' está com [' +solicitacao.corridasDoEntregador+'] entregas em andamento antes da sua. </h5>' +
+                                        '<a href="/Entregador/EntregarPedidoController/Entregar/' + solicitacao.pedidoId + '/' + solicitacao.entregadorNome + '" class="btn btn-primary btn-aceitar">Aceitar</a>' +
+                                        '<a href="#" class="btn btn-danger">Recusar</a>' +
+                                        '<a href="#" class="btn btn-info">Entregador</a>'+
+                                        '</div>' +
+                                        '</div>';
 
-                                        var list = document.getElementById("Entregadores_On");
-                                        list.innerHTML = "";
-
-                                    entregadores.forEach(function (entregador) {
-                                        var item = document.createElement("li");
-
-                                        var checkbox = document.createElement("input");
-                                        checkbox.type = "checkbox";
-                                        checkbox.value = entregador;
-                                        checkbox.id = "checkbox_" + entregador;
-
-                                        var label = document.createElement("label");
-                                        label.htmlFor = checkbox.id;
-                                        label.appendChild(document.createTextNode(entregador));
-
-                                        item.appendChild(checkbox);
-                                        item.appendChild(label);
-
-                                        list.appendChild(item);
+                                    $('#solicitacoes').append(card);
                                     });
-                                });
+
+                                       $('#solicitacoes').on('click', '.btn-aceitar', function(e) {
+                                            e.preventDefault();
+
+                                            // Obtenha os dados necessários do botão (por exemplo, ID do pedido, nome do entregador)
+                                            var PedidoHref = $(this).attr('href');
+                                            var PedidoId = PedidoHref.split('/')[4];
+                                            var idPedido = PedidoId;
+                                            var entregadorNome = $(this).attr('href').split('/').pop();
+                                            console.log(idPedido)
+                                            console.log(entregadorNome)
+
+                                            // Faça uma chamada AJAX para a ação correta no controlador adequado
+                                            $.ajax({
+                                                url: '@Url.Action("Acceptrequest", "Comerciante", new { area = "Comerciante", IdPedido = "__IdPedido__",EntregadorNome = "__EntregadorNome__" })'.replace('__IdPedido__', idPedido).replace('__EntregadorNome__', entregadorNome),
+                                                type: 'POST',
+                                                success: function(retorno) {
+                                                    location.reload(true);
+                                                      connection.invoke("AvisaEntregadorPedidoAceito",retorno.idEntregador,retorno.idPedido);
+                                                      connection.invoke("ObterPedidosPendentes");
+                                                },
+                                                error: function() {
+                                                    // Trate erros, se houver
+                                                }
+                                            });
+                                        });
+
+                                        // Adicione manipuladores de evento para os outros botões (Recusar, Entregador) da mesma maneira, se necessário.
+
+                                },
+                                error: function() {
+                                    $('#user-loja').text('Erro ao obter tipo de negócio');
+                                }
+                            });
+                    });
+
+                    //cria a lista do entregadores logados
+               connection.on("EntregadoresOnline", function (entregadores) {
+                    console.log(entregadores)
+
+                    var list = document.getElementById("Entregadores_On");
+                    list.innerHTML = "";
+
+                entregadores.forEach(function (entregador) {
+                    var item = document.createElement("li");
+
+                    var checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.value = entregador;
+                    checkbox.id = "checkbox_" + entregador;
+
+                    var label = document.createElement("label");
+                    label.htmlFor = checkbox.id;
+                    label.appendChild(document.createTextNode(entregador));
+
+                    item.appendChild(checkbox);
+                    item.appendChild(label);
+
+                    list.appendChild(item);
+                });
+            });
 
         </script>
     </div>
