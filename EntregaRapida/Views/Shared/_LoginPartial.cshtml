@@ -4,45 +4,55 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> Usermaneger;
 
-<!--Verifica se tem alguem logado-->
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/style_Configuracoes_estilo_da_pagina.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+
+<!-- Verifica se tem alguém logado -->
 @if (User.Identity.IsAuthenticated)
 {
     <form asp-controller="Login" asp-action="Logout" method="post" class="navbar-left">
-        <ul class ="nav navbar-nav navbar-lef">
-            <button type="submit" style="color:black" class="nav-link btn btn-link py-0">
-                    Sair 
+      <div class="d-flex align-items-center justify-content-center">
+        <ul class="nav navbar-nav navbar-left">
+            <button type="submit" style="color:black;font-size:20px" class=" nav-link btn btn-link py-0 custom-button col-sm-auto">
+                Desconectar
             </button>
         </ul>
-     </form>
-}else
+        </div>
+    </form>
+}
+else
 {
     <ul class="nav navbar-nav navbar-left">
-        <a class="nav-link btn btn-link py-0" asp-controller="Account" asp-action="Login" style="color:black">Login</a>
-        <a class="nav-link btn btn-link py-0" asp-controller="Account" asp-action="Register" style="color:black">Registro</a>
+        <a class="nav-link btn btn-link py-0" asp-controller="Account" asp-action="Login" style="color:black;font-size:20px">Login</a>
+        <a class="nav-link btn btn-link py-0" asp-controller="Account" asp-action="Register" style="color:black;font-size:20px">Registro</a>
     </ul>
 }
-<!--Verifica qual a identidade do cara logado lojissta ou Entregador-->
+
+<!-- Verifica qual a identidade do cara logado, lojista ou entregador -->
 @if (User.Identity.IsAuthenticated)
 {
-      var usuario = await Usermaneger.FindByNameAsync(User.Identity.Name);
-      var roles = await Usermaneger.GetRolesAsync(usuario);
-   
-  
-    if(roles.Contains("Lojista"))
-       {
-       <ul class ="nav navbar-nav navbar-right">
-           <a class="nav-link btn btn-link py-0" style="color:black" asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante" >
-            Logística
-           </a>
-       </ul>
-        }else if (roles.Contains("Entregador"))
-        {
-        <ul class ="nav navbar-nav navbar-right">
-            <a class="nav-link btn btn-link py-0" style="color:black" asp-controller="Entregador" asp-action="Index" asp-area="Entregador" >
-               Delivery
-            </a>
-        </ul>
-        }
-
+    var usuario = await Usermaneger.FindByNameAsync(User.Identity.Name);
+    var roles = await Usermaneger.GetRolesAsync(usuario);
+    if (roles.Contains("Lojista"))
+    {
+        <div class="d-flex align-items-center justify-content-center">
+            <ul class="nav navbar-nav navbar-right">
+                <a class="nav-link py-0" style="color:black;font-size:20px" asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante">
+                    <i class="bi bi-truck"></i> Logística
+                </a>
+            </ul>
+        </div>
+    }
+    else if (roles.Contains("Entregador"))
+    {
+        <div class="d-flex align-items-center justify-content-center">
+            <ul class="nav navbar-nav navbar-left">
+                <a class="nav-link btn btn-link py-0 custom-button col-sm-auto" style="color:black;font-size:20px" asp-controller="Entregador" asp-action="Index" asp-area="Entregador">
+                    <i class="bi bi-bag-check"></i> Delivery
+                </a>
+            </ul>
+        </div>
+    }
 }
-

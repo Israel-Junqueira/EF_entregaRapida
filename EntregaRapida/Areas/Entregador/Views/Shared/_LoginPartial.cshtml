@@ -6,40 +6,13 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <form asp-area="" asp-controller="Login" asp-action="Logout" method="post" class="navbar-left">
-        <ul class ="nav navbar-brand navbar-lef">
-            <button type="submit" style="width:auto" class="nav-link btn btn-link py-0">
-                    Sair : @User.Identity.Name
+     
+    <form  asp-controller="Login" asp-action="Logout" method="post" class="navbar-left">
+        <ul class ="nav navbar-nav navbar-lef">
+            <button type="submit" style="color:black; font-size:20px" class="nav-link btn btn-link py-0" >
+                    Desconectar
             </button>
         </ul>
      </form>
-}else
-{
-    <ul class="nav navbar-nav navbar-left">
-        <a class="nav-link btn btn-link py-0" asp-controller="Account" asp-action="Login" style="color:black">Login</a>
-        <a class="nav-link btn btn-link py-0" asp-controller="Account" asp-action="Register" style="color:black">Registro</a>
-    </ul>
-}
-@if (User.Identity.IsAuthenticated)
-{
-      var usuario = await Usermaneger.FindByNameAsync(User.Identity.Name);
-      var roles = await Usermaneger.GetRolesAsync(usuario);
-       
-      if(roles.Contains("Lojista")){
-       <ul class ="nav navbar-brand navbar-right">
-       <a class="nav-link btn btn-link py-0" style="width:auto" asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante" >
-        Logística
-       </a>
-       </ul>
-        }else if (roles.Contains("Entregador")){
-         <a class="nav-link btn btn-link py-0" style="width:auto" asp-controller="Entregador" asp-action="Index" asp-area="Entregador" >
-        Delivery
-       </a>
-       }else 
-       {
-        
-       };
-
-
 }
 

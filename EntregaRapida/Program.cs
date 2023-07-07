@@ -48,6 +48,7 @@ builder.Services.AddScoped<UserManager<IdentityUser>>();
 builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 builder.Services.AddScoped<UserManager<IdentityUser>>();
 builder.Services.AddScoped<RoleManager<IdentityRole>>();
+
 builder.Services.AddAuthorization(options =>
     {
         options.AddPolicy("Entregador", politica => { politica.RequireRole("Entregador"); });
@@ -97,7 +98,10 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
            name: "Comerciantes",
            pattern: "{area:exists}/{controller=Comerciante}/{action=Index}/{id?}");
- 
+    endpoints.MapControllerRoute(
+          name: "Entregadores",
+          pattern: "{area:exists}/{controller=CorridaEntregador}/{action=IndexCorridaEntregador}/{id?}");
+
 
 });
 
