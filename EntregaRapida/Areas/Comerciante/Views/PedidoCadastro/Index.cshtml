@@ -16,57 +16,42 @@
     </div>
     <div class="form-group">
         <label asp-for="enderecoDestino" class="control-label"></label>
-        <input asp-for="enderecoDestino" class="form-control" value="Rua firmino Boga" />
+        <input asp-for="enderecoDestino" class="form-control" value="Florindo Dias da Silva 495 - Residencial São José, Igaraçu do Tietê - SP" />
         <span asp-validation-for="enderecoDestino" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="descricao" class="control-label"></label>
+        <input asp-for="descricao" class="form-control" value="Pizza de Peperoni"  />
+        <span asp-validation-for="descricao" class="text-danger"></span>
     </div>
      <div class="form-group">
         <label asp-for="enderecoOrigem" class="control-label"></label>
         <input asp-for="enderecoOrigem" class="form-control" value="@userEndereço" readonly />
         <span asp-validation-for="enderecoOrigem" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="descricao" class="control-label"></label>
-        <input asp-for="descricao" class="form-control" value="Pizza de Peperoni" readonly />
-        <span asp-validation-for="descricao" class="text-danger"></span>
-    </div>
-     <div class="form-group">
+ 
+
+     <div class="form-group" hidden>
         <label asp-for="statuspedido" class="control-label"></label>
         <input asp-for="statuspedido" class="form-control" value="Pendente" readonly />
         <span asp-validation-for="statuspedido" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Bairro" class="control-label"></label>
-        <input asp-for="Bairro" class="form-control" value="Nova Barra"  />
-        <span asp-validation-for="Bairro" class="text-danger"></span>
-    </div>
-        <div class="form-group">
-        <label asp-for="Cidade" class="control-label"></label>
-        <input asp-for="Cidade" class="form-control" value="Barra Bonita"  />
-        <span asp-validation-for="Cidade" class="text-danger"></span>
+        <label asp-for="Cidade" class="control-label" hidden ></label>
+        <input asp-for="Cidade" class="form-control" value="Barra Bonita" hidden />
+        <span asp-validation-for="Cidade" class="text-danger" hidden></span>
     </div>
      <div class="form-group">
-         <h1>Isso aq colocar na proxima pra chamar a função de calcular a distancia </h1>
-        <label asp-for="distancia" class="control-label"></label>
-        <input asp-for="distancia" class="form-control" value="32" readonly />
-        <span asp-validation-for="distancia" class="text-danger"></span>
+        <label asp-for="LojistaId" class="control-label" hidden ></label>
+        <input asp-for="LojistaId" class="form-control" value="@userId" readonly hidden/>
+        <span asp-validation-for="LojistaId" class="text-danger"hidden></span>
     </div>
-    <h1>OQ VOU FAZER AQ???</h1>
-     <div class="form-group">
-        <label asp-for="LojistaId" class="control-label"></label>
-        <input asp-for="LojistaId" class="form-control" value="@userId" readonly />
-        <span asp-validation-for="LojistaId" class="text-danger"></span>
+    <div class="form-group mb-2">
+        <label asp-for="LojistaNome" class="control-label" hidden ></label>
+        <input asp-for="LojistaNome" class="form-control" value="@userNome" readonly hidden/>
+        <span asp-validation-for="LojistaNome" class="text-danger" hidden></span>
     </div>
-    <div class="form-group">
-        <label asp-for="LojistaNome" class="control-label"></label>
-        <input asp-for="LojistaNome" class="form-control" value="@userNome" readonly />
-        <span asp-validation-for="LojistaNome" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="EntregadorId" class="control-label"></label>
-        <input asp-for="EntregadorId" class="form-control" readonly />
-        <span asp-validation-for="LojistaId" class="text-danger"></span>
-    </div>
-     <div class="form-group">
+     <div class="form-group ">
         <input type="submit" value="Cadastrar" class="btn btn-primary" />
     </div>
 </form>

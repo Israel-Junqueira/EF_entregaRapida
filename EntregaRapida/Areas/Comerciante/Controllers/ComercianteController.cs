@@ -76,8 +76,9 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
                 {
                     success = true,
                     IdEntregador = IdEntregador.Idaspnetuser,
-                    IdPedido = IdPedido
-                };
+                    IdPedido = IdPedido,
+                    IdLojista = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+            };
                 return Json(retorno);
             }
             catch (Exception)

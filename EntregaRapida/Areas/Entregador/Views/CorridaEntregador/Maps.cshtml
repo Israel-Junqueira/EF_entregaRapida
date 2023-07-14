@@ -1,22 +1,199 @@
-﻿<!DOCTYPE html>
+﻿@using EntregaRapida.ViewModel.ServicesMaps
+@model Coordenadas
+
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Simple Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
     <link rel="stylesheet" type="text/css" href="~/css/styleMap.css" />
-    <script type="module" src="/js/mapa.js"></script>
-  </head>
-  <body>
-     <h1>teste</h1>
-    <div id="map"></div>
+    <style>
+        /* Estilos CSS */
+        #map {
+            height: 100%;
+        }
+        /* ... */
+    </style>
+    <script>
+          function geocodeAddress(addressLojista, addressPedido) {
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': addressLojista }, (results, status) => {
+                if (status === 'OK') {
+                    const location = results[0].geometry.location;
+                    middlePoint = new google.maps.LatLng(location.lat(), location.lng());
+                    geocoder.geocode({ 'address': addressPedido }, (results, status) => {
+                        if (status === 'OK') {
+                            const location = results[0].geometry.location;
+                            endPoint = new google.maps.LatLng(location.lat(), location.lng());
+                            // Traça a rota com base nas coordenadas
+                            calculateAndDisplayRoute();
+                        } else {
+                            console.error('Geocode was not successful for the following reason: ' + status);
+                        }
+                    });
+                } else {
+                    console.error('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+        // Declaração das variáveis
+        let map;
+        let infoWindow;
+        let currentMarker;
+        let directionsService;
+        let directionsRenderer;
+        let startPoint;
+        let middlePoint;
+        let endPoint;
 
-    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyAuo0h6pD5eu2dNlckQhGnWl3nCzzPYl2o"});
-    </script>
-     <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuo0h6pD5eu2dNlckQhGnWl3nCzzPYl2o">
-    </script>
+        // Função para inicializar o mapa
+        async function initMap(lojistaLatLng, pedidoLatLng) {
+            const { Map } = await google.maps.importLibrary("maps");
+            // Criação do objeto Map com o elemento do mapa
+            map = new Map(document.getElementById("map"), {
+                center: { lat: -22.526222, lng: -48.577366 },
+                zoom: 11,
+            });
 
-  </body>
+            // Inicialização do serviço de direções
+            directionsService = new google.maps.DirectionsService();
+            // Configuração do renderer de direções
+            directionsRenderer = new google.maps.DirectionsRenderer({
+                map: map,
+            });
+
+            // Criação do objeto InfoWindow para exibir informações
+            infoWindow = new google.maps.InfoWindow();
+
+            // Chama a função para obter a localização atual do entregador
+            getCurrentLocation();
+        }
+
+        // Função para definir o marcador na posição atual do entregador
+        function setMarker(position) {
+            const image = {
+                url: "https://maps.google.com/mapfiles/ms/micons/red-dot.png",
+                size: new google.maps.Size(32, 32),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(16, 32),
+            };
+            const shape = {
+                coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                type: "poly",
+            };
+            // Remove o marcador atual, se existir
+            if (currentMarker) {
+                currentMarker.setMap(null);
+            }
+            // Cria um novo marcador na posição fornecida
+            currentMarker = new google.maps.Marker({
+                position: position,
+                map: map,
+                icon: image,
+                shape: shape,
+                title: "Localização atual",
+            });
+        }
+
+        // Função para obter a localização atual do entregador
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    // Callback de sucesso
+                    (position) => {
+                        // Obtém a posição atual do entregador
+                        const pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        };
+                        // Define o marcador na posição atual
+                        setMarker(pos);
+                        // Abre a janela de informações no mapa
+                        infoWindow.open(map);
+                        // Centraliza o mapa na posição atual
+                        map.setCenter(pos);
+                        // Define as coordenadas como pontos iniciais e intermediários
+                        startPoint = new google.maps.LatLng(pos.lat, pos.lng);
+                       // Transforma os endereços em coordenadas
+                        geocodeAddress('@Model.EnderecoLojista', '@Model.EnderecoPedido');
+                    },
+                    // Callback de erro
+                    () => {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    }
+                );
+            } else {
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+          // Função para traçar a rota no mapa
+        function calculateAndDisplayRoute() {
+            const request = {
+                origin: startPoint,
+                destination: endPoint,
+                waypoints: [{ location: middlePoint }],
+                optimizeWaypoints: true,
+                travelMode: google.maps.TravelMode.DRIVING,
+            };
+            // Envia a solicitação de rota para o serviço de direções
+            directionsService.route(request, (result, status) => {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    // Exibe a rota no mapa
+                    directionsRenderer.setDirections(result);
+                } else {
+                    console.error('Error:', status);
+                }
+            });
+        }
+
+
+        // Função para lidar com erros de localização
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(
+                browserHasGeolocation
+                    ? "Error: The Geolocation service failed."
+                    : "Error: Your browser doesn't support geolocation."
+            );
+            infoWindow.open(map);
+        }
+
+        // Define a função initMap como global para ser chamada no script externo
+        window.initMap = initMap;
+    </script>
+</head>
+<body>
+    <div id="map" style="height:1500px; width: 100%;"></div>
+
+    <!-- Carrega a biblioteca do Google Maps -->
+    <script>(g => {
+        var h, a, k, p = "The Google Maps JavaScript API",
+            c = "google",
+            l = "importLibrary",
+            q = "__ib__",
+            m = document,
+            b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}),
+            r = new Set,
+            e = new URLSearchParams,
+            u = () => h || (h = new Promise(async (f, n) => {
+            await(a = m.createElement("script"));
+            e.set("libraries", [...r] + "");
+            for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+            e.set("callback", c + ".maps." + q);
+            a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+            d[q] = f;
+            a.onerror = () => h = n(Error(p + " could not load."));
+            a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+            m.head.append(a)
+        }));
+        d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+    })({ key: "AIzaSyAuo0h6pD5eu2dNlckQhGnWl3nCzzPYl2o", v: "weekly" });</script>
+    <script type="text/javascript">
+        // Chama a função initMap quando o documento é carregado
+        initMap();
+    </script>
+</body>
 </html>

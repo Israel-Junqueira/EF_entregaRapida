@@ -93,10 +93,10 @@ namespace EntregaRapida.Models.ClassHubs
           
         }
 
-        public async Task AvisaEntregadorPedidoAceito(string idEntregador, int idPedido)
+        public async Task AvisaEntregadorPedidoAceito(string idEntregador, int idPedido, string idLojista)
         {
             string mensagem = $"Solicitação do pedido[{idPedido}] foi aceita, Iniciar Corrida com google maps ?";
-             await Clients.User(idEntregador).SendAsync("solicitacaoAceita", mensagem);
+             await Clients.User(idEntregador).SendAsync("solicitacaoAceita", mensagem ,idLojista, idPedido);
         }
 
         public async Task ReceberPedido(Pedido pedido)

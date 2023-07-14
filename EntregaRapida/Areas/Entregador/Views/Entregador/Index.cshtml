@@ -2,63 +2,73 @@
 @using EntregaRapida.Models.Enum
 @model List<Pedido>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" />
 
-<!-- <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Historico de Entregas</a>
-<a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Meus Dados</a>
--->
-
-
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" />
+</head>
+<body>
+    <!-- <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Historico de Entregas</a>
+    <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Meus Dados</a>
+    -->
 
 @section script{
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var connection = new signalR.HubConnectionBuilder().withUrl("/entregadorHub").build();
-
-            connection.on("solicitacaoAceita", function(mensagem) {
-          Swal.fire({
-            title: 'Solicitação Aceita!',
-            text: mensagem,
-            imageUrl: 'https://www.androidplanet.nl/wp-content/uploads/2022/08/google-maps-android-tips-uitgelicht.jpg',
-            imageWidth: 500,
-            imageHeight: 200,
-            imageAlt: 'Custom image',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire({
+connection.on("solicitacaoAceita", function(mensagem, lojistaId, pedidoId) {
+    console.log("EscopoSolicitaçãoAceita"+ lojistaId+"|"+ pedidoId )
+    Swal.fire({
+        title: 'Solicitação Aceita!',
+        text: mensagem,
+        imageUrl: 'https://www.androidplanet.nl/wp-content/uploads/2022/08/google-maps-android-tips-uitgelicht.jpg',
+        imageWidth: 500,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Iniciando corrida !!',
+                title: 'Iniciando corrida...',
                 showConfirmButton: false,
                 timer: 1500
-              });
-      
-              console.log("TESTANDO AJAX!!"); // Colocar o console.log aqui
+            });
 
-              $.ajax({
-                url: '@Url.Action("IndexCorridaEntregador", "CorridaEntregador", new { area = "Entregador" })',
-                type: 'GET',
-                success: function(response) {
-                  window.location.href = response.redirectUrl;
-                 console.log(response.redirectUrl)
-                },
-                error: function(xhr, status, error) {
-                  console.log(error);
-                }
-              });
-            }
-          });
-        });
+            // Armazena os valores em variáveis externas
+            var lojistaIdValue = lojistaId;
+            var pedidoIdValue = pedidoId;
+                console.log("variáveis externas |"+ pedidoIdValue+"|"+ lojistaIdValue )
+            setTimeout(function() {
+                  console.log("  setTimeout |"+ pedidoIdValue+"|"+ lojistaIdValue )
+                // Usa as variáveis externas dentro do setTimeout
+                var url = '@Url.Action("IndexCorridaEntregador", "CorridaEntregador", new { area = "Entregador", pedidoId = "__pedidoId__", lojistaId = "__lojistaId__" })'.replace('__pedidoId__', pedidoIdValue).replace('__lojistaId__', lojistaIdValue);
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response) {
+                        window.location.href = response.redirectUrl;
 
+                        
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }, 1500);
+        }
+    });
+});
 
         connection.on("ReceberPedido", function (pedido) {
 
@@ -358,6 +368,14 @@
         });
     });
 </script>
-
-
 }
+   <h1>Pedidos Disponiveis</h1>
+   <div id="pedidos-container"></div>
+
+
+</body>
+</html>
+
+
+
+

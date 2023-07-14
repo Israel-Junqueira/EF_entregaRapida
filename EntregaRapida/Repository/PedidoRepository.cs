@@ -69,5 +69,10 @@ namespace EntregaRapida.Repository
             x.statuspedido == Models.Enum.StatusPedido.Acaminho || x.statuspedido == Models.Enum.StatusPedido.Paralizado || x.statuspedido == Models.Enum.StatusPedido.Entregue ||
              x.statuspedido == Models.Enum.StatusPedido.Pendente)).ToList();
         }
+
+        public Pedido GetEnderecoPedido(int PedidoId)
+        {
+            return _context.Pedidos.FirstOrDefault(x => x.PedidoId == PedidoId);
+        }
     }
 }

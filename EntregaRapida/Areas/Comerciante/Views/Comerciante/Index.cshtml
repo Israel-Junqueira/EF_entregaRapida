@@ -242,7 +242,7 @@
                                                 type: 'POST',
                                                 success: function(retorno) {
                                                      location.reload(true); 
-                                                      connection.invoke("AvisaEntregadorPedidoAceito",retorno.idEntregador,retorno.idPedido);
+                                                      connection.invoke("AvisaEntregadorPedidoAceito",retorno.idEntregador,retorno.idPedido,retorno.idLojista);
                                                       connection.invoke("ObterPedidosPendentes");
                                                       
                                                 },
@@ -309,7 +309,7 @@
                                                 type: 'POST',
                                                 success: function(retorno) {
                                                     location.reload(true);
-                                                      connection.invoke("AvisaEntregadorPedidoAceito",retorno.idEntregador,retorno.idPedido);
+                                                      connection.invoke("AvisaEntregadorPedidoAceito",retorno.idEntregador,retorno.idPedido,retorno.idLojista);
                                                       connection.invoke("ObterPedidosPendentes");
                                                 },
                                                 error: function() {

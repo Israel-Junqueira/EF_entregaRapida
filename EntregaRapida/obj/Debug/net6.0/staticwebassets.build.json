@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZKW9+HwdO0i0Bm2//dr/W18x2sjRmTc/eJF14/K0HrQ=",
+  "Hash": "pvCCwbNG74248LZrvAARS7rF22G20l+ODAFnM8pdxss=",
   "Source": "EntregaRapida",
   "BasePath": "_content/EntregaRapida",
   "Mode": "Default",
@@ -1870,6 +1870,23 @@
       "OriginalItemSpec": "wwwroot\\css\\style_Pagina_Lojista.css"
     },
     {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\css\\styleMap.css",
+      "SourceId": "EntregaRapida",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\",
+      "BasePath": "_content/EntregaRapida",
+      "RelativePath": "css/styleMap.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styleMap.css"
+    },
+    {
       "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\favicon.ico",
       "SourceId": "EntregaRapida",
       "SourceType": "Discovered",
@@ -1919,6 +1936,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\usuario\\1.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\js\\mapa.js",
+      "SourceId": "EntregaRapida",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\",
+      "BasePath": "_content/EntregaRapida",
+      "RelativePath": "js/mapa.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\mapa.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\js\\maps.ts",
+      "SourceId": "EntregaRapida",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\",
+      "BasePath": "_content/EntregaRapida",
+      "RelativePath": "js/maps.ts",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\maps.ts"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\js\\site.js",
@@ -2718,6 +2769,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\lib\\jquery\\code.jquery.com_jquery-3.2.1.min.js",
+      "SourceId": "EntregaRapida",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\",
+      "BasePath": "_content/EntregaRapida",
+      "RelativePath": "lib/jquery/code.jquery.com_jquery-3.2.1.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\jquery\\code.jquery.com_jquery-3.2.1.min.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\ProjetoMexidonaetec\\ProjetoEF\\EntregaRapida\\wwwroot\\lib\\jquery\\dist\\jquery.js",

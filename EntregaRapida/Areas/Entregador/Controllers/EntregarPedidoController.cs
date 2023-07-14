@@ -31,9 +31,9 @@ namespace EntregaRapida.Areas.Entregador.Controllers
         }
 
        
-        [Route("EntregarPedidoController/SolicitarEntrega/{lojistaId}/{pedidoId}")]
+        [Route("EntregarPedidoController/SolicitarEntrega/{pedidoId}/{lojistaId}")]
         [HttpPost]
-        public  IActionResult SolicitarEntrega(string lojistaId, int pedidoId)
+        public  IActionResult SolicitarEntrega(int pedidoId, string lojistaId)
         {
             try
             {
