@@ -60,7 +60,7 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
                     descricao = pedido.descricao,
                     distancia = pedido.distancia,
                     enderecoOrigem = pedido.enderecoOrigem,
-                    enderecoDestino = pedido.enderecoDestino,
+                    enderecoDestino = pedido.enderecoCompleto,
                     LojistaId = pedido.LojistaId,
                     EntregadorId = pedido.EntregadorId,
                     LojistaNome = pedido.LojistaNome,

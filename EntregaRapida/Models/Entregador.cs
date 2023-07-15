@@ -18,6 +18,7 @@ namespace EntregaRapida.Models
         private int _pontuacao;
         private int _numeroEntrega;
         private int _corridasIncompletas;
+
         //chaves estrangeitas
         [EnumDataType(typeof(Veiculo))] //1:1 OK
         private Veiculo _veiculo { get; set; }
@@ -46,6 +47,7 @@ namespace EntregaRapida.Models
             this._modalidade = modalidade;
             this._veiculo = veiculo;
         }
+
         [MinLength(1,ErrorMessage ="Digite um nome para o entregador")]
         [Required]
         [NotMapped]  

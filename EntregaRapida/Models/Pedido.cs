@@ -4,14 +4,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EntregaRapida.Models{
 
     public class Pedido{
-       
+
+        [NotMapped]
+        [Required]
+        [Display(Name = "Numero")]
+        public int numeroImovel { get; set; }
+
+        [NotMapped]
+        public string enderecoCompleto { get; set; }
         public int PedidoId { get; set; }
+
+        [Display(Name = "Meu endereço")]
         public string enderecoOrigem { get; set; }
+
+        [Display(Name = "Anotações extras.. ")]
         public string descricao { get; set; }
+        [Display(Name = "Endereço do cliente")]
         public string enderecoDestino { get; set; }
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public double distancia { get; set; }
+        [Display(Name = "Data ")]
         public DateTime date { get; set; }
 
         [EnumDataType(typeof(StatusPedido))]    
@@ -21,6 +34,7 @@ namespace EntregaRapida.Models{
         public string ContextId { get; set; } //testando
         public int LojistaId { get; set; }
         public string LojistaNome { get; set; }
+      
 
         //  public int HistoricoId { get; set; } cancelei por hora historico aqui para refazer a ligação depois
         //   public Historico historico { get; set; } //1:N  ✓ ok
