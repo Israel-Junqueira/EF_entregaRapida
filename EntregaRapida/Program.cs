@@ -10,6 +10,9 @@ using EntregaRapida.Models;
 using EntregaRapida.Models.ClassHubs;
 using EntregaRapida.Services;
 using EntregaRapida.Models.Enum;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 var banco = builder.Configuration.GetConnectionString("Banco");
@@ -24,7 +27,10 @@ builder.Services.AddScoped<UsersHub>();
 builder.Services.AddControllersWithViews(); //"10.4.27"
 builder.Services.AddDbContext<Banco>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Banco")));
 builder.Services.AddDbContext<IdentityContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Identity")));
-
+builder.Services.Configure<MvcOptions>(options =>
+{
+    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "Campo obrigatório!");
+});
 
 builder.Services.AddTransient<IEntregadores, EntregadoresRepository>(); //Esse método é usado para adicionar um serviço de tempo de execução transiente ao contêiner de injeção de dependência. Os serviços de tempo de execução transientes são criados cada vez que um consumidor solicita o serviço. Os serviços de tempo de execução transientes são adequados para serviços ligeiramente "pesados" para criar, mas que não necessitam de estado persistente.
 builder.Services.AddTransient<ILojistas, LojistaRepository>();
@@ -60,6 +66,13 @@ builder.Services.AddAuthorization(options =>
 
 
 var app = builder.Build();
+var supportedCultures = new[] { new CultureInfo("pt-BR") }; // Defina a cultura desejada
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("pt-BR"), // Defina a cultura padrão
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+});
 using (var scope = app.Services.CreateScope())
 {
     var http = scope.ServiceProvider.GetRequiredService<HttpContextAccessor>();

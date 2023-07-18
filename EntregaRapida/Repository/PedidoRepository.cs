@@ -63,11 +63,19 @@ namespace EntregaRapida.Repository
 
         List<Pedido> IPedido.Lista_de_Pedidos_Do_Lojista(string UserId)
         {
-           // var LojistaId = _context.Lojistas.FirstOrDefault(x => x.Idaspnetuser == UserId);
+            // var LojistaId = _context.Lojistas.FirstOrDefault(x => x.Idaspnetuser == UserId);
+            try
+            {
+                return _context.Pedidos.Where(x => x.ContextId == UserId && (x.statuspedido == Models.Enum.StatusPedido.Preparado ||
+                  x.statuspedido == Models.Enum.StatusPedido.Acaminho || x.statuspedido == Models.Enum.StatusPedido.Paralizado || x.statuspedido == Models.Enum.StatusPedido.Entregue ||
+                   x.statuspedido == Models.Enum.StatusPedido.Pendente)).ToList();
+            }
+            catch (Exception)
+            {
 
-            return _context.Pedidos.Where(x=> x.ContextId == UserId &&( x.statuspedido == Models.Enum.StatusPedido.Preparado ||
-            x.statuspedido == Models.Enum.StatusPedido.Acaminho || x.statuspedido == Models.Enum.StatusPedido.Paralizado || x.statuspedido == Models.Enum.StatusPedido.Entregue ||
-             x.statuspedido == Models.Enum.StatusPedido.Pendente)).ToList();
+                throw;
+            }
+          
         }
 
         public Pedido GetEnderecoPedido(int PedidoId)

@@ -7,18 +7,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuo0h6pD5eu2dNlckQhGnWl3nCzzPYl2o&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuo0h6pD5eu2dNlckQhGnWl3nCzzPYl2o &libraries=places"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18"></script>
 </head>
 <body>
     <form id="pedidoForm" method="post" asp-controller="PedidoCadastro" asp-action="CadastrarPedido">
     @{
-        var userEndereço =  ViewData["UsuarioEndereco"];
-        var userId =  ViewData["LojistaId"];
+        var userEndereço = ViewData["UsuarioEndereco"];
+        var userId = ViewData["LojistaId"];
         var userNome = ViewData["LojistaNome"];
     }
     <div class="form-group">
         <label asp-for="date" class="control-label"></label>
-        <input asp-for="date" class="form-control" />
+        <input asp-for="date" class="form-control" type="datetime-local" />
         <span asp-validation-for="date" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -28,104 +29,118 @@
     </div>
     <div class="form-group">
         <label asp-for="numeroImovel" class="control-label"></label>
-        <input asp-for="numeroImovel" class="form-control" placeholder= "2140" />
+        <input asp-for="numeroImovel" class="form-control" placeholder="2140" type="number" />
         <span asp-validation-for="numeroImovel" class="text-danger"></span>
     </div>
-    <div class="form-group">
+    <div class="form-group mb-2">
         <label asp-for="descricao" class="control-label"></label>
         <input asp-for="descricao" class="form-control" value="Pizza de Peperoni" />
         <span asp-validation-for="descricao" class="text-danger"></span>
     </div>
-     <div class="form-group">
+    <div class="form-group" hidden>
         <label asp-for="enderecoOrigem" class="control-label"></label>
-        <input asp-for="enderecoOrigem" class="form-control" value="@userEndereço" readonly />
-        <span asp-validation-for="enderecoOrigem" class="text-danger"></span>
+        <input asp-for="enderecoOrigem" class="form-control" value="@userEndereço" id="enderecoOrigemInput" hidden readonly/>
+        <span asp-validation-for="enderecoOrigem" class="text-danger" hidden></span>
     </div>
-     <div class="form-group" hidden>
+    <div class="form-group" hidden>
         <label asp-for="statuspedido" class="control-label"></label>
-        <input asp-for="statuspedido" class="form-control" value="Pendente" readonly />
+        <input asp-for="statuspedido" class="form-control" value="Pendente" />
         <span asp-validation-for="statuspedido" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="Cidade" class="control-label" hidden></label>
-        <input asp-for="Cidade" class="form-control" value="Barra Bonita" hidden />
-        <span asp-validation-for="Cidade" class="text-danger" hidden></span>
+    <div class="form-group" hidden>
+        <label asp-for="Cidade" class="control-label"></label>
+        <input asp-for="Cidade" class="form-control" value="Barra Bonita" />
+        <span asp-validation-for="Cidade" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="LojistaId" class="control-label" hidden></label>
-        <input asp-for="LojistaId" class="form-control" value="@userId" readonly hidden />
-        <span asp-validation-for="LojistaId" class="text-danger" hidden></span>
+    <div class="form-group" hidden>
+        <label asp-for="LojistaId" class="control-label"></label>
+        <input asp-for="LojistaId" class="form-control" value="@userId" id="LojistaIdInput" readonly />
+        <span asp-validation-for="LojistaId" class="text-danger"></span>
     </div>
-    <div class="form-group mb-2">
-        <label asp-for="LojistaNome" class="control-label" hidden></label>
-        <input asp-for="LojistaNome" class="form-control" value="@userNome" readonly hidden />
-        <span asp-validation-for="LojistaNome" class="text-danger" hidden></span>
+    <div class="form-group mb-2" hidden>
+        <label asp-for="LojistaNome" class="control-label"></label>
+        <input asp-for="LojistaNome" class="form-control" value="@userNome" id="LojistaNomeInput" readonly/>
+        <span asp-validation-for="LojistaNome" class="text-danger"></span>
     </div>
     <input type="hidden" asp-for="enderecoCompleto" />
-     <div class="form-group ">
+    <div class="form-group" >
         <input type="submit" value="Cadastrar" class="btn btn-primary" />
     </div>
 </form>
+
 <script>
-  // Validação do endereço
-        function validarEndereco(event) {
-            event.preventDefault(); // Impede o envio do formulário por padrão
+  function validarEndereco(event) {
+    event.preventDefault();
 
-            const enderecoDestinoInput = document.getElementById('enderecoDestinoInput');
-            const numeroImovelInput = document.getElementById('numeroImovel');
+    const enderecoDestinoInput = document.getElementById('enderecoDestinoInput');
+    const numeroImovelInput = document.getElementById('numeroImovel');
+    const dataInput = document.getElementById('date');
 
-            const enderecoPattern = /^(.*),\s*(.*)$/; // Expressão regular para validar o formato do endereço
+    const enderecoPattern = /^(.*),\s*(.*)$/;
 
-            if (!enderecoPattern.test(enderecoDestinoInput.value)) {
-                alert('Por favor, insira o endereço no formato correto (Rua, Cidade), não esqueça a vírgula.');
-                return; // Impede a continuação do código
-            }
-
-            // Juntar o endereço e o número
-            const enderecoCompleto = enderecoDestinoInput.value + ', ' + numeroImovelInput.value;
-
-            // Atualizar o campo oculto com o endereço completo
-            document.getElementById('enderecoCompleto').value = enderecoCompleto;
-
-            // Se a validação for bem-sucedida, você pode prosseguir com o envio do formulário
-            event.target.submit();
-        }
-
-    // Inicializa o widget de preenchimento automático
-    function initAutocomplete() {
-        const input = document.getElementById('enderecoDestinoInput');
-        const options = {
-            types: ['address'], // Limita o autocomplete a endereços
-            componentRestrictions: { country: 'BR' }, // Restringe ao Brasil
-            strictBounds: true
-        };
-        const autocomplete = new google.maps.places.Autocomplete(input, options);
-
-        // Manipula o evento place_changed do autocomplete
-        autocomplete.addListener('place_changed', function() {
-            const place = autocomplete.getPlace();
-
-            // Limpa o campo de endereço
-            input.value = '';
-
-            // Verifica se o local selecionado possui os componentes de endereço esperados
-            if (place.address_components.length >= 4) {
-                const endereco = place.address_components[0].short_name;
-                const cidade = place.address_components[place.address_components.length - 4].short_name;
-
-                // Atualiza o valor do input com as informações extraídas
-                input.value = endereco + ', ' + cidade;
-            }
-        });
+    if (!enderecoPattern.test(enderecoDestinoInput.value)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Endereço no formato correto (Rua, Cidade), não esqueça a vírgula!',
+        footer: '<a href="">Você Precisa de ajuda?</a>'
+      });
+      return;
     }
 
-    // Evento disparado ao enviar o formulário
-    document.getElementById('pedidoForm').addEventListener('submit', validarEndereco);
+    if (dataInput.value === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor, preencha o campo de data!',
+        footer: '<a href="">Você Precisa de ajuda?</a>'
+      });
+      return;
+    }
 
-    // Chama a função initAutocomplete quando o documento é carregado
-    document.addEventListener('DOMContentLoaded', initAutocomplete);
+    if (numeroImovelInput.value === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor, preencha o campo de número do imóvel!',
+        footer: '<a href="">Você Precisa de ajuda?</a>'
+      });
+      return;
+    }
+
+    const enderecoCompleto = enderecoDestinoInput.value + ', ' + numeroImovelInput.value;
+
+    document.getElementById('enderecoCompleto').value = enderecoCompleto;
+
+    event.target.submit();
+  }
+
+  function initAutocomplete() {
+    const input = document.getElementById('enderecoDestinoInput');
+    const options = {
+      types: ['address'],
+      componentRestrictions: { country: 'BR' },
+      strictBounds: true
+    };
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    autocomplete.addListener('place_changed', function() {
+      const place = autocomplete.getPlace();
+
+      input.value = '';
+
+      if (place.address_components.length >= 4) {
+        const endereco = place.address_components[0].short_name;
+        const cidade = place.address_components[place.address_components.length - 4].short_name;
+
+        input.value = endereco + ', ' + cidade;
+      }
+    });
+  }
+
+  document.getElementById('pedidoForm').addEventListener('submit', validarEndereco);
+  document.addEventListener('DOMContentLoaded', initAutocomplete);
 </script>
-
 
 </body>
 </html>

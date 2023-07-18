@@ -7,6 +7,7 @@ using EntregaRapida.Repository.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using EntregaRapida.Models.ClassHubs;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace EntregaRapida.Areas.Comerciante.Controllers
 {
@@ -47,6 +48,7 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
         {
             if (!ModelState.IsValid)
             {
+             
                 return View("Index", pedido);
             }
             try
