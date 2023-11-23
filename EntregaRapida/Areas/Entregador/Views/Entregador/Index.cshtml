@@ -14,10 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" />
 </head>
 <body>
-    <!-- <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Historico de Entregas</a>
-    <a class="nav-link btn btn-link py-0" asp-controller="" asp-action="" style="color:black">Meus Dados</a>
-    -->
-
+    <div id="pedidos-container"></div>
 @section script{
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -110,9 +107,7 @@ connection.on("solicitacaoAceita", function(mensagem, lojistaId, pedidoId) {
             var controller = "EntregarPedidoController"
             var action = "Entregar"
             var area = "Entregador"
-        //  var Id = pedido.pedidoId;
-        //  var url = "/" + controller + "/" + action +"/"+ Id;
-        //  btnEntregar.setAttribute("href",url);
+        
             var btnEntregar = document.createElement("a");
             btnEntregar.classList.add("btn", "btn-success");
             btnEntregar.textContent = "Entregar";
@@ -369,10 +364,6 @@ connection.on("solicitacaoAceita", function(mensagem, lojistaId, pedidoId) {
     });
 </script>
 }
-   <h1>Pedidos Disponiveis</h1>
-   <div id="pedidos-container"></div>
-
-
 </body>
 </html>
 

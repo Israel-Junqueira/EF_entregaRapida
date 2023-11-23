@@ -10,7 +10,12 @@
       "ProjectGuid": "3cc2746e-f2ba-410a-a6d0-e53dee2bf5bb",
       "DisplayName": "EntregaRapida",
       "ColorIndex": 0
+    },
+    "e81d0f58-12e9-4967-94b1-d9f54d154813": {
+      "ProjectGuid": "e81d0f58-12e9-4967-94b1-d9f54d154813",
+      "DisplayName": "TabelasIdentity",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

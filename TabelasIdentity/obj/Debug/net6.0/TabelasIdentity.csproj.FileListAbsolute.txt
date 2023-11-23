@@ -1,0 +1,84 @@
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.deps.json
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.dll
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\ref\TabelasIdentity.dll
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.pdb
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.dll
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\ref\TabelasIdentity.dll
+C:\Users\Usuario\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.pdb
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.deps.json
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.dll
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.pdb
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.AssemblyReference.cache
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfoInputs.cache
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfo.cs
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.CoreCompileInputs.cache
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.dll
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\refint\TabelasIdentity.dll
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.pdb
+C:\Users\etec\Desktop\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\ref\TabelasIdentity.dll
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.deps.json
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.dll
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.pdb
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.AssemblyReference.cache
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.GeneratedMSBuildEditorConfig.editorconfig
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfoInputs.cache
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfo.cs
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.CoreCompileInputs.cache
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.dll
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\refint\TabelasIdentity.dll
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.pdb
+D:\Usuario\Desktop\tcc\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\ref\TabelasIdentity.dll
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.deps.json
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.dll
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.pdb
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.AssemblyReference.cache
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.GeneratedMSBuildEditorConfig.editorconfig
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfoInputs.cache
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfo.cs
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.CoreCompileInputs.cache
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.dll
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\obj\Debug\net6.0\refint\TabelasIdentity.dll
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.pdb
+D:\Usuario\Desktop\tcc\ProjetoEF - gallo\TabelasIdentity\obj\Debug\net6.0\ref\TabelasIdentity.dll
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.deps.json
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.dll
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.pdb
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.AssemblyReference.cache
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfoInputs.cache
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfo.cs
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.CoreCompileInputs.cache
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.dll
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\obj\Debug\net6.0\refint\TabelasIdentity.dll
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.pdb
+C:\Users\etec\Desktop\ProjetoEFgallo\TabelasIdentity\obj\Debug\net6.0\ref\TabelasIdentity.dll
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.deps.json
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.dll
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.pdb
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.AssemblyReference.cache
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.GeneratedMSBuildEditorConfig.editorconfig
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfoInputs.cache
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfo.cs
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.CoreCompileInputs.cache
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.dll
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\refint\TabelasIdentity.dll
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.pdb
+E:\2023Etec\Projeto Entrega Rapida 2023\ProjetoEF\TabelasIdentity\obj\Debug\net6.0\ref\TabelasIdentity.dll
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.deps.json
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.dll
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\bin\Debug\net6.0\ref\TabelasIdentity.dll
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.pdb
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.AssemblyReference.cache
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.GeneratedMSBuildEditorConfig.editorconfig
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfoInputs.cache
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfo.cs
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.CoreCompileInputs.cache
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.dll
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\ref\TabelasIdentity.dll
+E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.pdb

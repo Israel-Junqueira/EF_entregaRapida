@@ -32,7 +32,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TabelasIdentity.Identity\TabelasIdentity.Identity.csproj" />
+    <ProjectReference Include="..\TabelasIdentity\TabelasIdentity.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Comerciante\Data\" />

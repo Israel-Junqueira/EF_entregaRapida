@@ -2927,6 +2927,7 @@ textarea.form-control-lg {
 }
 
 .btn {
+    margin-top:5px;
   display: inline-block;
   font-weight: 400;
   line-height: 1.5;
@@ -3052,11 +3053,7 @@ textarea.form-control-lg {
   border-color: #198754;
 }
 
-.btn-info {
-  color: #000;
-  background-color: #0dcaf0;
-  border-color: #0dcaf0;
-}
+
 .btn-info:hover {
   color: #000;
   background-color: #31d2f2;

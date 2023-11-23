@@ -1,57 +1,387 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EntregaRapida</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/style_Pagina_Lojista.css">
+﻿@using Microsoft.AspNetCore.Identity
 
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> Usermaneger;
+
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Fluxo de Pedido</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/LayoutLojista/img/svg/Logo.svg" type="image/x-icon">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/LayoutLojista/css/style.css">
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/style_signalBotoes.css">
 </head>
 <body>
-      <header>
-        <!-- Logo -->
-        <div id="logo" >
-            <a  asp-area="" asp-controller="Home" asp-action="Index">
-            <img src="~/img/logo.png" alt="Logo">
-            </a>
-        </div>
-        <!-- Botão de sair -->
-        <div id="sair">
-            @await Html.PartialAsync("_LoginPartial")
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light" asp-area="" asp-controller="Entregador" asp-action="Index">IndexEntregador</a>
+    <div class="layer"></div>
+    <!-- ! Body -->
+    <a class="skip-link sr-only" href="#skip-target">Skip to content</a>
+    <div class="page-flex">
+        <!-- ! Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-start">
+                <div class="sidebar-head">
+                    <a href="/home/index" class="logo-wrapper" title="Home">
+                        <span class="sr-only">Home</span>
+                        <span class="icon logo" aria-hidden="true"></span>
+                    </a>
+                    <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+                        <span class="sr-only">Toggle menu</span>
+                        <span class="icon menu-toggle" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="sidebar-body">
+                    <ul class="sidebar-body-menu">
+                        <li >
+                            <a>
+                            <span class="icon notification " arial-hidden="true"></span>
+                            <p class="sidebar-user__title2"> Bem vindo @User.Identity.Name<p>
+                            </a>
+                       </li>
+                        <li>
+                              <a asp-controller="PedidoCadastro" asp-action="Index" asp-area="Comerciante">
+                                 <span class="icon document" aria-hidden="true"></span>
+                                  Nova Entrega
+                              </a>
+                        </li>
+                        <li>
+                             <a asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante" > 
+                                 <span class="icon setting" aria-hidden="true"></span>
+                                 Pedidos
+                             </a>
+                        </li>
+                        <li>
+                            <a class="show-cat-btn" href="##">
+                                <span class="icon user-3" aria-hidden="true"></span>Meus dados
+                                <span class="category__btn transparent-btn" title="Open list">
+                                    <span class="sr-only">Abrir lista</span>
+                                    <span class="icon arrow-down" aria-hidden="true"></span>
+                                </span>
+                            </a>
+                            <ul class="cat-sub-menu">
+                                <li>
+                                    <a>Perfil</a>
+                                </li>
+                                <li>
+                                    <a>Dados de entrega</a>
+                                </li>
+                                <li>
+                                    <a>Fluxo de caixa</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
+            </div>
+
+        </aside>
+        <div class="main-wrapper">
+            <!-- ! Main nav -->
+            <nav class="main-nav--bg">
+                <div class="container main-nav">
+                    <div class="main-nav-start main-nav--bg">
+                      <span id="user-loja" class="nav-user sidebar-user__title"aria-hidden="true" style="padding:5px;">Meu perfil</span>
+                    </div>
+                    <div class="main-nav-end">
+                        <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+                            <span class="sr-only">Toggle menu</span>
+                            <span class="icon menu-toggle--gray" aria-hidden="true"></span>
+                        </button>
+                        <button class="theme-switcher gray-circle-btn" type="button" title="Tema da Pagina">
+                            <span class="sr-only">Switch theme</span>
+                            <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
+                            <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
+                        </button>
+                        <div class="nav-user-wrapper">
+                          
+                            <button href="##" class="nav-user-btn dropdown-btn" title="Perfil" type="button">
+                                <span class="sr-only">Meu perfil</span>
+                                <span class="nav-user-img">
+                                    <picture><source srcset="~/LayoutLojista/img/avatar/avatar-illustrated-02.webp" type="image/webp"><img src="~/LayoutLojista/img/avatar/avatar-illustrated-02.png" alt="User name"></picture>
+                                </span>
+                            </button>
+                            <ul class="users-item-dropdown nav-user-dropdown dropdown">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li>
+                                        <a href="javascript:void(0)" onclick="document.getElementById('frmLogout').submit()">
+                                            <i data-feather="log-out" aria-hidden="true"></i>
+                                            <span>Desconectar</span>
+                                        </a>
+                                        <form id="frmLogout" asp-controller="Login" asp-action="Logout" method="post" hidden>
+                                        </form>
+                                     </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- ! Main -->
+            <main class="main users chart-page" id="skip-target">
+                <div class="container">
+                    <h2 class="main-title">Estatisticas</h2>
+                    <div class="row stat-cards">
+                        <div class="col-md-6 col-xl-3">
+                            <article class="stat-cards-item">
+                                <div class="stat-cards-icon primary">
+                                    <i data-feather="bar-chart-2" aria-hidden="true"></i>
+                                </div>
+                                <div class="stat-cards-info">
+                                    <p class="stat-cards-info__num">Entregas diarias</p>
+                                    <p class="stat-cards-info__title">Total: 37</p>
+
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <article class="stat-cards-item">
+                                <div class="stat-cards-icon purple">
+                                    <i data-feather="file" aria-hidden="true"></i>
+                                </div>
+                                <div class="stat-cards-info">
+                                    <p class="stat-cards-info__num">Entregas Mensais</p>
+                                    <p class="stat-cards-info__title">Total: 1557</p>
+
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <article class="stat-cards-item">
+                                <div class="stat-cards-icon purple">
+                                    <i data-feather="file" aria-hidden="true"></i>
+                                </div>
+                                <div class="stat-cards-info">
+                                    <p class="stat-cards-info__num">Entregas Total</p>
+                                    <p class="stat-cards-info__title">Total: 2445</p>
+
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <article class="stat-cards-item">
+                                <div class="stat-cards-icon success">
+                                    <i data-feather="feather" aria-hidden="true"></i>
+                                </div>
+                                <div class="stat-cards-info">
+                                    <p class="stat-cards-info__num">Receita</p>
+                                    <p class="stat-cards-info__title">Total: R$ 51.635,00 </p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6" >
+                            <div class="users-table table-wrapper"style="border: 1px solid #FFF;border-radius: 10px;padding: 0px;max-width: 100%;" >
+                                @RenderBody()
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+
+                            <article class="white-block">
+                                <div class="top-cat-title">
+                                    <h3>Entregadores online</h3>
+                                    
+                                </div>
+
+                                <ul class="top-cat-list">
+                                    <ul id="Entregadores_On"></ul>
+                                </ul>
+                            </article>
+                        </div>
+                        <div class="col-lg-3">
+
+                            <article class="white-block">
+                                <div class="top-cat-title" id="delivery-status" >
+                                    <h3>Pedidos Pendentes</h3>
+                                    
+                                </div>
+
+                                <ul class="top-cat-list mb-2">
+                                    <div id="solicitacoes" class="mb-2"></div>
+                                </ul>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- ! Footer -->
+            <footer class="footer">
+                <div class="container footer--flex">
+                    <div class="footer-start">
+                        <p>
+                            2023 ©EntregaRapida - 
+                        </p>
+                    </div>
+                    <ul class="footer-end">
+                        <li><a href="##">-</a></li>
+                        <li><a href="##">-</a></li>
+                        <li><a href="##">-</a></li>
+                    </ul>
+                </div>
+            </footer>
         </div>
-            
-    </header>
-          
-            
-
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-
-           
-        </main>
     </div>
-    <footer>
-        <!-- Rodapé -->
-        <div id="rodape1">Rodapé 1</div>
-        <div id="rodape2">Rodapé 2</div>
-        <div id="rodape3">Rodapé 3</div>
-    </footer>
-    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Chart library -->
+    <script src="~/LayoutLojista/plugins/chart.min.js"></script>
+    <!-- Icons library -->
+    <script src="~/LayoutLojista/plugins/feather.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="~/LayoutLojista/js/script.js"></script>
+
+    
+    <script>
+      
+        //chama  a controller para passar os dados do modelo    
+        $(document).ready(function () {
+        $.ajax({
+            url: '@Url.Action("GetTipoNegocio","Comerciante",new{area = "Comerciante"})',
+            type: 'GET',
+            success: function (result) {
+                $('#user-loja').text("Negocio: " + "  "+ result+"  " );
+            },
+            error: function () {
+                $('#user-loja').text('Erro ao obter tipo de negócio');
+            }
+        });
+        });
+        
+        //cria a lista do entregadores logados
+        connection.on("EntregadoresOnline", function (entregadores) {
+            console.log(entregadores)
+
+            var list = document.getElementById("Entregadores_On");
+            list.innerHTML = "";
+
+            entregadores.forEach(function (entregador) {
+                var item = document.createElement("li");
+
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.value = entregador;
+                checkbox.id = "checkbox_" + entregador;
+
+                var label = document.createElement("label");
+                label.htmlFor = checkbox.id;
+                label.appendChild(document.createTextNode(" "+entregador));
+
+                item.appendChild(checkbox);
+                item.appendChild(label);
+
+                list.appendChild(item);
+            });
+        });
+        //Tras a lista dos pedidos pendentes
+        connection.on("RecebeParametros", function (Entregador, lojista, Mensagem, pedido, solicitacao) {
+            console.log(lojista);
+            console.log(Mensagem);
+            console.log(solicitacao);
+            var card = '<div class="card mb-2">' +
+                '<h5 class="card-header">Pedido #' + pedido + '</h5>' +
+                '<div class="card-body">' +
+                '<h5 class="card-title">Entregador ' + Entregador + ' solicitou para fazer a entrega do pedido ' + pedido + '.</br>' + Entregador + ' está com [' + solicitacao.corridasDoEntregador + '] solicitação em andamento antes da sua. </h5>' +
+                '<a href="/Entregador/EntregarPedidoController/Entregar/' + pedido + '/' + Entregador + '" class="btn btn-primary btn-aceitar">Aceitar</a>' +
+                '<a href="#" class="btn btn-danger">Recusar</a>' +
+                '<a href="#" class="btn btn-info">Entregador</a>' +
+                '</div>' +
+                '</div>';
+            $('#solicitacoes').append(card);
+        });
+        $('#solicitacoes').on('click', '.btn-aceitar', function (e) {
+            e.preventDefault();
+            // Obtenha os dados necessários do botão (por exemplo, ID do pedido, nome do entregador)
+            var PedidoHref = $(this).attr('href');
+            var PedidoId = PedidoHref.split('/')[4];
+            var idPedido = PedidoId;
+            var entregadorNome = $(this).attr('href').split('/').pop();
+            console.log(idPedido)
+            console.log(entregadorNome)
+            // Faça uma chamada AJAX para a ação correta no controlador adequado
+            //essa chama quando o servidor ainda nao fez o carregamento da pagina
+            $.ajax({
+                url: '@Url.Action("Acceptrequest", "Comerciante", new { area = "Comerciante", IdPedido = "__IdPedido__",EntregadorNome = "__EntregadorNome__" })'.replace('__IdPedido__', idPedido).replace('__EntregadorNome__', entregadorNome),
+                type: 'POST',
+                success: function (retorno) {
+                    location.reload(true);
+                    connection.invoke("AvisaEntregadorPedidoAceito", retorno.idEntregador, retorno.idPedido, retorno.idLojista);
+                    connection.invoke("ObterPedidosPendentes");
+                },
+                error: function () {
+                    // Trate erros, se houver
+                }
+            });
+        });
+        connection.start()
+            .then(() => {
+                //pode chamar outro invoke ou fazer qualquer outra logica
+            }).catch(error => console.error(error));
+        //trás a todos as solicitações desse entregador
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("GetSolicitacoes","ComercianteController",new{area = "Comerciante"})',
+                type: 'GET',
+                success: function (solicitacoes) {
+                    $.each(solicitacoes, function (index, solicitacao) {
+                        //   console.log(solicitacao)
+                        var card = '<div class="card mb-2">' +
+                            '<h5 class="card-header">Pedido #' + solicitacao.pedidoId + '</h5>' +
+                            '<div class="card-body">' +
+                            '<h5 class="card-title">Entregador ' + solicitacao.entregadorNome + ' solicitou para fazer a entrega do pedido ' + solicitacao.pedidoId + '.</br>' + solicitacao.entregadorNome + ' está com [' + solicitacao.corridasDoEntregador + '] solicitação em andamento antes da sua. </h5>' +
+                            '<a href="/Entregador/EntregarPedidoController/Entregar/' + solicitacao.pedidoId + '/' + solicitacao.entregadorNome + '" class="btn btn-primary btn-aceitar">Aceitar</a>' +
+                            '<a href="#" class="btn btn-danger">Recusar</a>' +
+                            '<a href="#" class="btn btn-info">Entregador</a>' +
+                            '</div>' +
+                            '</div>';
+
+                        $('#solicitacoes').append(card);
+                    });
+                    $('#solicitacoes').on('click', '.btn-aceitar', function (e) {
+                        e.preventDefault();
+
+                        // Obtenha os dados necessários do botão (por exemplo, ID do pedido, nome do entregador)
+                        var PedidoHref = $(this).attr('href');
+                        var PedidoId = PedidoHref.split('/')[4];
+                        var idPedido = PedidoId;
+                        var entregadorNome = $(this).attr('href').split('/').pop();
+                        console.log(idPedido)
+                        console.log(entregadorNome)
+
+                        // Faça uma chamada AJAX para a ação correta no controlador adequado
+                        $.ajax({
+                            url: '@Url.Action("Acceptrequest", "Comerciante", new { area = "Comerciante", IdPedido = "__IdPedido__",EntregadorNome = "__EntregadorNome__" })'.replace('__IdPedido__', idPedido).replace('__EntregadorNome__', entregadorNome),
+                            type: 'POST',
+                            success: function (retorno) {
+                                location.reload(true);
+                                connection.invoke("AvisaEntregadorPedidoAceito", retorno.idEntregador, retorno.idPedido, retorno.idLojista);
+                                connection.invoke("ObterPedidosPendentes");
+                            },
+                            error: function () {
+                                // Trate erros, se houver
+                            }
+                        });
+                    });
+
+                    // Adicione manipuladores de evento para os outros botões (Recusar, Entregador) da mesma maneira, se necessário.
+
+                },
+                error: function () {
+                    $('#user-loja').text('Erro ao obter tipo de negócio');
+                }
+            });
+        });
+    </script>
+       
 </body>
 
 </html>

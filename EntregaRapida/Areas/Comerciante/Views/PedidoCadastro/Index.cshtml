@@ -2,14 +2,11 @@
 @model EntregaRapida.Models.Pedido 
 @inject UserManager<IdentityUser> UserManager;
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuo0h6pD5eu2dNlckQhGnWl3nCzzPYl2o &libraries=places"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18"></script>
-</head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuo0h6pD5eu2dNlckQhGnWl3nCzzPYl2o &libraries=places"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18"></script>
+
 <body>
     <form id="pedidoForm" method="post" asp-controller="PedidoCadastro" asp-action="CadastrarPedido">
     @{
@@ -17,24 +14,20 @@
         var userId = ViewData["LojistaId"];
         var userNome = ViewData["LojistaNome"];
     }
-    <div class="form-group">
-        <label asp-for="date" class="control-label"></label>
-        <input asp-for="date" class="form-control" type="datetime-local" />
-        <span asp-validation-for="date" class="text-danger"></span>
+    <div class="form-group"id="dataInput" style="padding:10px;" >
+        <input asp-for="date" class="form-control"style="border-radius:10px" type="datetime-local" />
+        <span asp-validation-for="date" class="text-danger "></span>
     </div>
-    <div class="form-group">
-        <label asp-for="enderecoDestino" class="control-label"></label>
-        <input asp-for="enderecoDestino" class="form-control" id="enderecoDestinoInput" placeholder="Rua Ludovico Victório,Barra Bonita" />
+    <div class="form-group" style="padding:10px;">
+        <input asp-for="enderecoDestino" class="form-control"style="border-radius:10px" id="enderecoDestinoInput" placeholder="Endereço do Cliente" />
         <span asp-validation-for="enderecoDestino" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="numeroImovel" class="control-label"></label>
-        <input asp-for="numeroImovel" class="form-control" placeholder="2140" type="number" />
+    <div class="form-group"style="padding:10px;">
+        <input asp-for="numeroImovel" class="form-control" style="border-radius:10px" placeholder="Numero" type="number" />
         <span asp-validation-for="numeroImovel" class="text-danger"></span>
     </div>
-    <div class="form-group mb-2">
-        <label asp-for="descricao" class="control-label"></label>
-        <input asp-for="descricao" class="form-control" value="Pizza de Peperoni" />
+    <div class="form-group" style="padding:10px;">
+        <input asp-for="descricao" class="form-control" style="border-radius:10px" value="Pizza de Peperoni" placeholder="Anotações"/>
         <span asp-validation-for="descricao" class="text-danger"></span>
     </div>
     <div class="form-group" hidden>
@@ -57,18 +50,29 @@
         <input asp-for="LojistaId" class="form-control" value="@userId" id="LojistaIdInput" readonly />
         <span asp-validation-for="LojistaId" class="text-danger"></span>
     </div>
-    <div class="form-group mb-2" hidden>
-        <label asp-for="LojistaNome" class="control-label"></label>
+    <div class="form-group" hidden>
+        <label asp-for="LojistaNome" class="control-label mb-1"></label>
         <input asp-for="LojistaNome" class="form-control" value="@userNome" id="LojistaNomeInput" readonly/>
         <span asp-validation-for="LojistaNome" class="text-danger"></span>
     </div>
     <input type="hidden" asp-for="enderecoCompleto" />
-    <div class="form-group" >
-        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+    <div class="form-group"style="padding:10px;" >
+        <input type="submit" value="Cadastrar" class="btn btn-primary "style="border-radius:10px;" />
     </div>
 </form>
 
 <script>
+    function validarData(event) {
+    const dataInput = document.getElementById('dataInput');
+    const dataValue = dataInput.value;
+
+    // Verifique se a data está no formato esperado (DD-MM-YYYY-HH:MM)
+
+  }
+
+  document.getElementById('pedidoForm').addEventListener('submit', validarData);
+
+
   function validarEndereco(event) {
     event.preventDefault();
 
@@ -143,4 +147,4 @@
 </script>
 
 </body>
-</html>
+

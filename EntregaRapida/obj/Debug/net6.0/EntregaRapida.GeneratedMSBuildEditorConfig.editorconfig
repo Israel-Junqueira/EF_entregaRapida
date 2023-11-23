@@ -8,121 +8,121 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EntregaRapida
 build_property.RootNamespace = EntregaRapida
-build_property.ProjectDir = C:\Users\Usuario\Desktop\ProjetoMexidonaetec\ProjetoEF\EntregaRapida\
+build_property.ProjectDir = C:\Users\Usuario\Desktop\ProjetoEFFAtual\EntregaRapida\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Usuario\Desktop\ProjetoMexidonaetec\ProjetoEF\EntregaRapida
+build_property.MSBuildProjectDirectory = C:\Users\Usuario\Desktop\ProjetoEFFAtual\EntregaRapida
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Comerciante/Views/Comerciante/Index.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Comerciante/Views/Comerciante/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcQ29tZXJjaWFudGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Comerciante/Views/PedidoCadastro/HistoricoPedido.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Comerciante/Views/PedidoCadastro/HistoricoPedido.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcUGVkaWRvQ2FkYXN0cm9cSGlzdG9yaWNvUGVkaWRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Comerciante/Views/PedidoCadastro/Index.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Comerciante/Views/PedidoCadastro/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcUGVkaWRvQ2FkYXN0cm9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Comerciante/Views/Shared/_Layout.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Comerciante/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Comerciante/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Comerciante/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Comerciante/Views/_ViewImports.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Comerciante/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Comerciante/Views/_ViewStart.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Comerciante/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Entregador/Views/CorridaEntregador/Maps.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Entregador/Views/CorridaEntregador/Maps.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW50cmVnYWRvclxWaWV3c1xDb3JyaWRhRW50cmVnYWRvclxNYXBzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Entregador/Views/Entregador/Index.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Entregador/Views/Entregador/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW50cmVnYWRvclxWaWV3c1xFbnRyZWdhZG9yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Entregador/Views/Shared/_Layout.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Entregador/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW50cmVnYWRvclxWaWV3c1xTaGFyZWRcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Entregador/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Entregador/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW50cmVnYWRvclxWaWV3c1xTaGFyZWRcX0xvZ2luUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Entregador/Views/_ViewImports.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Entregador/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW50cmVnYWRvclxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Entregador/Views/_ViewStart.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Areas/Entregador/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW50cmVnYWRvclxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Account/AccessDenied.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Account/Login.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Account/Register.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Entregador/Index.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Entregador/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50cmVnYWRvclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Home/Index.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Home/Privacy.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/RegistroEntregador/CadastroEntregadorUsers.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/RegistroEntregador/CadastroEntregadorUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cm9FbnRyZWdhZG9yXENhZGFzdHJvRW50cmVnYWRvclVzZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/RegistroLojista/Cadastro.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/RegistroLojista/Cadastro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cm9Mb2ppc3RhXENhZGFzdHJvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/RegistroLojista/Index.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/RegistroLojista/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cm9Mb2ppc3RhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Shared/Error.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/_ViewImports.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/_ViewStart.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Views/Shared/_Layout.cshtml]
+[C:/Users/Usuario/Desktop/ProjetoEFFAtual/EntregaRapida/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-zgpli2dp7j

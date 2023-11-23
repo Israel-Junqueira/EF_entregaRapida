@@ -22,7 +22,7 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.13",
           "MySql.EntityFrameworkCore": "7.0.0",
           "Swashbuckle.AspNetCore": "6.3.0",
-          "TabelasIdentity.Identity": "1.0.0"
+          "TabelasIdentity": "1.0.0"
         },
         "runtime": {
           "EntregaRapida.dll": {}
@@ -2637,14 +2637,14 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "TabelasIdentity.Identity/1.0.0": {
+      "TabelasIdentity/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.1",
           "Microsoft.AspNetCore.Identity.UI": "6.0.1",
           "MySql.EntityFrameworkCore": "7.0.0"
         },
         "runtime": {
-          "TabelasIdentity.Identity.dll": {}
+          "TabelasIdentity.dll": {}
         }
       }
     }
@@ -4153,7 +4153,7 @@
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
-    "TabelasIdentity.Identity/1.0.0": {
+    "TabelasIdentity/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

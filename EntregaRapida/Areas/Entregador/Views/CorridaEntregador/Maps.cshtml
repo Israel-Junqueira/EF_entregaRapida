@@ -161,10 +161,34 @@
 
         // Define a função initMap como global para ser chamada no script externo
         window.initMap = initMap;
-    </script>
+    
+         // Função para abrir o aplicativo de GPS com o endereço do ponto B
+     function irParaGoogleMaps() {
+        // Verifica se o navegador suporta a abertura do Google Maps
+        if ("geolocation" in navigator) {
+            // Verifica se middlePoint e endPoint contêm as coordenadas dos pontos B e C
+            if (!middlePoint || !endPoint) {
+                console.error("As coordenadas dos pontos B e C ainda não foram definidas.");
+                return;
+            }
+
+            // Monta o link com as coordenadas dos pontos B (middlePoint) e C (endPoint)
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${endPoint.lat()},${endPoint.lng()}&waypoints=${middlePoint.lat()},${middlePoint.lng()}&travelmode=driving`;
+
+            // Abre o Google Maps no celular do entregador com a rota criada
+            window.open(url, '_blank');
+        } else {
+            // Caso o navegador não suporte a abertura do Google Maps
+            alert("Seu navegador não suporta a abertura do Google Maps.");
+        }
+    }
+
+
+        </script>
 </head>
 <body>
-    <div id="map" style="height:1500px; width: 100%;"></div>
+    <div id="map" style="height:500px; width: 100%;"></div>
+    <button onclick="irParaGoogleMaps()">Abrir no Google Maps</button>
 
     <!-- Carrega a biblioteca do Google Maps -->
     <script>(g => {

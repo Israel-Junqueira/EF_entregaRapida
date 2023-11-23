@@ -37,9 +37,10 @@ namespace EntregaRapida.Controllers
         {
             if(ModelState.IsValid){
                 var user = new EntregadorUsersViewModel(){ UserName = entregadorUsersView.NomeUsuario,Email = entregadorUsersView.Email};
-                var verifica = _usermaneger.FindByNameAsync(entregadorUsersView.NomeUsuario);
+
+                var verifica = _dbcontext.Entregadores.Any(c => c.Nome.Equals(entregadorUsersView.NomeUsuario));
                 
-                if(verifica != null ){
+                if(verifica != true ){
                       var result = await _usermaneger.CreateAsync(user,entregadorUsersView.Senha);
                     if (result.Succeeded){
                         await _usermaneger.AddToRoleAsync(user, "Entregador");
@@ -51,13 +52,23 @@ namespace EntregaRapida.Controllers
                         _dbcontext.SaveChanges();
 
                       return RedirectToAction("Login", "Account");
-                    }else{
-                        this.ModelState.AddModelError("Registro","Falha ao realizar registro");
                     }
-                   return RedirectToAction("Index", "Home");
-                  
+                    else{
+                        this.ModelState.AddModelError("Registro","Falha ao realizar registro");
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                       
+                    }
+                    return View(entregadorUsersView);
+
                 }
-             
+                else
+                {
+                    ModelState.AddModelError("NomeUsuario", "Este nome de usuário já está em uso. Por favor, escolha outro.");
+                }
+
             }
             return View(entregadorUsersView);
 

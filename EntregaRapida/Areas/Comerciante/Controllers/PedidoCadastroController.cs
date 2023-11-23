@@ -71,12 +71,8 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
                   
 
                 };
-
                 _context.AddAsync(Novopedido);
                 _context.SaveChangesAsync();
-
-
-
                 _hubContext.Clients.Group("EntregadoresOnline").SendAsync("ReceberPedido", Novopedido);
                 return RedirectToAction("Index", "Comerciante", new { area = "Comerciante" });
             }

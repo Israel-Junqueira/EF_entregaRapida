@@ -1,0 +1,10 @@
+ALTER TABLE ENTREGADORES ADD Idaspnetuser varchar(255);
+
+alter table entregadores add foreign key(Idaspnetuser) references aspnetusers(id);
+
+
+ALTER TABLE lojista ADD Idaspnetuser varchar(255);
+
+alter table lojista add foreign key(Idaspnetuser) references aspnetusers(id);
+
+Insert Into plataforma (PlataformaId) Values (1);

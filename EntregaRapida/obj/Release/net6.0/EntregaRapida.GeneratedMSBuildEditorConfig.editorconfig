@@ -43,6 +43,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tZXJjaWFudGVcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Entregador/Views/CorridaEntregador/Maps.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW50cmVnYWRvclxWaWV3c1xDb3JyaWRhRW50cmVnYWRvclxNYXBzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Usuario/Desktop/ProjetoMexidonaetec/ProjetoEF/EntregaRapida/Areas/Entregador/Views/Entregador/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW50cmVnYWRvclxWaWV3c1xFbnRyZWdhZG9yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

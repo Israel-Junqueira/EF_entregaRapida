@@ -1,27 +1,19 @@
-﻿
-  <style>
-    body {
-      text-align: center;
-   
-    }
+﻿@model EntregaRapida.ViewModel.LoginViewModel
 
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #337ab7;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-      margin: 10px;
-    }
-  </style>
-
-
-<body>
-  <h1>Bem-vindo!</h1>
-  <p>Escolha uma opção para se registrar:</p>
-
-   <a class="nav-link btn btn-link py-0" asp-controller="RegistroEntregador" asp-action="CadastroEntregadorUsers" style="color:black">Entregador</a>
-      <a class="nav-link btn btn-link py-0" asp-controller="RegistroLojista" asp-action="Cadastro" style="color:black">Lojista</a>
-</body>
+    <main class="page-center sing-up">
+        <img src="~/LayoutLojista/img/png/login.png" class="logologin" alt=""> <!--colocar a logo na pasta png-->
+        <article class="sign-up-form form">
+            <h4 class="sign-up__title">Faça seu cadastro!</h4> <!--trocar a cor para #004411-->
+            <form>
+                <button type="submit" class="form-btn primary-default-btn transparent-btn " asp-controller="RegistroLojista" asp-action="Cadastro">Lojista</button> <!--Alterar o  background-color: #0c6300 e no :houver background-color: #003b0f-->
+                <br />
+                <button type="submit" class="form-btn primary-default-btn transparent-btn " asp-controller="RegistroEntregador" asp-action="CadastroEntregadorUsers">Entregador</button> <!--Alterar o  background-color: #0c6300 e no :houver background-color: #003b0f-->
+            </form>
+        </article>
+    </main>
+    <!-- Chart library -->
+    <script src="./plugins/chart.min.js"></script>
+    <!-- Icons library -->
+    <script src="plugins/feather.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="js/script.js"></script>

@@ -38,7 +38,7 @@ namespace EntregaRapida.Areas.Comerciante.Controllers
             return View(PedidosPendentes);
 
         }
-
+        [Authorize()]
         [HttpGet]
         [Route("ComercianteController/GetTipoNegocio")]
         public IActionResult GetTipoNegocio()

@@ -38,14 +38,14 @@ namespace EntregaRapida.Controllers{
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-          public async Task<IActionResult> Cadastro(RegistroLojistaViewModel LojistaUsersView)
+       public async Task<IActionResult> Cadastro(RegistroLojistaViewModel LojistaUsersView)
         {
             if(ModelState.IsValid){
                 var user = new RegistroLojistaViewModel(){ UserName = LojistaUsersView.NomeUsuario ,Email = LojistaUsersView.Email};
 
-                var verifica = _usermaneger.FindByNameAsync(LojistaUsersView.NomeUsuario);
+                var verifica = _dbcontext.Lojistas.Any(c=> c.Nome.Equals(LojistaUsersView.NomeUsuario));
                 
-                if(verifica != null ){
+                if(verifica != true ){
                   
                       var result = await _usermaneger.CreateAsync(user,LojistaUsersView.Senha);
                     if (result.Succeeded){
@@ -60,11 +60,19 @@ namespace EntregaRapida.Controllers{
                         return RedirectToAction("Login","Account");
                     }else{
                         this.ModelState.AddModelError("Registro","Falha ao realizar registro");
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
                     }
-                   
-                  
                 }
-             
+                else
+                {
+                    ModelState.AddModelError("NomeUsuario", "Este nome de usuário já está em uso. Por favor, escolha outro.");
+                }
+
+
+
             }
             return View(LojistaUsersView);
 

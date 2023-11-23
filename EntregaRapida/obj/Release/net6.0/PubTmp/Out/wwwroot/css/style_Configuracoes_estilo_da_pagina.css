@@ -1,0 +1,13 @@
+﻿.custom-button {
+    font-size: 20px; /* Define o tamanho da fonte */
+    border: none; /* Remove a borda existente */
+    border-bottom: 1px solid white; /* Adiciona uma linha amarela na parte inferior */
+    color: black; /* Define a cor do texto como preto */
+    background-color: transparent; /* Define o fundo transparente */
+    transition: border-color 0.3s; /* Adiciona uma transição suave para a mudança de cor da borda */
+    border-radius: 0;
+}
+
+    .custom-button:hover {
+        border-color: green; /* Muda a cor da borda para verde ao passar o mouse */
+    }
