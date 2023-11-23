@@ -1,9 +1,11 @@
 ﻿@model EntregaRapida.ViewModel.LoginViewModel
 
-    <main class="page-center sing-up">
-        <img src="~/LayoutLojista/img/png/login.png" class="logologin" alt=""> <!--colocar a logo na pasta png-->
-        <article class="sign-up-form form">
-            <h4 class="sign-up__title">Faça seu cadastro!</h4> <!--trocar a cor para #004411-->
+    <main class="page-center ">
+         <a asp-controller="Home" asp-action="Index">
+          <img src="~/LayoutLojista/img/png/login.png" class="logologin" alt="" > 
+          </a> <!--colocar a logo na pasta png-->
+        <article class="sign-up form">
+            <h4 class="sign-up__title">Faça seu cadastro!</h4> 
             <form>
                 <button type="submit" class="form-btn primary-default-btn transparent-btn " asp-controller="RegistroLojista" asp-action="Cadastro">Lojista</button> <!--Alterar o  background-color: #0c6300 e no :houver background-color: #003b0f-->
                 <br />

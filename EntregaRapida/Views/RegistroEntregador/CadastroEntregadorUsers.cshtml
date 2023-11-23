@@ -1,197 +1,334 @@
 @model EntregaRapida.ViewModel.EntregadorUsersViewModel
 
-
 @if (ViewData.ModelState.IsValid)
 {
- 
-    <main class="formregistro">
-        <h2 class="sign-up__title_reg">Cadastre-se como Entregador</h2><br />
 
-        <form method="post" asp-controller="RegistroEntregador" asp-action="CadastroEntregadorUsers">
+    <!DOCTYPE html>
+    <html lang="en">
 
-            <div>
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div><br />
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Colorlib Templates">
+        <meta name="author" content="Colorlib">
+        <meta name="keywords" content="Colorlib Templates">
 
-            <div class="form-label-wrapper">
-                <label asp-for="Endereco" class="control-label"></label>
-                <input asp-for="Endereco" class="form-control" />
-                <span asp-validation-for="Endereco" class="text-danger"></span>
-            </div><br />
+        <!-- Title Page-->
+        <title>Entrega Fácil</title>
 
-            <div class="form-group">
-                <label asp-for="DDD" class="control-label"></label>
-                <input asp-for="DDD" class="form-control" />
-                <span asp-validation-for="DDD" class="text-danger"></span>
-            </div><br />
+        <!-- Icons font CSS-->
+        <link href="~/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+        <link href="~/colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+        <!-- Font special for pages-->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-            <div class="form-group">
-                <label asp-for="Celular" class="control-label"></label>
-                <input asp-for="Celular" class="form-control" />
-                <span asp-validation-for="Celular" class="text-danger"></span>
-            </div><br />
+        <!-- Vendor CSS-->
+        <link href="~/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+        <link href="~/colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
-            <div class="form-group">
-                <label asp-for="CNH" class="control-label"></label>
-                <input asp-for="CNH" class="form-control" />
-                <span asp-validation-for="CNH" class="text-danger"></span>
-            </div><br />
+        <!-- Main CSS-->
+        <link href="~/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
+    </head>
+    <body>
+        <div class="page-wrapper bg-gra-01 p-t-130 p-b-100 font-poppins">
+            <div class="wrapper wrapper--w680">
+                <div class="cardRael card-4Rael">
+                    <div class="card-bodyRael text-center">
+                         <a asp-controller="Home" asp-action="Index">
+                           <img src="~/LayoutLojista/img/png/login.png" class="logologin" alt="" > 
+                         </a>
+                        <h2 class="title">Seja bem vindo Entregador !!</h2>
+                        <div >
+                            <ul>
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <li class="alert alert-danger">@error.ErrorMessage</li>
+                                }
+                            </ul>
+                        </div>
+                        <form form method="post" asp-controller="RegistroEntregador" asp-action="CadastroEntregadorUsers">
+                            @Html.AntiForgeryToken()
+                            <div class="rowRael rowRael-space">
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="NomeUsuario" class="input--style-4" placeholder="Nome do Usuario" />
+                                        <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Senha" type="password" class="input--style-4" placeholder="Senha" />
+                                        <span asp-validation-for="Senha" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Senhaconfirmar" type="password" class="input--style-4" placeholder="Confirmar Senha" />
+                                        <span asp-validation-for="Senhaconfirmar" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowRael rowRael-space">
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Nome" class="input--style-4" placeholder="Nome do Entregador" />
+                                        <span asp-validation-for="Nome" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Email"  type="email" class="input--style-4" placeholder="Email" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                   <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="EmailConfirmar"  type="email" class="input--style-4" placeholder="Confirmar E-mail" />
+                                        <span asp-validation-for="EmailConfirmar" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowRael rowRael-space">
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Celular" class="input--style-4" placeholder="Telefone (00) 0000-0000" />
+                                        <span asp-validation-for="Celular" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Endereco"  class="input--style-4" placeholder="Endereço" />
+                                        <span asp-validation-for="Endereco" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="DDD" class="input--style-4" placeholder="DDD" />
+                                        <span asp-validation-for="DDD" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowRael rowRael-space">
+                              <div class="col-2Rael">
+                                    <div class="rs-select2 js-select-simple select--no-search ">
+                                        @Html.DropDownListFor(model => model.Modalidade, new SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Modalidade))), new { @class = "input--style-4" })
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                              </div>
+                              <div class="col-2Rael">
+                                  <div class="input-group">
+                                      <input asp-for="CNH" class="input--style-4" placeholder="Registro CNH" />
+                                      <span asp-validation-for="CNH" class="text-danger"></span>
+                                  </div>
+                              </div>
+                                 <div class="col-2Rael">
+                                  <div class="rs-select2 js-select-simple select--no-search ">
+                                      @Html.DropDownListFor(model => model.Veiculo, new SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Veiculo))), new { @class = "input--style-4" })
+                                      <div class="select-dropdown"></div>
+                                  </div>
+                              </div>
+                            </div>
+                          
 
-            <div class="form-group">
-                <label asp-for="Modalidade" class="control-label"></label>
-                @Html.DropDownListFor(model=>model.Modalidade,new
-            SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Modalidade))))
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="Veiculo" class="control-label"></label>
-                @Html.DropDownListFor(model=>model.Veiculo,new
-            SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Veiculo))))
-            </div><br />
-
-            <div class="form-group">
-                <input type="hidden" asp-for="PlataformaId" class="form-control" value="1" />
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="NomeUsuario" class="control-label"></label>
-                <input asp-for="NomeUsuario" class="form-control" />
-                <span asp-validation-for="NomeUsuario" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="Senha" class="control-label"></label>
-                <input asp-for="Senha" class="form-control" type="password" />
-                <span asp-validation-for="Senha" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="Senhaconfirmar" class="control-label"></label>
-                <input asp-for="Senhaconfirmar" class="form-control" type="password" />
-                <span asp-validation-for="Senhaconfirmar" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="EmailConfirmar" class="control-label"></label>
-                <input asp-for="EmailConfirmar" class="form-control" />
-                <span asp-validation-for="EmailConfirmar" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <input type="submit" value="Cadastrar" class="form-btn primary-default-btn transparent-btn" />
+                            <div class="input-group">
+                                <div class="col-2">
+                                    <input asp-for="PlataformaId" class="form-control" value="1" type="hidden" />
+                                </div>
+                            </div>
+                            <div class="p-t-15">
+                                <button class="btn btn--radius-2 btn--blue" style="background-color:#003d10" type="submit">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </form>
-    </main>
+        </div>
+        <!-- Jquery JS-->
+        <script src="~/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
+        <!-- Vendor JS-->
+        <script src="~/colorlib-regform-4/vendor/select2/select2.min.js"></script>
+        <script src="~/colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
+        <script src="~/colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
+
+        <!-- Main JS-->
+        <script src="~/colorlib-regform-4/js/global.js"></script>
+
+
+    </body>
+    </html>
+
+
+    @section Scripts {
+    @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
 }
 else
 {
-    <div class="alert alert-danger">
-        <ul>
-            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-            {
-                <li>@error.ErrorMessage</li>
-            }
-        </ul>
-    </div>
+    
+    <!DOCTYPE html>
+    <html lang="en">
 
-    <main class="formregistro">
-        <h2 class="sign-up__title_reg">Cadastre-se como Entregador</h2><br />
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Colorlib Templates">
+        <meta name="author" content="Colorlib">
+        <meta name="keywords" content="Colorlib Templates">
 
-        <form method="post" asp-controller="RegistroEntregador" asp-action="CadastroEntregadorUsers">
-            @Html.AntiForgeryToken()
-            <div>
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div><br />
+        <!-- Title Page-->
+        <title>Entrega Fácil</title>
 
-            <div class="form-label-wrapper">
-                <label asp-for="Endereco" class="control-label"></label>
-                <input asp-for="Endereco" class="form-control" />
-                <span asp-validation-for="Endereco" class="text-danger"></span>
-            </div><br />
+        <!-- Icons font CSS-->
+        <link href="~/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+        <link href="~/colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+        <!-- Font special for pages-->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-            <div class="form-group">
-                <label asp-for="DDD" class="control-label"></label>
-                <input asp-for="DDD" class="form-control" />
-                <span asp-validation-for="DDD" class="text-danger"></span>
-            </div><br />
+        <!-- Vendor CSS-->
+        <link href="~/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+        <link href="~/colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
-            <div class="form-group">
-                <label asp-for="Celular" class="control-label"></label>
-                <input asp-for="Celular" class="form-control" />
-                <span asp-validation-for="Celular" class="text-danger"></span>
-            </div><br />
+        <!-- Main CSS-->
+        <link href="~/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
+    </head>
+    <body>
+        <div class="page-wrapper bg-gra-01 p-t-130 p-b-100 font-poppins">
+            <div class="wrapper wrapper--w680">
+                <div class="cardRael card-4Rael">
+                    <div class="card-bodyRael text-center">
+                          <a asp-controller="Home" asp-action="Index">
+                           <img src="~/LayoutLojista/img/png/login.png" class="logologin" alt="" > 
+                         </a>
+                        <h2 class="title">Seja bem vindo Lojista!!</h2>
+                        <div >
+                            <ul>
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <li class="alert alert-danger">@error.ErrorMessage</li>
+                                }
+                            </ul>
+                        </div>
+                        <form form method="post" asp-controller="RegistroEntregador" asp-action="Cadastro">
+                            @Html.AntiForgeryToken()
+                            <div class="rowRael rowRael-space">
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="NomeUsuario" class="input--style-4" placeholder="Nome do Usuario" />
+                                        <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Senha" class="input--style-4" placeholder="Senha" />
+                                        <span asp-validation-for="Senha" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Senhaconfirmar" class="input--style-4" placeholder="Confirmar Senha" />
+                                        <span asp-validation-for="Senhaconfirmar" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowRael rowRael-space">
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Nome" class="input--style-4" placeholder="Nome do Entregador" />
+                                        <span asp-validation-for="Nome" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Email"  type="email" class="input--style-4" placeholder="Endereço da Loja" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                   <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="EmailConfirmar"  type="email" class="input--style-4" placeholder="Confirmar E-mail" />
+                                        <span asp-validation-for="EmailConfirmar" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowRael rowRael-space">
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Celular" class="input--style-4" placeholder="Telefone (00) 0000-0000" />
+                                        <span asp-validation-for="Celular" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="Endereco"  class="input--style-4" placeholder="Endereço" />
+                                        <span asp-validation-for="Endereco" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-2Rael">
+                                    <div class="input-group">
+                                        <input asp-for="DDD" class="input--style-4" type="email" placeholder="DDD" />
+                                        <span asp-validation-for="DDD" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rowRael rowRael-space">
+                              <div class="col-2Rael">
+                                    <div class="rs-select2 js-select-simple select--no-search ">
+                                        @Html.DropDownListFor(model => model.Modalidade, new SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Modalidade))), new { @class = "input--style-4" })
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                              </div>
+                              <div class="col-2Rael">
+                                  <div class="input-group">
+                                      <input asp-for="CNH" class="input--style-4" placeholder="Registro CNH" />
+                                      <span asp-validation-for="CNH" class="text-danger"></span>
+                                  </div>
+                              </div>
+                                 <div class="col-2Rael">
+                                  <div class="rs-select2 js-select-simple select--no-search ">
+                                      @Html.DropDownListFor(model => model.Veiculo, new SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Veiculo))), new { @class = "input--style-4" })
+                                      <div class="select-dropdown"></div>
+                                  </div>
+                              </div>
+                            </div>
+                          
 
-            <div class="form-group">
-                <label asp-for="CNH" class="control-label"></label>
-                <input asp-for="CNH" class="form-control" />
-                <span asp-validation-for="CNH" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="Modalidade" class="control-label"></label>
-                @Html.DropDownListFor(model=>model.Modalidade,new
-            SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Modalidade))))
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="Veiculo" class="control-label"></label>
-                @Html.DropDownListFor(model=>model.Veiculo,new
-            SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.Veiculo))))
-            </div><br />
-
-            <div class="form-group">
-                <input type="hidden" asp-for="PlataformaId" class="form-control" value="1" />
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="NomeUsuario" class="control-label"></label>
-                <input asp-for="NomeUsuario" class="form-control" />
-                <span asp-validation-for="NomeUsuario" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="Senha" class="control-label"></label>
-                <input asp-for="Senha" class="form-control" type="password" />
-                <span asp-validation-for="Senha" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="Senhaconfirmar" class="control-label"></label>
-                <input asp-for="Senhaconfirmar" class="form-control" type="password" />
-                <span asp-validation-for="Senhaconfirmar" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <label asp-for="EmailConfirmar" class="control-label"></label>
-                <input asp-for="EmailConfirmar" class="form-control" />
-                <span asp-validation-for="EmailConfirmar" class="text-danger"></span>
-            </div><br />
-
-            <div class="form-group">
-                <input type="submit" value="Cadastrar" class="form-btn primary-default-btn transparent-btn" />
+                            <div class="input-group">
+                                <div class="col-2">
+                                    <input asp-for="PlataformaId" class="form-control" value="1" type="hidden" />
+                                </div>
+                            </div>
+                            <div class="p-t-15">
+                                <button class="btn btn--radius-2 btn--blue "style="background-color:#003d10" type="submit">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </form>
-    </main>
-}
+        </div>
+        <!-- Jquery JS-->
+        <script src="~/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
+        <!-- Vendor JS-->
+        <script src="~/colorlib-regform-4/vendor/select2/select2.min.js"></script>
+        <script src="~/colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
+        <script src="~/colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
 
-@section Scripts {
+        <!-- Main JS-->
+        <script src="~/colorlib-regform-4/js/global.js"></script>
+
+
+    </body>
+    </html>
+
+
+    @section Scripts {
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
     }
+
+    
 }
