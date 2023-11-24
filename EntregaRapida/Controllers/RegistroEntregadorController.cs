@@ -26,10 +26,8 @@ namespace EntregaRapida.Controllers
         
         [HttpGet]
         public IActionResult CadastroEntregadorUsers()
-        {
-
+         {
             return View();
-
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

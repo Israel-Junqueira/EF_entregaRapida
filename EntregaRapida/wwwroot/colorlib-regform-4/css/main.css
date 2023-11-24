@@ -51,11 +51,7 @@
  * More sensible default box-sizing:
  * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
  */
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+
 
 * {
   padding: 0;
@@ -74,16 +70,6 @@ html {
 /**
  * A very simple reset that sits on top of Normalize.css.
  */
-body,
-h1, h2, h3, h4, h5, h6,
-blockquote, p, pre,
-dl, dd, ol, ul,
-figure,
-hr,
-fieldset, legend {
-  margin: 0;
-  padding: 0;
-}
 
 /**
  * Remove trailing margins from nested lists.
@@ -124,11 +110,6 @@ button {
   min-height: 100vh;
 }
 
-body {
-  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-}
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
@@ -199,7 +180,7 @@ h6 {
 }
 
 .p-t-130 {
-  padding-top: 130px;
+  padding-top: 80px;
 }
 
 .p-t-180 {
@@ -533,12 +514,13 @@ input {
     border-radius: 5px;
 }
 
-.rs-select2 .select2-container .select2-selection--single {
-  outline: none;
-  border: none;
-  height: 50px;
-  background: transparent;
-}
+    .rs-select2 .select2-container .select2-selection--single {
+        outline: none;
+        border: none;
+        height: 50px;
+        background: transparent;
+        width: 100%;
+    }
 
 .rs-select2 .select2-container .select2-selection--single .select2-selection__rendered {
   line-height: 50px;
@@ -617,7 +599,7 @@ input {
   font-size: 24px;
   color: #525252;
   font-weight: 400;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 /* ==========================================================================
@@ -641,8 +623,8 @@ input {
 }
 
     .card-4Rael .card-bodyRael {
-        padding: 57px 65px;
-        padding-bottom: 65px;
+        padding: 0px 65px;
+        padding-bottom: 5px;
     }
 
 @media (max-width: 767px) {

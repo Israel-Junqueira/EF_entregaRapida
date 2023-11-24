@@ -3,146 +3,141 @@
 @if (ViewData.ModelState.IsValid)
 {
 
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-        <!-- Required meta tags-->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Colorlib Templates">
-        <meta name="author" content="Colorlib">
-        <meta name="keywords" content="Colorlib Templates">
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
 
-        <!-- Title Page-->
-        <title>Entrega Fácil</title>
+    <!-- Title Page-->
+    <title>Entrega Fácil</title>
 
-        <!-- Icons font CSS-->
-        <link href="~/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-        <link href="~/colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-        <!-- Font special for pages-->
-        <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Icons font CSS-->
+    <link href="~/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-        <!-- Vendor CSS-->
-        <link href="~/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-        <link href="~/colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+    <!-- Vendor CSS-->
+    <link href="~/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
-        <!-- Main CSS-->
-        <link href="~/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
-    </head>
-    <body>
-        <div class="page-wrapper bg-gra-01 p-t-130 p-b-100 font-poppins">
-            <div class="wrapper wrapper--w680">
-                <div class="cardRael card-4Rael">
-                    <div class="card-bodyRael text-center">
-                           <a asp-controller="Home" asp-action="Index">
-                             <img src="~/LayoutLojista/img/png/login.png" class="logologin" alt="" > 
-                           </a>
-                        <h2 class="title">Seja bem vindo Lojista!!</h2>
-                        <div >
-                            <ul>
-                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                                {
-                                    <li class="alert alert-danger">@error.ErrorMessage</li>
-                                }
-                            </ul>
-                        </div>
-                        <form form method="post" asp-controller="RegistroLojista" asp-action="Cadastro">
-                            @Html.AntiForgeryToken()
-                            <div class="rowRael rowRael-space">
-                                <div class="col-2Rael">
-                                    <div class="input-group">
-                                        <input asp-for="NomeUsuario" class="input--style-4" placeholder="Nome do Usuario" />
-                                        <span asp-validation-for="NomeUsuario" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-2Rael">
-                                    <div class="input-group">
-                                        <input asp-for="Senha" type="password" class="input--style-4" placeholder="Senha" />
-                                        <span asp-validation-for="Senha" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-2Rael">
-                                    <div class="input-group">
-                                        <input asp-for="Senhaconfirmar"  type="password" class="input--style-4" placeholder="Confirmar Senha" />
-                                        <span asp-validation-for="Senhaconfirmar" class="text-danger"></span>
-                                    </div>
+    <!-- Main CSS-->
+
+
+    <div class="page-wrapper bg-gra-01 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="cardRael card-4Rael">
+                <div class="card-bodyRael text-center">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/LayoutLojista/img/png/login.png" class="logologin" style="padding:10px" alt="">
+                    </a>
+                    <h2 class="title">Seja bem vindo Lojista!!</h2>
+                    <div>
+                        <ul>
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <li class="alert alert-danger">@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </div>
+                    <form form method="post" asp-controller="RegistroLojista" asp-action="Cadastro">
+                        @Html.AntiForgeryToken()
+                        <div class="rowRael rowRael-space">
+                            <div class="col-2Rael">
+                                <div class="input-group">
+                                    <input asp-for="NomeUsuario" class="input--style-4" placeholder="Nome do Usuario" />
+                                    <span asp-validation-for="NomeUsuario" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="rowRael rowRael-space">
-                                <div class="col-2Rael">
-                                    <div class="input-group">
-                                        <input asp-for="NomeComercio" class="input--style-4" placeholder="Nome da Loja" />
-                                        <span asp-validation-for="NomeComercio" class="text-danger"></span>
-                                    </div>
+                            <div class="col-2Rael">
+                                <div class="input-group">
+                                    <input asp-for="Senha" type="password" class="input--style-4" placeholder="Senha" />
+                                    <span asp-validation-for="Senha" class="text-danger"></span>
                                 </div>
-                                <div class="col-2Rael">
-                                    <div class="input-group">
-                                        <input asp-for="Endereco" class="input--style-4" placeholder="Endereço da Loja" />
-                                        <span asp-validation-for="Endereco" class="text-danger"></span>
-                                    </div>
+                            </div>
+                            <div class="col-2Rael">
+                                <div class="input-group">
+                                    <input asp-for="Senhaconfirmar" type="password" class="input--style-4" placeholder="Confirmar Senha" />
+                                    <span asp-validation-for="Senhaconfirmar" class="text-danger"></span>
                                 </div>
-                              <div class="col-2Rael">
-                                <div class="rs-select2 js-select-simple select--no-search ">
-                                    @Html.DropDownListFor(model => model.TipoComercio, new SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.TipoComercio))), new { @class = "input--style-4" })
+                            </div>
+                        </div>
+                        <div class="rowRael rowRael-space">
+                            <div class="col-2Rael">
+                                <div class="input-group">
+                                    <input asp-for="NomeComercio" class="input--style-4" placeholder="Nome da Loja" />
+                                    <span asp-validation-for="NomeComercio" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-2Rael">
+                                <div class="input-group">
+                                    <input asp-for="Endereco" class="input--style-4" placeholder="Endereço da Loja" />
+                                    <span asp-validation-for="Endereco" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-2Rael ">
+                                <div class="rs-select2 js-select-simple select--no-search " style="width: 100%;">
+                                    @Html.DropDownListFor(model => model.TipoComercio, new SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.TipoComercio))), new { @class = "input--style-4 ", style = "width:100% "})
                                     <div class="select-dropdown"></div>
                                 </div>
                             </div>
-                            </div>
-                            <div class="rowRael rowRael-space">
-                                <div class="col-2Rael">
-                                    <div class="input-group">
-                                        <input asp-for="Email" type="email" class="input--style-4" placeholder="Email" />
-                                        <span asp-validation-for="Email" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-2Rael">
-                                    <div class="input-group">
-                                        <input asp-for="EmailConfirmed" class="input--style-4" type="email" placeholder="Confirmar Email" />
-                                        <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
-                                    </div>
+                        </div>
+                        <div class="rowRael rowRael-space">
+                            <div class="col-2Rael">
+                                <div class="input-group">
+                                    <input asp-for="Email" type="email" class="input--style-4" placeholder="Email" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="rowRael rowRael-space">
-                                <div class="col-2Rael">
-                                    <div class="input-group">
-                                        <input asp-for="Telefone" class="input--style-4" placeholder="Telefone (00) 0000-0000" />
-                                        <span asp-validation-for="Telefone" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-2Rael">
-                                    <div class="input-group">
-                                        <input asp-for="CNPJ" class="input--style-4" placeholder="CJPJ 00.000.000/0000-00" />
-                                        <span asp-validation-for="CNPJ" class="text-danger"></span>
-                                    </div>
+                            <div class="col-2Rael">
+                                <div class="input-group">
+                                    <input asp-for="EmailConfirmed" class="input--style-4" type="email" placeholder="Confirmar Email" />
+                                    <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="input-group">
-                                <div class="col-2">
-                                    <input asp-for="PlataformaId" class="form-control" value="1" type="hidden" />
+                        </div>
+                        <div class="rowRael rowRael-space">
+                            <div class="col-2Rael">
+                                <div class="input-group">
+                                    <input asp-for="Telefone" class="input--style-4" placeholder="Telefone (00) 0000-0000" />
+                                    <span asp-validation-for="Telefone" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="p-t-15">
-                                <button class="btn btn--radius-2 btn--blue" style="background-color:#003d10"type="submit">Cadastrar</button>
+                                <button class="btn btn--radius-2 btn--blue" style="background-color:#003d10" type="submit">Cadastrar</button>
                             </div>
-                        </form>
-                    </div>
+                            <div class="col-2Rael">
+                                <div class="input-group">
+                                    <input asp-for="CNPJ" class="input--style-4" placeholder="CJPJ 00.000.000/0000-00" />
+                                    <span asp-validation-for="CNPJ" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <input asp-for="PlataformaId" class="form-control" value="1" type="hidden" />
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- Jquery JS-->
-        <script src="~/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
-        <!-- Vendor JS-->
-        <script src="~/colorlib-regform-4/vendor/select2/select2.min.js"></script>
-        <script src="~/colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
-        <script src="~/colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
+    </div>
+    <!-- Jquery JS-->
+    <script src="~/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="~/colorlib-regform-4/vendor/select2/select2.min.js"></script>
+    <script src="~/colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
+    <script src="~/colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
 
-        <!-- Main JS-->
-        <script src="~/colorlib-regform-4/js/global.js"></script>
+    <!-- Main JS-->
+    <script src="~/colorlib-regform-4/js/global.js"></script>
 
 
-    </body>
-    </html>
 
 
     @section Scripts {
@@ -153,43 +148,43 @@
 }
 else
 {
-<!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="en">
 
     <head>
         <!-- Required meta tags-->
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Colorlib Templates">
         <meta name="author" content="Colorlib">
         <meta name="keywords" content="Colorlib Templates">
 
         <!-- Title Page-->
-        <title>Entrega Fácil</title>
+    <title>Entrega Fácil</title>
 
         <!-- Icons font CSS-->
-        <link href="~/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
         <link href="~/colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
         <!-- Font special for pages-->
-        <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
         <!-- Vendor CSS-->
-        <link href="~/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
         <link href="~/colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
         <!-- Main CSS-->
-        <link href="~/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
+    <link href="~/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
     </head>
     <body>
         <div class="page-wrapper bg-gra-01 p-t-130 p-b-100 font-poppins">
             <div class="wrapper wrapper--w680">
                 <div class="cardRael card-4Rael">
                     <div class="card-bodyRael text-center">
-                            <a asp-controller="Home" asp-action="Index">
-                             <img src="~/LayoutLojista/img/png/login.png" class="logologin" alt="" > 
-                           </a>
+                        <a asp-controller="Home" asp-action="Index">
+                            <img src="~/LayoutLojista/img/png/login.png" class="logologin" alt="">
+                        </a>
                         <h2 class="title">Seja bem vindo Lojista !!</h2>
-                        <div >
+                        <div>
                             <ul>
                                 @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
                                 {
@@ -232,12 +227,12 @@ else
                                         <span asp-validation-for="Endereco" class="text-danger"></span>
                                     </div>
                                 </div>
-                              <div class="col-2Rael">
-                                <div class="rs-select2 js-select-simple select--no-search ">
-                                    @Html.DropDownListFor(model => model.TipoComercio, new SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.TipoComercio))), new { @class = "input--style-4" })
-                                    <div class="select-dropdown"></div>
+                                <div class="col-2Rael">
+                                    <div class="rs-select2 js-select-simple select--no-search ">
+                                        @Html.DropDownListFor(model => model.TipoComercio, new SelectList(Enum.GetValues(typeof(EntregaRapida.Models.Enum.TipoComercio))), new { @class = "input--style-4" })
+                                        <div class="select-dropdown"></div>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                             <div class="rowRael rowRael-space">
                                 <div class="col-2Rael">
@@ -281,14 +276,14 @@ else
             </div>
         </div>
         <!-- Jquery JS-->
-        <script src="~/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
+    <script src="~/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
         <!-- Vendor JS-->
-        <script src="~/colorlib-regform-4/vendor/select2/select2.min.js"></script>
+    <script src="~/colorlib-regform-4/vendor/select2/select2.min.js"></script>
         <script src="~/colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
         <script src="~/colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
 
         <!-- Main JS-->
-        <script src="~/colorlib-regform-4/js/global.js"></script>
+    <script src="~/colorlib-regform-4/js/global.js"></script>
 
 
     </body>
@@ -301,5 +296,5 @@ else
         }
     }
 
-    
+
 }

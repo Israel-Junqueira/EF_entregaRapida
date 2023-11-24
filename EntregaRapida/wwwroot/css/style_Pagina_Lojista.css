@@ -151,9 +151,8 @@ header {
     background-color: darkgray;
     }
 .footer-basic {
-    padding: 20px 0;
-    background-color: #ffffff;
-    color: #4b4c4d;
+    position: fixed;
+    bottom: 0;
     width: 100%;
 }
 

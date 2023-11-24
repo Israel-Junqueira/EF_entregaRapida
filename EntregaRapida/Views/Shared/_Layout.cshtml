@@ -11,16 +11,38 @@
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="~/css/footer.css">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/style_Pagina_Lojista.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/LayoutLojista/css/style.css">
+    <link href="~/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
 </head>
 
-<body class="d-flex justify-content-between">
+<body class="d-flex justify-content-center align-items-center"  >
+ 
     <style>
-        .custom-icon {
-            font-size: 24px; /* Defina o tamanho desejado */
-        }
+  body {
+    height: 100%;
+    margin: 0;
+    
+}
+.footer-basic {
+   
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40; /* Cor de fundo do footer, ajuste conforme necessário */
+    color: white; /* Cor do texto do footer, ajuste conforme necessário */
+    padding: 10px; /* Espaçamento interno do footer, ajuste conforme necessário */
+}
+header {
+    position: fixed;
+    top: 0;
+    width: 100%; /* Cor de fundo do header, ajuste conforme necessário */
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave, ajuste conforme necessário */
+}
+    
+    
+}
     </style>
 
     <header class="container-fluid">
@@ -44,13 +66,13 @@
             </div>
         </nav>
     </header>
-    <div class="container" style="min-height:100%">
+    <div class="container " style="height:auto;display:flex;align-items:center;justify-content:center">
         <main role="main">
             @RenderBody()
         </main>
 
     </div>
-    <footer class="bg-dark text-center text-white footer-basic">
+    <footer class="bg-dark text-center text-white footer-basic" >
         <div class="social">
             <a href="#"><i class="icon ion-social-instagram"></i></a>
             <a href="#"><i class="icon ion-social-snapchat"></i></a>
