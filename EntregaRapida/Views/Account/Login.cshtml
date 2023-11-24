@@ -1,26 +1,26 @@
 @model EntregaRapida.ViewModel.LoginViewModel
 
-    <main class="page-center">
-        <article class="sign-up">
-            <img src="~/LayoutLojista/img/png/login.png" class="logologin" alt="" > <!--colocar a logo na pasta png-->
-            
-            <form method="post" asp-controller="Account" class="sign-up-form form" asp-action="Login">
+<main class="page-center">
+    <article class="sign-up">
+        <a asp-controller="Home" asp-action="Index">
+            <img src="~/LayoutLojista/img/png/login.png" class="logologin" style="padding:10px" alt="">
+        </a>
+        <form method="post" asp-controller="Account" class="sign-up-form form" asp-action="Login">
             <h4 class="sign-up__title">Seja bem vindo!</h4> <!--trocar a cor para #004411-->
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <input type="hidden" asp-for="ReturnUrl" />
-                <label asp-for="UserName" class="form-label-wrapper">
-                    <p class="form-label">Usuario</p><!--trocar a cor do texto para #ffffff-->
-                    <input asp-for="UserName" class="form-input" placeholder="Insira seu Usuario" required>
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </label>
-                <label asp-for="Password" class="form-label-wrapper">
-                    <p class="form-label">Senha</p>
-                    <input asp-for="Password" class="form-input" type="password" placeholder="Insira sua senha" required>
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </label>
-                <button type="submit" class="form-btn primary-default-btn transparent-btn ">Entrar</button> <!--Alterar o  background-color: #0c6300 e no :houver background-color: #003b0f-->
-                <a class="link-info forget-link" asp-controller="Account" asp-action="Register">Não tem Cadastro? Registre-se!</a> <!--alterar o color: #004411 e o border-color: #004411 no forget-link:houver; e o link-info color: #66ff00-->
-            </form>
-        </article>
-    </main>
-  
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="ReturnUrl" />
+            <label asp-for="UserName" class="form-label-wrapper">
+                <p class="form-label">Usuario</p><!--trocar a cor do texto para #ffffff-->
+                <input asp-for="UserName" class="form-input" placeholder="Insira seu Usuario" required>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </label>
+            <label asp-for="Password" class="form-label-wrapper">
+                <p class="form-label">Senha</p>
+                <input asp-for="Password" class="form-input" type="password" placeholder="Insira sua senha" required>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </label>
+            <button type="submit" class="form-btn primary-default-btn transparent-btn ">Entrar</button> <!--Alterar o  background-color: #0c6300 e no :houver background-color: #003b0f-->
+            <a class="link-info forget-link" asp-controller="Account" asp-action="Register">Não tem Cadastro? Registre-se!</a> <!--alterar o color: #004411 e o border-color: #004411 no forget-link:houver; e o link-info color: #66ff00-->
+        </form>
+    </article>
+</main>

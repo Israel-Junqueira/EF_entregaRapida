@@ -1,4 +1,112 @@
-﻿@using EntregaRapida.Models
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Heado</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- owl carousel style -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/assets/owl.carousel.min.css" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="~/index/css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="~/index/css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="~/index/css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="~/index/images/fevicon.png" type="index/image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="~/index/css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- owl stylesheets -->
+    <link rel="stylesheet" href="~/index/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/index/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+</head>
+<body>
+    <!--banner section start -->
+    <div class="banner_section layout_padding">
+        <div id="my_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="taital_main">
+                                    <h5 class="banner_taital">Começe a entregar agora!</h5>
+                                    <p class="banner_text">Venha fazer parte da maior rede de entregas de nossa região! Se você é um comerciante ou atua como entregador, chegou a hora de conhecer a plataforma que vai facilitar as entregas dos pedidos!</p>
+                                    <div class="read_bt"><a href="#">Cadastre-se</a></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div><img src="~/index/images/img-1.png" class="image_1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--banner section end -->
+    </div>
+
+    <div class="services_section layout_padding">
+        <div class="container">
+            <h1 class="service_taital">Nossos Serviços</h1>
+            <p class="service_text">Conheça um pouco sobre a plataforma que veio para tonar mais fácil a gestão dos pedidos e a contratação de entregadores. </p>
+            <div class="services_section_2">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="icon_1 centralizada"><img src="~/index/images/idash.png"></div>
+                        <h4 class="design_text">Dashboards</h4>
+                        <p class="lorem_text">Tenha um painel administrativo para controlar os pedidos disponibilizados para entrega. </p>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="icon_1 centralizada"><img src="~/index/images/iuser.png"></div>
+                        <h4 class="design_text">Entregadores Online</h4>
+                        <p class="lorem_text">Veja os entregadores disponíveis para realizar entregas e tenha visão dos pedidos disponibilizados. </p>
+                        <div class="read_bt_2"><a href="#">Cadastre-se</a></div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="icon_1 centralizada"><img src="~/index/images/imap.png"></div>
+                        <h4 class="design_text">Rotas</h4>
+                        <p class="lorem_text">Consiga efetuar as entregas através do google maps. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--services section end -->
+    <!-- Javascript files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- javascript -->
+    <script src="js/owl.carousel.js"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script type="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2//2.0.0-beta.2.4/owl.carousel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+@using EntregaRapida.Models
 
 @model IEnumerable<EntregadorConectado>
 
@@ -8,6 +116,6 @@
 
 
 
-@section scripts{
-  
+@section scripts{
+  
 }

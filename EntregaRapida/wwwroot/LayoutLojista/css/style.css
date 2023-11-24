@@ -1345,12 +1345,12 @@ button {
 
 .transparent-btn {
     background-color: #0c6300;
-    border: 2px solid transparent !important;
+   
 }
 
     .transparent-btn:focus {
         outline: none;
-        border: 2px solid #AFBCFF !important;
+        background-color: #0c6300;
     }
 
 .primary-default-btn {
@@ -2045,7 +2045,7 @@ label {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     padding: 8px 0;
-    opacity: 0.6;
+    opacity: 0.9;
     color: #fff;
     font-weight: 500;
     font-size: 14px;
@@ -2059,15 +2059,16 @@ label {
         width: 3px;
         right: -11px;
         border-radius: 10px;
-        background-color: #fff;
+        background-color: #044700;
         opacity: 0;
         -webkit-transition: 0.3s all;
         -o-transition: 0.3s all;
-        transition: 0.3s all;
+        transition: 0.1s all;
     }
 
     .sidebar-body-menu a:hover {
         opacity: 1;
+        color: #044700;
     }
 
         .sidebar-body-menu a:hover::after {
@@ -2076,6 +2077,7 @@ label {
 
     .sidebar-body-menu a.active {
         opacity: 1;
+        color: #044700;
     }
 
         .sidebar-body-menu a.active::after {

@@ -12,10 +12,16 @@
 <!-- Verifica se tem alguém logado -->
 @if (User.Identity.IsAuthenticated)
 {
+    <style>
+    .nav-link:hover {
+        color: #0c6300 !important;
+        font-size: 20px !important;
+    }
+</style>
     <form asp-controller="Login" asp-action="Logout" method="post" class="navbar-left">
       <div class="d-flex align-items-center justify-content-center">
         <ul class="nav navbar-nav navbar-left">
-            <button type="submit" style="color:black;font-size:20px" class=" nav-link btn btn-link py-0  col-sm-auto">
+            <button type="submit" style="color:#FFF;font-size:20px" class=" nav-link btn btn-link py-0  col-sm-auto">
                 Desconectar
             </button>
         </ul>
@@ -39,7 +45,7 @@ else
     {
         <div class="d-flex align-items-center justify-content-center">
             <ul class="nav navbar-nav navbar-right">
-                <a class="nav-link py-0 " style="color:black;font-size:20px" asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante">
+                <a class="nav-link py-0 " style="color:#FFF;font-size:20px" asp-controller="Comerciante" asp-action="Index" asp-area="Comerciante">
                     <i class="bi bi-truck"></i> Logística
                 </a>
             </ul>

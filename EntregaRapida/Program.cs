@@ -104,7 +104,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
            name: "default",
-           pattern: "{controller=Account}/{action=Login}/{id?}");
+           pattern: "{controller=Home}/{action=Index}/{id?}");
     endpoints.MapControllerRoute(
         name: "Entregadores",
         pattern: "Entregador/{controller=Entregador}/{action=Index}/{id?}");

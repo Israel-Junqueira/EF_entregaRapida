@@ -191,6 +191,10 @@ img {
     padding-bottom: 90px;
 }
 
+.bg-dark {
+    background-color: transparent !important;
+}
+
 .navbar-dark .navbar-toggler-icon {
     background-image: url(../images/toggle-icon.png);
 }
@@ -208,7 +212,7 @@ img {
 }
 
 .navbar {
-    padding: 30px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -405,10 +409,6 @@ img {
     padding: 17px 10px;
 }
 
-.centralizada {
-    margin: 0 auto;
-}
-
 .services_section_2 {
     width: 100%;
     float: left;
@@ -416,9 +416,9 @@ img {
 
 .icon_1 {
     width: 100%;
+    float: left;
     text-align: center;
     padding-top: 90px;
-    max-width:100px;
 }
 
 .design_text {
@@ -464,8 +464,7 @@ img {
 }
 
 .read_bt_2 a:hover {
-    background-color: #005e0c;
-    color:#ffffff;
+    background-color: #8480f9;
 }
 
 .blog_section {
