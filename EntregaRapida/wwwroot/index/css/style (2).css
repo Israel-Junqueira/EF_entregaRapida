@@ -234,11 +234,11 @@ img {
 .banner_taital {
     width: 100%;
     float: left;
-    font-size: 90px;
+    font-size: 50px;
     color: #060303;
     font-weight: bold;
     line-height: 100px;
-    padding-top: 60px;
+    padding-top: 30px;
 }
 
 .banner_text {

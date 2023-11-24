@@ -180,7 +180,7 @@ h6 {
 }
 
 .p-t-130 {
-  padding-top: 80px;
+  padding-top: 90px;
 }
 
 .p-t-180 {
@@ -624,7 +624,7 @@ input {
 
     .card-4Rael .card-bodyRael {
         padding: 0px 65px;
-        padding-bottom: 5px;
+        padding-bottom: 0px;
     }
 
 @media (max-width: 767px) {
