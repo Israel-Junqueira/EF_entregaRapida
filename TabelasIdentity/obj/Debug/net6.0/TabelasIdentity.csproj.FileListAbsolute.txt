@@ -82,3 +82,16 @@ E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\D
 E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.dll
 E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\ref\TabelasIdentity.dll
 E:\5-ETEC-2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.pdb
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.deps.json
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.dll
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\bin\Debug\net6.0\TabelasIdentity.pdb
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.AssemblyReference.cache
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfoInputs.cache
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.AssemblyInfo.cs
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.csproj.CoreCompileInputs.cache
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.sourcelink.json
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.dll
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\refint\TabelasIdentity.dll
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\TabelasIdentity.pdb
+C:\Users\israe\OneDrive\Área de Trabalho\Geral\1_Informatica\Etec 2023\Projeto Entrega Rapida 2023\ProjetoEFFAtual\TabelasIdentity\obj\Debug\net6.0\ref\TabelasIdentity.dll

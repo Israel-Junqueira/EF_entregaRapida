@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\EntregaRapida\\EntregaRapida.csproj": {}
+    "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\EntregaRapida\\EntregaRapida.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\EntregaRapida\\EntregaRapida.csproj": {
+    "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\EntregaRapida\\EntregaRapida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\EntregaRapida\\EntregaRapida.csproj",
+        "projectUniqueName": "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\EntregaRapida\\EntregaRapida.csproj",
         "projectName": "EntregaRapida",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\EntregaRapida\\EntregaRapida.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\EntregaRapida\\obj\\",
+        "projectPath": "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\EntregaRapida\\EntregaRapida.csproj",
+        "packagesPath": "C:\\Users\\israe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\EntregaRapida\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\israe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -32,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj"
+              "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj": {
+                "projectPath": "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj"
               }
             }
           }
@@ -115,7 +111,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -127,25 +124,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj": {
+    "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj",
+        "projectUniqueName": "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj",
         "projectName": "TabelasIdentity",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\ProjetoEFFAtual\\TabelasIdentity\\obj\\",
+        "projectPath": "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\TabelasIdentity\\TabelasIdentity.csproj",
+        "packagesPath": "C:\\Users\\israe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\israe\\OneDrive\\Área de Trabalho\\Geral\\1_Informatica\\Etec 2023\\Projeto Entrega Rapida 2023\\ProjetoEFFAtual\\TabelasIdentity\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\israe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -190,7 +183,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -199,7 +193,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
